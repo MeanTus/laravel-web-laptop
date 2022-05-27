@@ -13,6 +13,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Route home page
 Route::get('/', function () {
-    return view('welcome');
+    return view('userpage.index');
 });
+
+Route::get('/login', function () {
+    return view('userpage.login');
+})->name('userpage.login');
+
+Route::get('/register', function () {
+    return view('userpage.register');
+})->name('userpage.register');
