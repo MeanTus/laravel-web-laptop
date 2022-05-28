@@ -13,21 +13,23 @@
         <div class="row">
             <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12 col-md-offset-3">
                 <div class=" main-content-area">
-                    <div class="wrap-login-item ">						
+                    <div class="wrap-login-item ">
                         <div class="login-form form-item form-stl">
-                            <form name="frm-login">
+                            <form name="frm-login" method="POST" action="{{ route('process_login') }}">
+                                @csrf
                                 <fieldset class="wrap-title">
-                                    <h3 class="form-title">Log in to your account</h3>										
+                                    <h3 class="form-title">Log in to your account</h3>
                                 </fieldset>
                                 <fieldset class="wrap-input">
                                     <label for="frm-login-uname">Email Address:</label>
-                                    <input type="text" id="frm-login-uname" name="email" placeholder="Type your email address">
+                                    <input type="email" id="frm-login-uname" name="email" placeholder="Type your email address">
                                 </fieldset>
+
                                 <fieldset class="wrap-input">
                                     <label for="frm-login-pass">Password:</label>
-                                    <input type="password" id="frm-login-pass" name="pass" placeholder="************">
+                                    <input type="password" id="frm-login-pass" name="password" placeholder="************">
                                 </fieldset>
-                                
+
                                 <fieldset class="wrap-input">
                                     <label class="remember-field">
                                         <input class="frm-input " name="rememberme" id="rememberme" value="forever" type="checkbox"><span>Remember me</span>
@@ -36,9 +38,9 @@
                                 </fieldset>
                                 <input type="submit" class="btn btn-submit" value="Login" name="submit">
                             </form>
-                        </div>												
+                        </div>
                     </div>
-                </div><!--end main products area-->		
+                </div><!--end main products area-->
             </div>
         </div><!--end row-->
 
