@@ -55,7 +55,11 @@
                                             <li class="menu-item"><a href="#">Orders</a></li>
                                             <li class="menu-item"><a href="#">Address</a></li>
                                             <li class="menu-item"><a href="#">Account Details</a></li>
-                                            <li class="menu-item" ><a title="Logout" href="#">Logout</a></li>
+                                            <li class="menu-item" >
+                                                <a title="Logout" href="{{ route('userpage_logout') }}">
+                                                    Logout
+                                                </a>
+                                            </li>
                                         </ul>
                                     </li>
                                 @else

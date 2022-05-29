@@ -28,4 +28,9 @@ class AuthController extends Controller
             return redirect()->route('userpage.login');
         }
     }
+
+    public function logout(Request $request){
+        session()->flush();
+        return redirect()->route('userpage.index');
+    }
 }

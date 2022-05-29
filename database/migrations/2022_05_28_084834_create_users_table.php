@@ -20,10 +20,9 @@ class CreateUsersTable extends Migration
             $table->boolean('gender');
             $table->string('password', 50);
             $table->date('birthdate');
-            $table->unsignedInteger('role_id');
-            $table->foreign('role_id')->references('role_id')->on('roles');
-            $table->date('create_at')->useCurrent()->nullable();
-            $table->date('update_at')->useCurrent()->useCurrentOnUpdate()->nullable();
+            $table->foreignId('role_id')->default('3')->constrained('roles');
+            $table->date('created_at')->useCurrent();
+            $table->date('updated_at')->useCurrent()->useCurrentOnUpdate()->nullable();
         });
     }
 
