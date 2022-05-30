@@ -14,6 +14,7 @@ class User extends Model
         'email',
         'gender',
         'birthdate',
+        'role_id',
         'password',
     ];
 }
