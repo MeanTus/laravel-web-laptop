@@ -23,9 +23,7 @@ class AuthController extends Controller
 
             return redirect()->route('userpage.index');
         } catch (\Throwable $th) {
-            var_dump($th);
-            die();
-            return redirect()->route('userpage.login');
+            return redirect()->route('userpage.login')->with('error', 'Email hoặc mật khẩu không chính xác');
         }
     }
 

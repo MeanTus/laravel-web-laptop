@@ -51,6 +51,9 @@ class StoreUserRequest extends FormRequest
                 'bail',
                 'required',
                 'min:8'
+            ],
+            'cfpass' => [
+                'required',
             ]
         ];
     }
@@ -74,6 +77,7 @@ class StoreUserRequest extends FormRequest
         'gender' => 'Giới tính',
         'birthdate' => 'Ngày sinh',
         'password' => 'Mật khẩu',
+        'cfpass' => 'Xác nhận lại mật khẩu'
     ];
 }
 }

@@ -40,10 +40,14 @@ class UserController extends Controller
      */
     public function store(StoreUserRequest $request)
     {
-        $new_user = $request->validated();
-        $this->model->create($new_user);
-
-        return redirect()->route('userpage.login');
+        if($request->get('password') !== $request->get('cfpass')){
+            return redirect()->route('userpage.register')->withErrors('Xác nhận lại mật khẩu không đúng!!');
+        } else {
+            $new_user = $request->validated();
+            $this->model->create($new_user);
+    
+            return redirect()->route('userpage.login');
+        }
     }
 
     /**
