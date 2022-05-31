@@ -1,7 +1,10 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\UserController;
+use App\Http\Middleware\CheckLoginMiddleware;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,6 +22,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('userpage.index');
 })->name('userpage.index');
+
+Route::group([
+    'middleware' => CheckLoginMiddleware::class
+], function () {
+    Route::get('/checkout', [CheckoutController::class, 'index'])->name('userpage.checkout');
+    Route::get('/cart', [CartController::class, 'index'])->name('userpage.cart');
+});
 
 // Route Login
 Route::get('/login', [AuthController::class, 'login'])->name('userpage.login');
