@@ -18,14 +18,14 @@ class CreateUsersTable extends Migration
             $table->string('name', 50);
             $table->string('email', 50)->unique();
             $table->boolean('gender');
-            $table->string('password', 50);
+            $table->string('password', 100);
             $table->date('birthdate');
             $table->unsignedInteger('role_id')->default('3');
             $table->date('created_at')->useCurrent();
             $table->date('updated_at')->useCurrent()->useCurrentOnUpdate()->nullable();
         });
 
-        Schema::table('users', function($table) {
+        Schema::table('users', function ($table) {
             $table->foreign('role_id')->references('role_id')->on('roles');
         });
     }

@@ -18,25 +18,33 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route home page
-Route::get('/', function () {
-    return view('userpage.index');
-})->name('userpage.index');
+// ================== Route userpage ==========================
 
 Route::group([
-    'middleware' => CheckLoginMiddleware::class
+    'as' => 'userpage.'
 ], function () {
-    Route::get('/checkout', [CheckoutController::class, 'index'])->name('userpage.checkout');
-    Route::get('/cart', [CartController::class, 'index'])->name('userpage.cart');
+    // Route home page
+    Route::get('/', [UserController::class, 'index'])->name('index');
+
+    // Route Login
+    Route::get('/login', [AuthController::class, 'login'])->name('login');
+    Route::post('/login', [AuthController::class, 'processLogin'])->name('process_login');
+
+    // Route Log out
+    Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+
+    // Route Register
+    Route::get('/register', [UserController::class, 'create'])->name('register');
+    Route::post('/register', [UserController::class, 'store'])->name('process_register');
 });
 
-// Route Login
-Route::get('/login', [AuthController::class, 'login'])->name('userpage.login');
-Route::post('/login', [AuthController::class, 'processLogin'])->name('process_login');
+Route::group([
+    'middleware' => CheckLoginMiddleware::class,
+    'as' => 'userpage.'
+], function () {
+    Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
+    Route::get('/cart', [CartController::class, 'index'])->name('cart');
+    Route::get('/profile/{user_id}', [UserController::class, 'show'])->name('profile');
+});
 
-// Route Log out
-Route::get('/logout', [AuthController::class, 'logout'])->name('userpage_logout');
-
-// Route Register
-Route::get('/register', [UserController::class, 'create'])->name('userpage.register');
-Route::post('/register', [UserController::class, 'store'])->name('process_register');
+// ==================================================================

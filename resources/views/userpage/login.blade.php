@@ -22,7 +22,7 @@
                 <div class=" main-content-area">
                     <div class="wrap-login-item ">
                         <div class="login-form form-item form-stl">
-                            <form name="frm-login" method="POST" action="{{ route('process_login') }}">
+                            <form name="frm-login" method="POST" action="{{ route('userpage.process_login') }}">
                                 @csrf
                                 <fieldset class="wrap-title">
                                     <h3 class="form-title">Log in to your account</h3>

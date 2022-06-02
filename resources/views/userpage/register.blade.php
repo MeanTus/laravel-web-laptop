@@ -22,7 +22,7 @@
                 <div class=" main-content-area">
                     <div class="wrap-login-item ">
                         <div class="register-form form-item ">
-                            <form class="form-stl" action="{{ route('process_register') }}" name="frm-login" method="post" >
+                            <form class="form-stl" action="{{ route('userpage.process_register') }}" name="frm-login" method="post" >
                                 @csrf
                                 <fieldset class="wrap-title">
                                     <h3 class="form-title">Create an account</h3>
