@@ -13,7 +13,8 @@
                 <div class="row mt-3">
                     <div class="col-md-12">
                         <label class="labels">Họ và tên</label>
-                        <input type="text" class="form-control" placeholder="first name" value=""></div>
+                        <input type="text" class="form-control" placeholder="first name" value="{{ $user->name }}">
+                    </div>
                 </div>
                 <div class="row mt-3">
                     <div class="col-md-12" style="margin-top: 10px">
@@ -22,15 +23,16 @@
                     </div>
                     <div class="col-md-12" style="margin-top: 10px">
                         <label class="labels">Giới tính</label>
-                        <input type="text" class="form-control" placeholder="enter address line 1" value="">
+                        <input type="text" class="form-control" placeholder="enter address line 1" value="{{ $user->getGenderUser() }}">
                     </div>
                     <div class="col-md-12" style="margin-top: 10px">
                         <label class="labels">Địa chỉ email</label>
-                        <input type="text" class="form-control" placeholder="enter address line 2" value="">
+                        <input type="text" class="form-control" placeholder="enter address line 2" value="{{ $user->email }}">
                     </div>
                     <div class="col-md-12" style="margin-top: 10px">
                         <label class="labels">Password</label>
-                        <input type="password" class="form-control" placeholder="enter address line 2" value="">
+                        <input type="password" class="form-control" placeholder="enter address line 2" 
+                        value="{{ $user->password }}" disabled>
                     </div>
                     <div class="col-md-12" style="margin-top: 10px">
                         <label class="labels">State</label>

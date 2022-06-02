@@ -17,4 +17,9 @@ class User extends Model
         'role_id',
         'password',
     ];
+
+    public function getGenderUser()
+    {
+        return $this->attributes['gender'] === 1 ? "Nam" : "Nữ";
+    }
 }

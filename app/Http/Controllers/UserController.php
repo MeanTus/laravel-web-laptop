@@ -66,7 +66,8 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        return view('userpage.profile');
+        $user = User::query()->where('user_id', $id)->firstOrFail();
+        return view('userpage.profile', ['user' => $user]);
     }
 
     /**

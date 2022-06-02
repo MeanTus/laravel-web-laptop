@@ -48,3 +48,13 @@ Route::group([
 });
 
 // ==================================================================
+
+// ======================== Route Admin =============================
+Route::group([
+    'prefix' => 'admin',
+    'as' => 'admin.'
+], function () {
+    Route::get('/', function () {
+        return view('admin.index');
+    });
+});
