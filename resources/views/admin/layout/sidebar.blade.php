@@ -1,8 +1,7 @@
 <div class="iq-sidebar sidebar-default">
     <div class="iq-sidebar-logo d-flex align-items-center justify-content-between">
-        <a href="{{ route('index') }}" class="header-logo">
-            <img src="images/logo.png" class="img-fluid rounded-normal light-logo" alt="logo">
-
+        <a href="{{ route('admin.index') }}" class="header-logo">
+            <img src="{{ asset('admin-assets/images/logo.png') }}" class="img-fluid rounded-normal light-logo" alt="logo">
             <h5 class="logo-title light-logo ml-3">POSDash</h5>
         </a>
         <div class="side-menu-bt-sidebar">
@@ -13,7 +12,7 @@
         <nav class="iq-sidebar-menu">
             <ul id="iq-sidebar-toggle" class="iq-menu">
                 <li class="">
-                    <a href="{{ route('dashboard') }}" class="svg-icon">
+                    <a href="{{ route('admin.index') }} class="svg-icon">
                         <svg  class="svg-icon" id="p-dash1" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line>
                         </svg>
@@ -32,12 +31,12 @@
                     </a>
                     <ul id="product" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
                         <li class="">
-                            <a href="{{ route('product') }}">
+                            <a href="{{ route('admin.product') }}">
                                 <i class="las la-minus"></i><span>List Product</span>
                             </a>
                         </li>
                         <li class="">
-                            <a href="{{ route('add-product') }}">
+                            <a href="{{ route('admin.add-product') }}">
                                 <i class="las la-minus"></i><span>Add Product</span>
                             </a>
                         </li>
@@ -55,12 +54,12 @@
                     </a>
                     <ul id="category" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
                         <li class="">
-                            <a href="{{ route('category') }}">
+                            <a href="{{ route('admin.category') }}">
                                 <i class="las la-minus"></i><span>List Category</span>
                             </a>
                         </li>
                         <li class="">
-                            <a href="{{ route('add-category') }}">
+                            <a href="{{ route('admin.add-category') }}">
                                 <i class="las la-minus"></i><span>Add Category</span>
                             </a>
                         </li>
@@ -79,12 +78,12 @@
                     </a>
                     <ul id="order" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
                         <li class="">
-                            <a href="{{ route('order') }}">
+                            <a href="{{ route('admin.order') }}">
                                 <i class="las la-minus"></i><span>List orders</span>
                             </a>
                         </li>
                         <li class="">
-                            <a href="{{ route('add-order') }}">
+                            <a href="{{ route('admin.add-order') }}">
                                 <i class="las la-minus"></i><span>Add order</span>
                             </a>
                         </li>
@@ -101,7 +100,7 @@
                             <polyline points="10 15 15 20 20 15"></polyline><path d="M4 4h7a4 4 0 0 1 4 4v12"></path>
                         </svg>
                     </a>
-                    <ul id="people" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
+                    {{-- <ul id="people" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
                         <li class="">
                             <a href="{{route('customer')}}">
                                 <i class="las la-minus"></i><span>Customers</span>
@@ -132,30 +131,10 @@
                                 <i class="las la-minus"></i><span>Add Suppliers</span>
                             </a>
                         </li>
-                    </ul>
-                </li>
-
-                <li class=" ">
-                    <a href="{{route('pos')}}" >
-                        <svg class="svg-icon" id="p-dash9" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><rect x="7" y="7" width="3" height="9"></rect><rect x="14" y="7" width="3" height="5"></rect>
-                        </svg>
-                        <span class="ml-4">View Pos</span>
-                    </a>
+                    </ul> --}}
                 </li>
             </ul>
         </nav>
-        <div id="sidebar-bottom" class="position-relative sidebar-bottom">
-            <div class="card border-none">
-                <div class="card-body p-0">
-                    <div class="sidebarbottom-content">
-                        <div class="image"><img src="images/layouts/side-bkg.png" class="img-fluid" alt="side-bkg"></div>
-                        <h6 class="mt-4 px-4 body-title">Get More Feature by Upgrading</h6>
-                        <button type="button" class="btn sidebar-bottom-btn mt-4">Go Premium</button>
-                    </div>
-                </div>
-            </div>
-        </div>
         <div class="p-3"></div>
     </div>
 </div>

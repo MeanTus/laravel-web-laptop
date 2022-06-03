@@ -1,8 +1,13 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\CheckLoginMiddleware;
 use Illuminate\Support\Facades\Route;
@@ -54,7 +59,23 @@ Route::group([
     'prefix' => 'admin',
     'as' => 'admin.'
 ], function () {
-    Route::get('/', function () {
-        return view('admin.index');
-    });
+    Route::get('/', [AdminController::class, 'index'])->name('index');
+    Route::get('/logout', [AdminController::class, 'logout'])->name('logout');
+
+    // Route Product
+    Route::get('/product', [ProductController::class, 'index'])->name('product');
+    Route::get('/add-product', [ProductController::class, 'create'])->name('add-product');
+    Route::post('/add-product', [ProductController::class, 'store'])->name('store-product');
+
+    // Route Category
+    Route::get('/category', [CategoryController::class, 'index'])->name('category');
+    Route::get('/add-category', [CategoryController::class, 'create'])->name('add-category');
+
+    // Route Brand
+    Route::get('/brand', [BrandController::class, 'index'])->name('brand');
+    Route::get('/add-brand', [BrandController::class, 'create'])->name('add-brand');
+
+    // Route Order
+    Route::get('/order', [OrderController::class, 'index'])->name('order');
+    Route::get('/add-order', [OrderController::class, 'create'])->name('add-order');
 });

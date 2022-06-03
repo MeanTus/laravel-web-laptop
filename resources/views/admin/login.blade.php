@@ -11,7 +11,7 @@
 <body>
     <div class="loginBox"> <img class="user" src="https://i.ibb.co/yVGxFPR/2.png" height="100px" width="100px">
         <h3>Sign in here</h3>
-        <form action="{{ route('process_login') }}" method="post">
+        <form action="{{ route('admin.process_login') }}" method="post">
             @csrf
             <div class="inputBox">
                 <input id="uname" type="text" name="email" placeholder="Username">

@@ -7,9 +7,8 @@
                 <div class="d-flex flex-wrap flex-wrap align-items-center justify-content-between mb-4">
                     <div>
                         <h4 class="mb-3">Danh Sách Đơn Hàng</h4>
-                        <p class="mb-0">The product list effectively dictates product presentation and provides space<br> to list your products and offering in the most appealing way.</p>
                     </div>
-                    <a href="{{ route('add-product') }}" class="btn btn-primary add-list"><i class="las la-plus mr-3"></i>Danh sách sản phẩm</a>
+                    {{-- <a href="{{ route('admin.add-product') }}" class="btn btn-primary add-list"><i class="las la-plus mr-3"></i>Danh sách sản phẩm</a> --}}
                 </div>
             </div>
             <div class="col-lg-12">
@@ -112,25 +111,4 @@
         </div>
     </div>
 </div>
-
-<footer class="iq-footer">
-    <div class="container-fluid">
-        <div class="card">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-lg-6">
-                        <ul class="list-inline mb-0">
-                            <li class="list-inline-item"><a href="extra/privacy.html">Privacy Policy</a></li>
-                            <li class="list-inline-item"><a href="extra/term-service.html">Terms of Use</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-lg-6 text-right">
-                        <span class="mr-1"><script>document.write(new Date().getFullYear())</script>©</span> <a href="#" class="">POS-Dash</a>.
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</footer>
-
 @endsection
