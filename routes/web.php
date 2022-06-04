@@ -75,6 +75,7 @@ Route::group([
     // Route Brand
     Route::get('/brand', [BrandController::class, 'index'])->name('brand');
     Route::get('/add-brand', [BrandController::class, 'create'])->name('add-brand');
+    Route::post('/store-brand', [BrandController::class, 'store'])->name('store-brand');
 
     // Route Order
     Route::get('/order', [OrderController::class, 'index'])->name('order');

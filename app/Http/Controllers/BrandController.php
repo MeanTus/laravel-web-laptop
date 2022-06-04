@@ -2,10 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreBrandRequest;
+use App\Models\Brand;
 use Illuminate\Http\Request;
 
 class BrandController extends Controller
 {
+    public function __construct(Brand $user)
+    {
+        $this->model = (new Brand())->query();
+    }
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +19,10 @@ class BrandController extends Controller
      */
     public function index()
     {
-        return view('admin.list-product');
+        $list_brand = $this->model->orderBy('created_at', 'desc')->get();
+        return view('admin.list-brand', [
+            'list_brand' => $list_brand
+        ]);
     }
 
     /**
@@ -32,9 +41,20 @@ class BrandController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreBrandRequest $request)
     {
-        //
+        // Lưu hình ảnh
+        $avatar = $request->file('avatar');
+        $name_avatar = time() . $avatar->getClientOriginalName();
+        //Lưu trữ file tại public/admin-assets/images/product
+        $avatar->move(public_path('admin-assets/images/product'), $name_avatar);
+
+        Brand::create([
+            'brand_name' => $request->get('brand_name'),
+            'avatar' => $name_avatar,
+        ]);
+
+        return redirect()->route('admin.brand')->with('success', "Thêm thương hiệu thành công");
     }
 
     /**
@@ -68,7 +88,6 @@ class BrandController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
     }
 
     /**
