@@ -2,6 +2,9 @@
 @section('content')
 
 <div class="content-page">
+@if ($errors->any())
+    @include('layout.alert-err')
+@endif
     <div class="container-fluid add-form-list">
         <div class="row">
             <div class="col-sm-12">
@@ -12,20 +15,14 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <form action="https://templates.iqonic.design/posdash/laravel/public/list-category" data-toggle="validator">
+                        <form action="{{ route('admin.store-category') }}" method="POST">
+                            @csrf
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label>ID danh mục *</label>
-                                        <input type="text" class="form-control" placeholder="Enter ID" required>
-                                        <div class="help-block with-errors"></div>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-12">
-                                    <div class="form-group">
                                         <label>Tên danh mục *</label>
-                                        <input type="text" class="form-control" placeholder="Enter Name" required>
+                                        <input type="text" class="form-control" placeholder="Enter Name" 
+                                        name="category_name" required>
                                         <div class="help-block with-errors"></div>
                                     </div>
                                 </div>

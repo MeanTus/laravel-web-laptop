@@ -70,6 +70,7 @@ Route::group([
     // Route Category
     Route::get('/category', [CategoryController::class, 'index'])->name('category');
     Route::get('/add-category', [CategoryController::class, 'create'])->name('add-category');
+    Route::post('/add-category', [CategoryController::class, 'store'])->name('store-category');
 
     // Route Brand
     Route::get('/brand', [BrandController::class, 'index'])->name('brand');

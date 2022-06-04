@@ -2,10 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreCategoryRequest;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
+    public function __construct(Category $user)
+    {
+        $this->model = (new Category())->query();
+    }
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +19,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return view('admin.list-category');
+        $list_cate = $this->model->orderBy('created_at', 'desc')->get();
+        return view('admin.list-category', ['list_cate' => $list_cate]);
     }
 
     /**
@@ -32,9 +39,10 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreCategoryRequest $request)
     {
-        return view('admin.add-category');
+        $this->model->create($request->validated());
+        return redirect()->route('admin.category')->with('success', 'Thêm danh mục thành công');
     }
 
     /**
