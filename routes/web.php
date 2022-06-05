@@ -9,6 +9,7 @@ use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
+use App\Http\Middleware\CheckAdminMiddleware;
 use App\Http\Middleware\CheckLoginMiddleware;
 use Illuminate\Support\Facades\Route;
 
@@ -59,8 +60,17 @@ Route::group([
     'prefix' => 'admin',
     'as' => 'admin.'
 ], function () {
+    Route::get('/login', [AuthController::class, 'loginAdmin'])->name('login');
+    Route::post('/login', [AuthController::class, 'processLoginAdmin'])->name('processLogin');
+    Route::get('/logout', [AuthController::class, 'logoutAdmin'])->name('logout');
+});
+
+Route::group([
+    'prefix' => 'admin',
+    'as' => 'admin.',
+    'middleware' => CheckAdminMiddleware::class
+], function () {
     Route::get('/', [AdminController::class, 'index'])->name('index');
-    Route::get('/logout', [AdminController::class, 'logout'])->name('logout');
 
     // Route Product
     Route::get('/product', [ProductController::class, 'index'])->name('product');

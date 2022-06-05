@@ -19924,13 +19924,13 @@ fieldset[disabled] .btn {
   top: 0;
   font-size: 14px;
   background: #ffffff;
-  padding: 5px 8px;
+  padding: 2px 5px;
 }
 .floating-input:not(:placeholder-shown) ~ label {
   top: 0;
   font-size: 14px;
   background: #ffffff;
-  padding: 5px 8px;
+  padding: 2px 5px;
 }
 
 @media (min-width: 992px) {
