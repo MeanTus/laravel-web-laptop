@@ -90,6 +90,7 @@ Route::group([
     Route::post('/store-brand', [BrandController::class, 'store'])->name('store-brand');
     Route::get('/edit-brand/{id}', [BrandController::class, 'edit'])->name('edit-brand');
     Route::post('/update-brand/{id}', [BrandController::class, 'update'])->name('update-brand');
+    Route::get('/delete-brand/{id}', [BrandController::class, 'destroy'])->name('delete-brand');
 
     // Route Order
     Route::get('/order', [OrderController::class, 'index'])->name('order');

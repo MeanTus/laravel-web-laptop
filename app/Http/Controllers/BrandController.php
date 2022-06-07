@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreBrandRequest;
 use App\Models\Brand;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class BrandController extends Controller
 {
@@ -46,8 +47,8 @@ class BrandController extends Controller
         // Lưu hình ảnh
         $avatar = $request->file('avatar');
         $name_avatar = time() . $avatar->getClientOriginalName();
-        //Lưu trữ file tại public/admin-assets/images/product
-        $avatar->move(public_path('admin-assets/images/product'), $name_avatar);
+        //Lưu trữ file tại public/admin-assets/images/brands
+        $avatar->move(public_path('admin-assets/images/brands'), $name_avatar);
 
         Brand::create([
             'brand_name' => $request->get('brand_name'),
@@ -91,9 +92,26 @@ class BrandController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->model->where('id', $id)->update(['brand_name' => $request->get('brand_name')]);
+        if ($request->file('avatar') !== null) {
+            // Delete old avatar
+            File::delete(public_path("admin-assets\images\brands\\") . $request->get('old-avatar'));
 
-        return redirect()->route('admin.brand');
+            // Lưu hình ảnh
+            $avatar = $request->file('avatar');
+            $name_avatar = time() . $avatar->getClientOriginalName();
+
+            //Lưu trữ file tại public/admin-assets/images/brands
+            $avatar->move(public_path('admin-assets/images/brands'), $name_avatar);
+
+            $this->model->where('id', $id)->update([
+                'brand_name' => $request->get('brand_name'),
+                'avatar' => $name_avatar,
+            ]);
+        } else {
+            $this->model->where('id', $id)->update(['brand_name' => $request->get('brand_name')]);
+        }
+
+        return redirect()->route('admin.brand')->with('success', "Cập nhật thương hiệu thành công");
     }
 
     /**
@@ -104,6 +122,5 @@ class BrandController extends Controller
      */
     public function destroy($id)
     {
-        //
     }
 }

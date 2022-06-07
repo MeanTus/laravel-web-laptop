@@ -56,7 +56,7 @@
                                     <td>
                                         <img 
                                         class="img-fluid rounded avatar-80 mr-3"
-                                        src="../admin-assets/images/product/{{ $brand['avatar'] }}" 
+                                        src="../admin-assets/images/brands/{{ $brand['avatar'] }}" 
                                         alt="">
                                     </td>
 
@@ -67,7 +67,7 @@
                                             <a class="badge bg-success mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"
                                             href="{{ route('admin.edit-brand', ['id' => $brand['id']]) }}"><i class="ri-pencil-line mr-0"></i></a>
                                             <a class="badge bg-warning mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"
-                                            href="#"><i class="ri-delete-bin-line mr-0"></i></a>
+                                            href="{{ route('admin.delete-brand', ['id' => $brand['id']]) }}"><i class="ri-delete-bin-line mr-0"></i></a>
                                         </div>
                                     </td>
                                 </tr>
