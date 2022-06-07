@@ -123,38 +123,28 @@
                             <polyline points="10 15 15 20 20 15"></polyline><path d="M4 4h7a4 4 0 0 1 4 4v12"></path>
                         </svg>
                     </a>
-                    {{-- <ul id="people" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
+                    <ul id="people" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
                         <li class="">
-                            <a href="{{route('customer')}}">
+                            <a href="{{route('admin.customer')}}">
                                 <i class="las la-minus"></i><span>Customers</span>
                             </a>
                         </li>
                         <li class="">
-                            <a href="{{route('add-customer')}}">
+                            <a href="{{route('admin.add-customer')}}">
                                 <i class="las la-minus"></i><span>Add Customers</span>
                             </a>
                         </li>
                         <li class="">
-                            <a href="{{route('user')}}">
-                                <i class="las la-minus"></i><span>Users</span>
+                            <a href="{{route('admin.admin')}}">
+                                <i class="las la-minus"></i><span>Admin</span>
                             </a>
                         </li>
                         <li class="">
-                            <a href="{{route('add-user')}}">
-                                <i class="las la-minus"></i><span>Add Users</span>
+                            <a href="{{route('admin.add-admin')}}">
+                                <i class="las la-minus"></i><span>Add Admin</span>
                             </a>
                         </li>
-                        <li class="">
-                            <a href="{{route('supplier')}}">
-                                <i class="las la-minus"></i><span>Suppliers</span>
-                            </a>
-                        </li>
-                        <li class="">
-                            <a href="{{route('add-supplier')}}">
-                                <i class="las la-minus"></i><span>Add Suppliers</span>
-                            </a>
-                        </li>
-                    </ul> --}}
+                    </ul>
                 </li>
             </ul>
         </nav>

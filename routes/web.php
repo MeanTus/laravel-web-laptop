@@ -6,6 +6,7 @@ use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
@@ -70,7 +71,9 @@ Route::group([
     'as' => 'admin.',
     'middleware' => CheckAdminMiddleware::class
 ], function () {
-    Route::get('/', [AdminController::class, 'index'])->name('index');
+    Route::get('/', function () {
+        return view('admin.index');
+    })->name('index');
 
     // Route Product
     Route::get('/product', [ProductController::class, 'index'])->name('product');
@@ -95,4 +98,12 @@ Route::group([
     // Route Order
     Route::get('/order', [OrderController::class, 'index'])->name('order');
     Route::get('/add-order', [OrderController::class, 'create'])->name('add-order');
+
+    // Route Customer
+    Route::get('/customer', [CustomerController::class, 'index'])->name('customer');
+    Route::get('/add-customer', [CustomerController::class, 'create'])->name('add-customer');
+
+    // Route Admin
+    Route::get('/list-admin', [AdminController::class, 'index'])->name('admin');
+    Route::get('/add-admin', [AdminController::class, 'create'])->name('add-admin');
 });

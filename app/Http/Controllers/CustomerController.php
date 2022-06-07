@@ -5,16 +5,21 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 
-class AdminController extends Controller
+class CustomerController extends Controller
 {
     public function __construct()
     {
         $this->model = (new User())->query();
     }
 
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
-        return view('admin.people.admin');
+        return view('admin.people.customer');
     }
 
     /**
@@ -24,7 +29,7 @@ class AdminController extends Controller
      */
     public function create()
     {
-        return view('admin.people.add-admin');
+        return view('admin.people.add-customer');
     }
 
     /**

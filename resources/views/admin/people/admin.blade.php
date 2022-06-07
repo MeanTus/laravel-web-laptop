@@ -1,18 +1,16 @@
 @extends('admin.layout.master')
-@section('body')
-
-
+@section('content')
 <div class="content-page">
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
                 <div class="d-flex flex-wrap align-items-center justify-content-between mb-4">
                     <div>
-                        <h4 class="mb-3">Suppliers List</h4>
-                        <p class="mb-0">Create and manage your vendor list, send and receive purchase orders – your online<br>
-                            Dashboard is your new back of house.</p>
+                        <h4 class="mb-3">User List</h4>
+                        <p class="mb-0">A dashboard provides you an overview of user list with access to the most important data,<br>
+                            functions and controls. </p>
                     </div>
-                    <a href="{{route('add-supplier')}}" class="btn btn-primary add-list"><i class="las la-plus mr-3"></i>Add Supplier</a>
+                    <a href="{{ route('admin.add-admin') }}" class="btn btn-primary add-list"><i class="las la-plus mr-3"></i>Add User</a>
                 </div>
             </div>
             <div class="col-lg-12">
@@ -26,13 +24,13 @@
                                     <label for="checkbox1" class="mb-0"></label>
                                 </div>
                             </th>
-                            <th>Company Name</th>
                             <th>Name</th>
                             <th>Email</th>
-                            <th>Phone No.</th>
-                            <th>City</th>
-                            <th>Country</th>
-                            <th>GST No</th>
+                            <th>Company</th>
+                            <th>Awors Points</th>
+                            <th>Group</th>
+                            <th>Status</th>
+                            <th>Store</th>
                             <th>Action</th>
                         </tr>
                         </thead>
@@ -44,13 +42,13 @@
                                     <label for="checkbox2" class="mb-0"></label>
                                 </div>
                             </td>
-                            <td>Fruits Supply</td>
-                            <td>Max Conversion</td>
-                            <td>max@gmail.com</td>
-                            <td>0123456789</td>
-                            <td>Petaling</td>
-                            <td>USA</td>
-                            <td>1234</td>
+                            <td>Cliff Hanger</td>
+                            <td>cliff@gmail.com</td>
+                            <td>Product Manager</td>
+                            <td>0</td>
+                            <td>Cliff</td>
+                            <td>Active</td>
+                            <td>1</td>
                             <td>
                                 <div class="d-flex align-items-center list-action">
                                     <a class="badge badge-info mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="View"
@@ -69,13 +67,13 @@
                                     <label for="checkbox3" class="mb-0"></label>
                                 </div>
                             </td>
-                            <td>Footwear Supply</td>
-                            <td>Paige Turner</td>
-                            <td>paige@gmail.com</td>
-                            <td>0125856789</td>
-                            <td>Orlando</td>
-                            <td>USA</td>
-                            <td>1235</td>
+                            <td>Terry Aki</td>
+                            <td>terry@gmail.com</td>
+                            <td>Stock CEO</td>
+                            <td>0</td>
+                            <td>Terry</td>
+                            <td>Active</td>
+                            <td>2</td>
                             <td>
                                 <div class="d-flex align-items-center list-action">
                                     <a class="badge badge-info mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="View"
@@ -94,13 +92,13 @@
                                     <label for="checkbox4" class="mb-0"></label>
                                 </div>
                             </td>
-                            <td>Furniture Supply</td>
-                            <td>Barb Ackue</td>
-                            <td>barb@gmail.com</td>
-                            <td>0123246789</td>
-                            <td>Miami</td>
-                            <td>USA</td>
-                            <td>1236</td>
+                            <td>Ira Membrit</td>
+                            <td>ira@gmail.com</td>
+                            <td>Stock Manager</td>
+                            <td>0</td>
+                            <td>Ira</td>
+                            <td>Active</td>
+                            <td>3</td>
                             <td>
                                 <div class="d-flex align-items-center list-action">
                                     <a class="badge badge-info mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="View"
@@ -119,13 +117,13 @@
                                     <label for="checkbox5" class="mb-0"></label>
                                 </div>
                             </td>
-                            <td>Food Supply</td>
-                            <td>Ira Membrit</td>
-                            <td>ira@gmail.com</td>
-                            <td>0123458719</td>
-                            <td>Francisco</td>
-                            <td>UK</td>
-                            <td>1237</td>
+                            <td>Barb Ackue</td>
+                            <td>barb@gmail.com</td>
+                            <td>Stock Developer</td>
+                            <td>0</td>
+                            <td>Barb</td>
+                            <td>Active</td>
+                            <td>1</td>
                             <td>
                                 <div class="d-flex align-items-center list-action">
                                     <a class="badge badge-info mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="View"
@@ -144,13 +142,13 @@
                                     <label for="checkbox6" class="mb-0"></label>
                                 </div>
                             </td>
-                            <td>Grocery Supply</td>
-                            <td>Pete Sariya</td>
-                            <td>pete@gmail.com</td>
-                            <td>0111456789</td>
-                            <td>Petaling</td>
-                            <td>USA</td>
-                            <td>1238</td>
+                            <td>Max Conversion</td>
+                            <td>max@gmail.com</td>
+                            <td>Stock Manager</td>
+                            <td>0</td>
+                            <td>Max</td>
+                            <td>Active</td>
+                            <td>1</td>
                             <td>
                                 <div class="d-flex align-items-center list-action">
                                     <a class="badge badge-info mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="View"
@@ -169,13 +167,13 @@
                                     <label for="checkbox7" class="mb-0"></label>
                                 </div>
                             </td>
-                            <td>Packing Supply</td>
-                            <td>Rock lai</td>
-                            <td>rock@gmail.com</td>
-                            <td>0123452289</td>
-                            <td>whopping </td>
-                            <td>UK</td>
-                            <td>1239</td>
+                            <td>Alex john</td>
+                            <td>alex@gmail.com</td>
+                            <td>Product Manager</td>
+                            <td>0</td>
+                            <td>Alex</td>
+                            <td>Active</td>
+                            <td>2</td>
                             <td>
                                 <div class="d-flex align-items-center list-action">
                                     <a class="badge badge-info mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="View"
@@ -194,13 +192,13 @@
                                     <label for="checkbox8" class="mb-0"></label>
                                 </div>
                             </td>
-                            <td>Fish Supply</td>
-                            <td>Terry Aki</td>
-                            <td>terry@gmail.com</td>
-                            <td>0123205789</td>
-                            <td>Suzhou</td>
-                            <td>USA</td>
-                            <td>1240</td>
+                            <td>Paige Turner</td>
+                            <td>paige@gmail.com</td>
+                            <td>Stock Developer</td>
+                            <td>0</td>
+                            <td>Paige</td>
+                            <td>Active</td>
+                            <td>2</td>
                             <td>
                                 <div class="d-flex align-items-center list-action">
                                     <a class="badge badge-info mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="View"
@@ -219,13 +217,13 @@
                                     <label for="checkbox9" class="mb-0"></label>
                                 </div>
                             </td>
-                            <td>Cloth Supply</td>
-                            <td>Cliff Hanger</td>
-                            <td>cliff@gmail.com</td>
-                            <td>0189556789</td>
-                            <td>Guilin</td>
-                            <td>UK</td>
-                            <td>1241</td>
+                            <td>Greta Life</td>
+                            <td>greta@gmail.com</td>
+                            <td>Product Manager</td>
+                            <td>0</td>
+                            <td>Greta</td>
+                            <td>Active</td>
+                            <td>4</td>
                             <td>
                                 <div class="d-flex align-items-center list-action">
                                     <a class="badge badge-info mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="View"
@@ -244,13 +242,13 @@
                                     <label for="checkbox10" class="mb-0"></label>
                                 </div>
                             </td>
-                            <td>Toy Supply</td>
-                            <td>Alex john</td>
-                            <td>alex@gmail.com</td>
-                            <td>0123456123</td>
-                            <td>Nanjing</td>
-                            <td>USA</td>
-                            <td>1242</td>
+                            <td>Anna Mull</td>
+                            <td>anna@gmail.com</td>
+                            <td>Stock Manager</td>
+                            <td>0</td>
+                            <td>Anna</td>
+                            <td>Active</td>
+                            <td>1</td>
                             <td>
                                 <div class="d-flex align-items-center list-action">
                                     <a class="badge badge-info mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="View"
@@ -304,25 +302,4 @@
         </div>
     </div>
 </div>
-
-<footer class="iq-footer">
-    <div class="container-fluid">
-        <div class="card">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-lg-6">
-                        <ul class="list-inline mb-0">
-                            <li class="list-inline-item"><a href="../extra/privacy.html">Privacy Policy</a></li>
-                            <li class="list-inline-item"><a href="../extra/term-service.html">Terms of Use</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-lg-6 text-right">
-                        <span class="mr-1"><script>document.write(new Date().getFullYear())</script>©</span> <a href="#" class="">POS-Dash</a>.
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</footer>
 @endsection
-
