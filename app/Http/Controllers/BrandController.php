@@ -76,7 +76,10 @@ class BrandController extends Controller
      */
     public function edit($id)
     {
-        //
+        $brand = $this->model
+            ->where('id', $id)
+            ->firstOrFail();
+        return view('admin.edit-brand', ['brand' => $brand]);
     }
 
     /**
@@ -88,6 +91,9 @@ class BrandController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->model->where('id', $id)->update(['brand_name' => $request->get('brand_name')]);
+
+        return redirect()->route('admin.brand');
     }
 
     /**

@@ -81,11 +81,15 @@ Route::group([
     Route::get('/category', [CategoryController::class, 'index'])->name('category');
     Route::get('/add-category', [CategoryController::class, 'create'])->name('add-category');
     Route::post('/add-category', [CategoryController::class, 'store'])->name('store-category');
+    Route::get('/edit-category/{id}', [CategoryController::class, 'edit'])->name('edit-category');
+    Route::post('/update-category/{id}', [CategoryController::class, 'update'])->name('update-category');
 
     // Route Brand
     Route::get('/brand', [BrandController::class, 'index'])->name('brand');
     Route::get('/add-brand', [BrandController::class, 'create'])->name('add-brand');
     Route::post('/store-brand', [BrandController::class, 'store'])->name('store-brand');
+    Route::get('/edit-brand/{id}', [BrandController::class, 'edit'])->name('edit-brand');
+    Route::post('/update-brand/{id}', [BrandController::class, 'update'])->name('update-brand');
 
     // Route Order
     Route::get('/order', [OrderController::class, 'index'])->name('order');

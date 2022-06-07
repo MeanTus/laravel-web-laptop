@@ -64,7 +64,10 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $category = $this->model
+            ->where('id', $id)
+            ->firstOrFail();
+        return view('admin.edit-category', ['category' => $category]);
     }
 
     /**
@@ -76,7 +79,9 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->model->where('id', $id)->update(['category_name' => $request->get('category_name')]);
+
+        return redirect()->route('admin.category');
     }
 
     /**
