@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreUserReQuest;
 use App\Models\User;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -66,7 +67,8 @@ class UserController extends Controller
     public function show($id)
     {
         $user = User::query()->where('user_id', $id)->firstOrFail();
-        return view('userpage.profile', ['user' => $user]);
+        $gender = ['1' => 'Nam', '0' => 'Nữ'];
+        return view('userpage.profile', ['user' => $user, 'gender' => $gender]);
     }
 
     /**
@@ -89,7 +91,37 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $path = public_path('assets/images/users/');
+        if ($request->file('avatar') !== null) {
+            if (!File::exists($path)) {
+                // Tạo folder
+                File::makeDirectory($path . 'user' . $id, 0777, true, true);
+            } else {
+                // Delete old avatar
+                File::delete($path . $request->get('old-avatar'));
+            }
+
+            $avatar = $request->file('avatar');
+            $avatar_name = 'user' . $id . '/' . time() . $avatar->getClientOriginalName();
+            $avatar->move($path . 'user' . $id, $avatar_name);
+
+            $this->model->where('user_id', $id)->update([
+                'name' => $request->get('name'),
+                'email' => $request->get('email'),
+                'gender' => $request->get('gender'),
+                'avatar' => $avatar_name,
+                'phone_number' => $request->get('phone_number'),
+            ]);
+        } else {
+            $this->model->where('user_id', $id)->update([
+                'name' => $request->get('name'),
+                'email' => $request->get('email'),
+                'gender' => $request->get('gender'),
+                'phone_number' => $request->get('phone_number'),
+            ]);
+        }
+
+        return redirect()->route('userpage.profile', ['user_id' => $id]);
     }
 
     /**

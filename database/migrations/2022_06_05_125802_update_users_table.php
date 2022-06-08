@@ -14,8 +14,7 @@ class UpdateUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('phone_number')->nullable();
-            $table->smallInteger('status')->default(0);
+            $table->string('avatar', 50)->default('default-user-avatar.jpg')->nullable();
         });
     }
 

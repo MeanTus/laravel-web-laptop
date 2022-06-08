@@ -52,6 +52,7 @@ Route::group([
     Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
     Route::get('/cart', [CartController::class, 'index'])->name('cart');
     Route::get('/profile/{user_id}', [UserController::class, 'show'])->name('profile');
+    Route::post('/update-user/{id}', [UserController::class, 'update'])->name('update_user');
 });
 
 // ==================================================================

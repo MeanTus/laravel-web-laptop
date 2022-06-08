@@ -87,6 +87,7 @@
 
 <!-- app JavaScript -->
 <script src="{{ asset('admin-assets/js/app.js') }}" defer></script>
+<script src="{{ asset('assets/js/app.js') }}" defer></script>
 </body>
 
 <!-- Mirrored from templates.iqonic.design/posdash/laravel/public/ by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 30 May 2022 04:04:12 GMT -->
