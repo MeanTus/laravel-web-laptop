@@ -2,11 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreSupplierRequest;
 use App\Models\Supplier;
 use Illuminate\Http\Request;
 
 class SupplierController extends Controller
 {
+    public function __construct()
+    {
+        $this->model = (new Supplier())->query();
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +19,10 @@ class SupplierController extends Controller
      */
     public function index()
     {
-        return view('admin.list-supplier');
+        $list_supplier = $this->model->orderBy('created_at', 'desc')->get();
+        return view('admin.list-supplier', [
+            'list_supplier' => $list_supplier
+        ]);
     }
 
     /**
@@ -33,9 +41,10 @@ class SupplierController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreSupplierRequest $request)
     {
-        //
+        $this->model->create($request->validated());
+        return redirect()->route('admin.supplier')->with('success', 'Thêm nhà cung cấp thành công');
     }
 
     /**

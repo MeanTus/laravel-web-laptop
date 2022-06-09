@@ -27,17 +27,18 @@
                                     <label for="checkbox1" class="mb-0"></label>
                                 </div>
                             </th>
-                            <th>Company Name</th>
-                            <th>Name</th>
+                            <th>Tên công ty</th>
                             <th>Email</th>
-                            <th>Phone No.</th>
-                            <th>City</th>
-                            <th>Country</th>
+                            <th>Số điện thoại</th>
+                            <th>Thành phố</th>
+                            <th>Quốc gia</th>
+                            <th>Đã cung cấp</th>
                             <th>GST No</th>
                             <th>Action</th>
                         </tr>
                         </thead>
                         <tbody class="ligth-body">
+                        @foreach ($list_supplier as $supplier)
                         <tr>
                             <td>
                                 <div class="checkbox d-inline-block">
@@ -45,13 +46,13 @@
                                     <label for="checkbox2" class="mb-0"></label>
                                 </div>
                             </td>
-                            <td>Fruits Supply</td>
-                            <td>Max Conversion</td>
-                            <td>max@gmail.com</td>
-                            <td>0123456789</td>
-                            <td>Petaling</td>
-                            <td>USA</td>
-                            <td>1234</td>
+                            <td>{{ $supplier['name'] }}</td>
+                            <td>{{ $supplier['email'] }}</td>
+                            <td>{{ $supplier['phone_number'] }}</td>
+                            <td>{{ $supplier['city'] }}</td>
+                            <td>{{ $supplier['country'] }}</td>
+                            <td>{{ $supplier['quantity_supplied'] }}</td>
+                            <td>{{ $supplier['GST'] }}</td>
                             <td>
                                 <div class="d-flex align-items-center list-action">
                                     <a class="badge badge-info mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="View"
@@ -63,206 +64,7 @@
                                 </div>
                             </td>
                         </tr>
-                        <tr>
-                            <td>
-                                <div class="checkbox d-inline-block">
-                                    <input type="checkbox" class="checkbox-input" id="checkbox3">
-                                    <label for="checkbox3" class="mb-0"></label>
-                                </div>
-                            </td>
-                            <td>Footwear Supply</td>
-                            <td>Paige Turner</td>
-                            <td>paige@gmail.com</td>
-                            <td>0125856789</td>
-                            <td>Orlando</td>
-                            <td>USA</td>
-                            <td>1235</td>
-                            <td>
-                                <div class="d-flex align-items-center list-action">
-                                    <a class="badge badge-info mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="View"
-                                       href="#"><i class="ri-eye-line mr-0"></i></a>
-                                    <a class="badge bg-success mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"
-                                       href="#"><i class="ri-pencil-line mr-0"></i></a>
-                                    <a class="badge bg-warning mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"
-                                       href="#"><i class="ri-delete-bin-line mr-0"></i></a>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="checkbox d-inline-block">
-                                    <input type="checkbox" class="checkbox-input" id="checkbox4">
-                                    <label for="checkbox4" class="mb-0"></label>
-                                </div>
-                            </td>
-                            <td>Furniture Supply</td>
-                            <td>Barb Ackue</td>
-                            <td>barb@gmail.com</td>
-                            <td>0123246789</td>
-                            <td>Miami</td>
-                            <td>USA</td>
-                            <td>1236</td>
-                            <td>
-                                <div class="d-flex align-items-center list-action">
-                                    <a class="badge badge-info mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="View"
-                                       href="#"><i class="ri-eye-line mr-0"></i></a>
-                                    <a class="badge bg-success mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"
-                                       href="#"><i class="ri-pencil-line mr-0"></i></a>
-                                    <a class="badge bg-warning mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"
-                                       href="#"><i class="ri-delete-bin-line mr-0"></i></a>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="checkbox d-inline-block">
-                                    <input type="checkbox" class="checkbox-input" id="checkbox5">
-                                    <label for="checkbox5" class="mb-0"></label>
-                                </div>
-                            </td>
-                            <td>Food Supply</td>
-                            <td>Ira Membrit</td>
-                            <td>ira@gmail.com</td>
-                            <td>0123458719</td>
-                            <td>Francisco</td>
-                            <td>UK</td>
-                            <td>1237</td>
-                            <td>
-                                <div class="d-flex align-items-center list-action">
-                                    <a class="badge badge-info mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="View"
-                                       href="#"><i class="ri-eye-line mr-0"></i></a>
-                                    <a class="badge bg-success mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"
-                                       href="#"><i class="ri-pencil-line mr-0"></i></a>
-                                    <a class="badge bg-warning mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"
-                                       href="#"><i class="ri-delete-bin-line mr-0"></i></a>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="checkbox d-inline-block">
-                                    <input type="checkbox" class="checkbox-input" id="checkbox6">
-                                    <label for="checkbox6" class="mb-0"></label>
-                                </div>
-                            </td>
-                            <td>Grocery Supply</td>
-                            <td>Pete Sariya</td>
-                            <td>pete@gmail.com</td>
-                            <td>0111456789</td>
-                            <td>Petaling</td>
-                            <td>USA</td>
-                            <td>1238</td>
-                            <td>
-                                <div class="d-flex align-items-center list-action">
-                                    <a class="badge badge-info mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="View"
-                                       href="#"><i class="ri-eye-line mr-0"></i></a>
-                                    <a class="badge bg-success mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"
-                                       href="#"><i class="ri-pencil-line mr-0"></i></a>
-                                    <a class="badge bg-warning mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"
-                                       href="#"><i class="ri-delete-bin-line mr-0"></i></a>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="checkbox d-inline-block">
-                                    <input type="checkbox" class="checkbox-input" id="checkbox7">
-                                    <label for="checkbox7" class="mb-0"></label>
-                                </div>
-                            </td>
-                            <td>Packing Supply</td>
-                            <td>Rock lai</td>
-                            <td>rock@gmail.com</td>
-                            <td>0123452289</td>
-                            <td>whopping </td>
-                            <td>UK</td>
-                            <td>1239</td>
-                            <td>
-                                <div class="d-flex align-items-center list-action">
-                                    <a class="badge badge-info mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="View"
-                                       href="#"><i class="ri-eye-line mr-0"></i></a>
-                                    <a class="badge bg-success mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"
-                                       href="#"><i class="ri-pencil-line mr-0"></i></a>
-                                    <a class="badge bg-warning mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"
-                                       href="#"><i class="ri-delete-bin-line mr-0"></i></a>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="checkbox d-inline-block">
-                                    <input type="checkbox" class="checkbox-input" id="checkbox8">
-                                    <label for="checkbox8" class="mb-0"></label>
-                                </div>
-                            </td>
-                            <td>Fish Supply</td>
-                            <td>Terry Aki</td>
-                            <td>terry@gmail.com</td>
-                            <td>0123205789</td>
-                            <td>Suzhou</td>
-                            <td>USA</td>
-                            <td>1240</td>
-                            <td>
-                                <div class="d-flex align-items-center list-action">
-                                    <a class="badge badge-info mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="View"
-                                       href="#"><i class="ri-eye-line mr-0"></i></a>
-                                    <a class="badge bg-success mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"
-                                       href="#"><i class="ri-pencil-line mr-0"></i></a>
-                                    <a class="badge bg-warning mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"
-                                       href="#"><i class="ri-delete-bin-line mr-0"></i></a>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="checkbox d-inline-block">
-                                    <input type="checkbox" class="checkbox-input" id="checkbox9">
-                                    <label for="checkbox9" class="mb-0"></label>
-                                </div>
-                            </td>
-                            <td>Cloth Supply</td>
-                            <td>Cliff Hanger</td>
-                            <td>cliff@gmail.com</td>
-                            <td>0189556789</td>
-                            <td>Guilin</td>
-                            <td>UK</td>
-                            <td>1241</td>
-                            <td>
-                                <div class="d-flex align-items-center list-action">
-                                    <a class="badge badge-info mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="View"
-                                       href="#"><i class="ri-eye-line mr-0"></i></a>
-                                    <a class="badge bg-success mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"
-                                       href="#"><i class="ri-pencil-line mr-0"></i></a>
-                                    <a class="badge bg-warning mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"
-                                       href="#"><i class="ri-delete-bin-line mr-0"></i></a>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="checkbox d-inline-block">
-                                    <input type="checkbox" class="checkbox-input" id="checkbox10">
-                                    <label for="checkbox10" class="mb-0"></label>
-                                </div>
-                            </td>
-                            <td>Toy Supply</td>
-                            <td>Alex john</td>
-                            <td>alex@gmail.com</td>
-                            <td>0123456123</td>
-                            <td>Nanjing</td>
-                            <td>USA</td>
-                            <td>1242</td>
-                            <td>
-                                <div class="d-flex align-items-center list-action">
-                                    <a class="badge badge-info mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="View"
-                                       href="#"><i class="ri-eye-line mr-0"></i></a>
-                                    <a class="badge bg-success mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"
-                                       href="#"><i class="ri-pencil-line mr-0"></i></a>
-                                    <a class="badge bg-warning mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"
-                                       href="#"><i class="ri-delete-bin-line mr-0"></i></a>
-                                </div>
-                            </td>
-                        </tr>
+                        @endforeach
                         </tbody>
                     </table>
                 </div>
