@@ -9,6 +9,7 @@ use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\CheckAdminMiddleware;
 use App\Http\Middleware\CheckLoginMiddleware;
@@ -95,6 +96,14 @@ Route::group([
     Route::get('/edit-brand/{id}', [BrandController::class, 'edit'])->name('edit-brand');
     Route::post('/update-brand/{id}', [BrandController::class, 'update'])->name('update-brand');
     Route::get('/delete-brand/{id}', [BrandController::class, 'destroy'])->name('delete-brand');
+
+    // Route Supplier
+    Route::get('/supplier', [SupplierController::class, 'index'])->name('supplier');
+    Route::get('/add-supplier', [SupplierController::class, 'create'])->name('add-supplier');
+    Route::post('/store-supplier', [SupplierController::class, 'store'])->name('store-supplier');
+    Route::get('/edit-supplier/{id}', [SupplierController::class, 'edit'])->name('edit-supplier');
+    Route::post('/update-supplier/{id}', [SupplierController::class, 'update'])->name('update-supplier');
+    Route::get('/delete-supplier/{id}', [SupplierController::class, 'destroy'])->name('delete-supplier');
 
     // Route Order
     Route::get('/order', [OrderController::class, 'index'])->name('order');
