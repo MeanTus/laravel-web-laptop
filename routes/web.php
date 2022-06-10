@@ -101,8 +101,8 @@ Route::group([
     Route::get('/supplier', [SupplierController::class, 'index'])->name('supplier');
     Route::get('/add-supplier', [SupplierController::class, 'create'])->name('add-supplier');
     Route::post('/store-supplier', [SupplierController::class, 'store'])->name('store-supplier');
-    Route::get('/edit-supplier/{id}', [SupplierController::class, 'edit'])->name('edit-supplier');
-    Route::post('/update-supplier/{id}', [SupplierController::class, 'update'])->name('update-supplier');
+    Route::get('/edit-supplier/{supplier}', [SupplierController::class, 'edit'])->name('edit-supplier');
+    Route::put('/update-supplier/{supplier}', [SupplierController::class, 'update'])->name('update-supplier');
     Route::get('/delete-supplier/{id}', [SupplierController::class, 'destroy'])->name('delete-supplier');
 
     // Route Order
