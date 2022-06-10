@@ -1,7 +1,7 @@
 @extends('layout.master')
 @section('content')
 <div class="container rounded bg-white mt-5 mb-5">
-    <form action="{{ route('userpage.update_user', ['id' => $user->user_id]) }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('userpage.update_user', ['user' => $user->user_id]) }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="row">
             <div class="col-md-3 border-right">
@@ -19,18 +19,7 @@
 
                     <input type="text" name="old-avatar" value="{{ $user->avatar }}" hidden>
 
-                    <div class="button-wrapper mt-5">
-                        <label for="upload" class="btn btn-success" tabindex="0">
-                            <span class="d-none d-sm-block">Upload new photo</span>
-                            <i class="bx bx-upload d-block d-sm-none"></i>
-                            <input 
-                            type="file" 
-                            id="upload" 
-                            name="avatar"
-                            accept="image/png, image/jpeg"
-                            style="display: none" />
-                        </label>
-                    </div>
+                    @include('layout.edit-avatar')
                 </div>
             </div>
             <div class="col-md-6 border-right">

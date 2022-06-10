@@ -11,13 +11,13 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('admin.update-brand', ['id' => $brand['id']]) }}" method="POST"
+                        <form action="{{ route('admin.update-brand', ['brand' => $brand['id']]) }}" method="POST"
                             enctype="multipart/form-data">
                             @csrf
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label>Tên danh mục *</label>
+                                        <label>Tên thương hiệu *</label>
                                         <input type="text" class="form-control"
                                         name="brand_name"
                                         value="{{ $brand['brand_name'] }}"
@@ -26,13 +26,17 @@
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label>Hình ảnh</label>
-                                        <input type="file" class="form-control image-file" name="avatar" accept="image/*">
+                                        <img 
+                                        id="output"
+                                        class="img-fluid rounded avatar-80 mr-3"
+                                        src="../admin-assets/images/brands/{{ $brand['avatar'] }}" 
+                                        alt="">
+                                        @include('layout.edit-avatar')
                                     </div>
                                 </div>
                                 <input type="text" value="{{ $brand['avatar'] }}" name="old-avatar" hidden>
                             </div>
-                            <button type="submit" class="btn btn-primary mr-2">Chỉnh sửa danh mục</button>
+                            <button type="submit" class="btn btn-primary mr-2">Chỉnh sửa thương hiệu</button>
                             <button type="reset" class="btn btn-danger">Làm mới</button>
                         </form>
                     </div>

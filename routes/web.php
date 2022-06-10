@@ -52,8 +52,8 @@ Route::group([
 ], function () {
     Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
     Route::get('/cart', [CartController::class, 'index'])->name('cart');
-    Route::get('/profile/{user_id}', [UserController::class, 'show'])->name('profile');
-    Route::post('/update-user/{id}', [UserController::class, 'update'])->name('update_user');
+    Route::get('/profile/{user}', [UserController::class, 'show'])->name('profile');
+    Route::post('/update-user/{user}', [UserController::class, 'update'])->name('update_user');
 });
 
 // ==================================================================
@@ -86,16 +86,16 @@ Route::group([
     Route::get('/category', [CategoryController::class, 'index'])->name('category');
     Route::get('/add-category', [CategoryController::class, 'create'])->name('add-category');
     Route::post('/add-category', [CategoryController::class, 'store'])->name('store-category');
-    Route::get('/edit-category/{id}', [CategoryController::class, 'edit'])->name('edit-category');
-    Route::post('/update-category/{id}', [CategoryController::class, 'update'])->name('update-category');
+    Route::get('/edit-category/{category}', [CategoryController::class, 'edit'])->name('edit-category');
+    Route::post('/update-category/{category}', [CategoryController::class, 'update'])->name('update-category');
 
     // Route Brand
     Route::get('/brand', [BrandController::class, 'index'])->name('brand');
     Route::get('/add-brand', [BrandController::class, 'create'])->name('add-brand');
     Route::post('/store-brand', [BrandController::class, 'store'])->name('store-brand');
-    Route::get('/edit-brand/{id}', [BrandController::class, 'edit'])->name('edit-brand');
-    Route::post('/update-brand/{id}', [BrandController::class, 'update'])->name('update-brand');
-    Route::get('/delete-brand/{id}', [BrandController::class, 'destroy'])->name('delete-brand');
+    Route::get('/edit-brand/{brand}', [BrandController::class, 'edit'])->name('edit-brand');
+    Route::post('/update-brand/{brand}', [BrandController::class, 'update'])->name('update-brand');
+    Route::get('/delete-brand/{brand}', [BrandController::class, 'destroy'])->name('delete-brand');
 
     // Route Supplier
     Route::get('/supplier', [SupplierController::class, 'index'])->name('supplier');
@@ -103,7 +103,7 @@ Route::group([
     Route::post('/store-supplier', [SupplierController::class, 'store'])->name('store-supplier');
     Route::get('/edit-supplier/{supplier}', [SupplierController::class, 'edit'])->name('edit-supplier');
     Route::put('/update-supplier/{supplier}', [SupplierController::class, 'update'])->name('update-supplier');
-    Route::get('/delete-supplier/{id}', [SupplierController::class, 'destroy'])->name('delete-supplier');
+    Route::get('/delete-supplier/{supplier}', [SupplierController::class, 'destroy'])->name('delete-supplier');
 
     // Route Order
     Route::get('/order', [OrderController::class, 'index'])->name('order');

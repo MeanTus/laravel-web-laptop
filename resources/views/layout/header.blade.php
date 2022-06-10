@@ -29,7 +29,7 @@
                                             <li class="menu-item"><a href="#">Orders</a></li>
                                             <li class="menu-item"><a href="#">Address</a></li>
                                             <li class="menu-item">
-                                                <a href="{{ route('userpage.profile', ['user_id' => session()->get('user_id')]) }}">Account Details</a></li>
+                                                <a href="{{ route('userpage.profile', ['user' => session()->get('user_id')]) }}">Account Details</a></li>
                                             <li class="menu-item" >
                                                 <a title="Logout" href="{{ route('userpage.logout') }}">
                                                     Logout
