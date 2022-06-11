@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreUserRequest extends FormRequest
+class StoreProductRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -28,33 +28,48 @@ class StoreUserRequest extends FormRequest
                 'bail',
                 'required',
                 'string',
+                'unique:App\Models\Product,name',
                 'min:2',
                 'max:50',
             ],
-            'email' => [
+            'unit' => [
                 'bail',
                 'required',
-                'email:rfc,dns',
-                'unique:App\Models\User,email',
+                'string',
+                'min:2',
+                'max:10',
             ],
-            'gender' => [
+            'quantity' => [
                 'bail',
                 'required',
-                'boolean'
+                'numeric'
             ],
-            'birthdate' => [
+            'price' => [
                 'bail',
                 'required',
-                'before:today'
+                'numeric',
             ],
-            'password' => [
+            'desc' => [
                 'bail',
                 'required',
-                'min:8'
             ],
-            'cfpass' => [
+            'avatar' => [
+                'bail',
                 'required',
-            ]
+                'image',
+            ],
+            'category_id' => [
+                'bail',
+                'required',
+            ],
+            'brand_id' => [
+                'bail',
+                'required',
+            ],
+            'supplier_id' => [
+                'bail',
+                'required',
+            ],
         ];
     }
 
@@ -62,10 +77,10 @@ class StoreUserRequest extends FormRequest
     {
         return [
             'required' => ':attribute bắt buộc phải điền',
+            'string' => ':attribute phải là ký tự',
             'min' => ':attribute ít nhất phải có :min ký tự',
             'max' => ':attribute không được nhiều hơn :max ký tự',
             'email' => ':attribute phải hợp lệ',
-            'before' => ':attribute phải hợp lệ',
             'unique' => ':attribute đã tồn tại'
         ];
     }
@@ -73,12 +88,15 @@ class StoreUserRequest extends FormRequest
     public function attributes()
     {
         return [
-            'name' => 'Họ và Tên',
-            'email' => 'Địa chỉ email',
-            'gender' => 'Giới tính',
-            'birthdate' => 'Ngày sinh',
-            'password' => 'Mật khẩu',
-            'cfpass' => 'Xác nhận lại mật khẩu'
+            'name' => 'Tên sản phẩm',
+            'unit' => 'Đơn vị',
+            'quantity' => 'Số lượng',
+            'price' => 'Giá sản phẩm',
+            'desc' => 'Mô tả',
+            'avatar' => 'Ảnh đại diện',
+            'category_id' => 'Danh mục',
+            'brand_id' => 'Thương hiệu',
+            'supplier_id' => 'Nhà cung cấp',
         ];
     }
 }

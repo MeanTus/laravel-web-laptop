@@ -20,7 +20,8 @@ class CreateProductsTable extends Migration
             $table->integer('quantity', false, true);
             $table->double('price', null, null, true);
             $table->string('desc', 200);
-            $table->string('avatar', 20)->nullable();
+            $table->string('avatar', 50)->nullable();
+            $table->smallInteger('status')->default(0);
             $table->foreignId('category_id')->constrained('categories');
             $table->foreignId('brand_id')->constrained('brands');
             $table->foreignId('supplier_id')->constrained('suppliers');

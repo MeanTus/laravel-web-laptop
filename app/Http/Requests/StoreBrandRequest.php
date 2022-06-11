@@ -46,15 +46,15 @@ class StoreBrandRequest extends FormRequest
             'max' => ':attribute không được nhiều hơn :max ký tự',
             'unique' => ':attribute đã tồn tại',
             'string' => ':attribute phải là chữ',
-            'image' => ':attribute không hợp lệ'
+            'image' => ':attribute phải là hình ảnh'
         ];
     }
 
     public function attributes()
     {
         return [
-            'category_name' => 'Tên danh mục',
-            'image' => 'Hình ảnh'
+            'brand_name' => 'Tên danh mục',
+            'avatar' => 'Ảnh đại diện'
         ];
     }
 }
