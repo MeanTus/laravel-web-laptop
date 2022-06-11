@@ -27,7 +27,13 @@ class ProductController extends Controller
             ->join('brands', 'products.brand_id', '=', 'brands.id')
             ->join('categories', 'products.category_id', '=', 'categories.id')
             ->join('suppliers', 'products.supplier_id', '=', 'suppliers.id')
-            ->select('*', 'products.name as product_name', 'products.avatar as product_avatar', 'suppliers.name as supplier_name')
+            ->select(
+                '*',
+                'products.name as product_name',
+                'products.id as product_id',
+                'products.avatar as product_avatar',
+                'suppliers.name as supplier_name'
+            )
             ->get();
 
         return view('admin.list-product', [
@@ -73,11 +79,11 @@ class ProductController extends Controller
         $avatar->move($path_save, $avatar_name);
 
         $this->model->create([
-            'name' => $request->get('name'),
-            'unit' => $request->get('unit'),
+            'name' => trim($request->get('name')),
+            'unit' => trim($request->get('unit')),
             'quantity' => $request->get('quantity'),
             'price' => $request->get('price'),
-            'desc' => $request->get('desc'),
+            'desc' => trim($request->get('desc')),
             'avatar' => $folder_name . '/' . $avatar_name,
             'category_id' => $request->get('category_id'),
             'brand_id' => $request->get('brand_id'),
@@ -108,9 +114,17 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Product $product)
     {
-        //
+        $categories = Category::query()->get();
+        $brands = Brand::query()->get();
+        $suppliers = Supplier::query()->get();
+        return view('admin.edit-product', [
+            'product' => $product,
+            'categories' => $categories,
+            'brands' => $brands,
+            'suppliers' => $suppliers,
+        ]);
     }
 
     /**
@@ -120,9 +134,54 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreProductRequest $request, Product $product)
     {
-        //
+        $path = public_path('admin-assets/images/product/');
+        $folder_name = str_replace(' ', '_', $request->get('name'));
+        $path_save = $path . $folder_name;
+        if ($request->file('avatar') !== null) {
+            // Delete old avatar
+            File::delete($path . $request->get('old-avatar'));
+
+            // Delete old directory
+            $path_directory = explode('/', $request->get('old-avatar'));
+            File::deleteDirectory($path . $path_directory[0]);
+
+            // Make new directory images
+            File::makeDirectory($path_save, 0777, true, true);
+
+            // Lưu hình ảnh
+            $avatar = $request->file('avatar');
+            $name_avatar = time() . $avatar->getClientOriginalName();
+
+            //Lưu trữ file tại public/admin-assets/images/product
+            $avatar->move($path_save, $name_avatar);
+
+            $product->update([
+                'name' => trim($request->get('name')),
+                'unit' => trim($request->get('unit')),
+                'quantity' => $request->get('quantity'),
+                'price' => $request->get('price'),
+                'desc' => trim($request->get('desc')),
+                'avatar' => $folder_name . '/' . $name_avatar,
+                'category_id' => $request->get('category_id'),
+                'brand_id' => $request->get('brand_id'),
+                'supplier_id' => $request->get('supplier_id'),
+            ]);
+        } else {
+            $product->update([
+                'name' => trim($request->get('name')),
+                'unit' => trim($request->get('unit')),
+                'quantity' => $request->get('quantity'),
+                'price' => $request->get('price'),
+                'desc' => trim($request->get('desc')),
+                'category_id' => $request->get('category_id'),
+                'brand_id' => $request->get('brand_id'),
+                'supplier_id' => $request->get('supplier_id'),
+            ]);
+        }
+
+        return redirect()->route('admin.product')->with('success', 'Chỉnh sửa sản phẩm thành công');
     }
 
     /**

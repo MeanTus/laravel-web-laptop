@@ -81,6 +81,8 @@ Route::group([
     Route::get('/product', [ProductController::class, 'index'])->name('product');
     Route::get('/add-product', [ProductController::class, 'create'])->name('add-product');
     Route::post('/add-product', [ProductController::class, 'store'])->name('store-product');
+    Route::get('/edit-product/{product}', [ProductController::class, 'edit'])->name('edit-product');
+    Route::put('/update-product/{product}', [ProductController::class, 'update'])->name('update-product');
 
     // Route Category
     Route::get('/category', [CategoryController::class, 'index'])->name('category');
