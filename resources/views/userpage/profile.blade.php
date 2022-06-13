@@ -12,9 +12,9 @@
                     style="border-radius: 100%; margin-top: 50%; margin-bottom: 20px;"
                     width="150px"
                     @if ($user->avatar === null)
-                        src="../assets/images/users/default-user-avatar.jpg">
+                        src="{{ asset('assets/images/users/default-user-avatar.jpg') }}"
                     @else
-                        src= "../assets/images/users/{{$user->avatar}}" >
+                        src= "{{ asset('assets/images/users') . '/' . $user->avatar}}" >
                     @endif
 
                     <input type="text" name="old-avatar" value="{{ $user->avatar }}" hidden>

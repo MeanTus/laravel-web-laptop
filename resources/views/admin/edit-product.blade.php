@@ -126,8 +126,7 @@
                                         <label>Hình ảnh</label><br>
                                         <img 
                                         id="output"
-                                        src="../../admin-assets/images/product/{{ $product->avatar }}" 
-                                        {{-- src="{{ str_replace('\\', '/', public_path('admin-assets\images\product\\') . $product->avatar) }}" --}}
+                                        src="{{ asset('admin-assets/images/product') . '/' . $product->avatar }}" 
                                         class="img-fluid avatar-100 mr-3" alt="image">
                                         @include('layout.edit-avatar')
                                         <input type="text" name="old-avatar" value="{{ $product->avatar }}" hidden>

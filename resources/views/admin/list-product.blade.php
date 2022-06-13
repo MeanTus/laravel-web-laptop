@@ -45,7 +45,8 @@
                                 </td>
                                 <td>
                                     <div class="d-flex align-items-center">
-                                        <img src="../admin-assets/images/product/{{ $product->product_avatar }}" class="img-fluid avatar-70 mr-3" alt="image">
+                                        <img 
+                                        src="{{ asset('admin-assets/images/product') . '/' . $product->product_avatar }}" class="img-fluid avatar-70 mr-3" alt="image">
                                     </div>
                                 </td>
                                 <td>
@@ -75,7 +76,6 @@
                                 </td>
                             </tr>
                             @endforeach
-                        
                         </tbody>
                     </table>
                 </div>

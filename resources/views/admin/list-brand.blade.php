@@ -56,7 +56,7 @@
                                     <td>
                                         <img 
                                         class="img-fluid rounded avatar-80 mr-3"
-                                        src="../admin-assets/images/brands/{{ $brand['avatar'] }}" 
+                                        src="{{ asset('admin-assets/images/brands/') . '/' .$brand['avatar'] }}" 
                                         alt="">
                                     </td>
 
