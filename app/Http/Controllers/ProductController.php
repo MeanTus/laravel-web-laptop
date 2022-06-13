@@ -36,7 +36,7 @@ class ProductController extends Controller
             )
             ->get();
 
-        return view('admin.list-product', [
+        return view('admin.list.list-product', [
             'list_product' => $list_product
         ]);
     }
@@ -51,7 +51,7 @@ class ProductController extends Controller
         $categories = Category::query()->get();
         $brands = Brand::query()->get();
         $suppliers = Supplier::query()->get();
-        return view('admin.add-product', [
+        return view('admin.add.add-product', [
             'categories' => $categories,
             'brands' => $brands,
             'suppliers' => $suppliers,
@@ -119,7 +119,7 @@ class ProductController extends Controller
         $categories = Category::query()->get();
         $brands = Brand::query()->get();
         $suppliers = Supplier::query()->get();
-        return view('admin.edit-product', [
+        return view('admin.edit.edit-product', [
             'product' => $product,
             'categories' => $categories,
             'brands' => $brands,

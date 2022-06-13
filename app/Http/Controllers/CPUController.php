@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CPU;
 use Illuminate\Http\Request;
 
-class OrderController extends Controller
+class CPUController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +14,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-        return view('admin.list.list-order');
+        //
     }
 
     /**
@@ -23,7 +24,7 @@ class OrderController extends Controller
      */
     public function create()
     {
-        return view('admin.add.add-order');
+        //
     }
 
     /**
@@ -40,10 +41,10 @@ class OrderController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\CPU  $cPU
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(CPU $cPU)
     {
         //
     }
@@ -51,10 +52,10 @@ class OrderController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\CPU  $cPU
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(CPU $cPU)
     {
         //
     }
@@ -63,10 +64,10 @@ class OrderController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\CPU  $cPU
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, CPU $cPU)
     {
         //
     }
@@ -74,10 +75,10 @@ class OrderController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\CPU  $cPU
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(CPU $cPU)
     {
         //
     }

@@ -20,7 +20,7 @@ class CategoryController extends Controller
     public function index()
     {
         $list_cate = $this->model->orderBy('created_at', 'desc')->get();
-        return view('admin.list-category', ['list_cate' => $list_cate]);
+        return view('admin.list.list-category', ['list_cate' => $list_cate]);
     }
 
     /**
@@ -30,7 +30,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('admin.add-category');
+        return view('admin.add.add-category');
     }
 
     /**
@@ -67,7 +67,7 @@ class CategoryController extends Controller
         $category = $this->model
             ->where('id', $id)
             ->firstOrFail();
-        return view('admin.edit-category', ['category' => $category]);
+        return view('admin.edit.edit-category', ['category' => $category]);
     }
 
     /**

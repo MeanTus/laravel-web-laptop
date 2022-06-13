@@ -20,7 +20,7 @@ class SupplierController extends Controller
     public function index()
     {
         $list_supplier = $this->model->orderBy('created_at', 'desc')->get();
-        return view('admin.list-supplier', [
+        return view('admin.list.list-supplier', [
             'list_supplier' => $list_supplier
         ]);
     }
@@ -32,7 +32,7 @@ class SupplierController extends Controller
      */
     public function create()
     {
-        return view('admin.add-supplier');
+        return view('admin.add.add-supplier');
     }
 
     /**
@@ -66,7 +66,7 @@ class SupplierController extends Controller
      */
     public function edit(Supplier $supplier)
     {
-        return view('admin.edit-supplier', [
+        return view('admin.edit.edit-supplier', [
             'supplier' => $supplier
         ]);
     }

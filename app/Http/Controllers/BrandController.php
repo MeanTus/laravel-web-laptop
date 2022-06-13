@@ -21,7 +21,7 @@ class BrandController extends Controller
     public function index()
     {
         $list_brand = $this->model->orderBy('created_at', 'desc')->get();
-        return view('admin.list-brand', [
+        return view('admin.list.list-brand', [
             'list_brand' => $list_brand
         ]);
     }
@@ -33,7 +33,7 @@ class BrandController extends Controller
      */
     public function create()
     {
-        return view('admin.add-brand');
+        return view('admin.add.add-brand');
     }
 
     /**
@@ -80,7 +80,7 @@ class BrandController extends Controller
         $brand = $this->model
             ->where('id', $id)
             ->firstOrFail();
-        return view('admin.edit-brand', ['brand' => $brand]);
+        return view('admin.edit.edit-brand', ['brand' => $brand]);
     }
 
     /**
