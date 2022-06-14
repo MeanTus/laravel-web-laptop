@@ -51,7 +51,8 @@ class ProductController extends Controller
         $categories = Category::query()->get();
         $brands = Brand::query()->get();
         $suppliers = Supplier::query()->get();
-        return view('admin.add.add-product', [
+        return view('admin.add-edit.add-edit-product', [
+            'product' => null,
             'categories' => $categories,
             'brands' => $brands,
             'suppliers' => $suppliers,
@@ -119,7 +120,7 @@ class ProductController extends Controller
         $categories = Category::query()->get();
         $brands = Brand::query()->get();
         $suppliers = Supplier::query()->get();
-        return view('admin.edit.edit-product', [
+        return view('admin.add-edit.add-edit-product', [
             'product' => $product,
             'categories' => $categories,
             'brands' => $brands,

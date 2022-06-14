@@ -14,7 +14,10 @@ class CPUController extends Controller
      */
     public function index()
     {
-        //
+        $cpu = CPU::query()
+            ->select('*', 'cpu.id as cpu_id')
+            ->get();
+        return view('admin.list.list-cpu', ['list_cpu' => $cpu]);
     }
 
     /**
@@ -24,7 +27,7 @@ class CPUController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.add-edit.add-edit-cpu', ['cpu' => null]);
     }
 
     /**
@@ -35,7 +38,8 @@ class CPUController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        CPU::query()->create($request->except('_token'));
+        return redirect()->route('admin.cpu')->with('success', 'Thêm CPU thành công');
     }
 
     /**
@@ -57,7 +61,7 @@ class CPUController extends Controller
      */
     public function edit(CPU $cPU)
     {
-        //
+        return view('admin.add-edit.add-edit-cpu', ['cpu' => $cPU]);
     }
 
     /**

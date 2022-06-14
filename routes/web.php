@@ -6,9 +6,12 @@ use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\CPUController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\GPUController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\RamController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\CheckAdminMiddleware;
@@ -83,6 +86,27 @@ Route::group([
     Route::post('/add-product', [ProductController::class, 'store'])->name('store-product');
     Route::get('/edit-product/{product}', [ProductController::class, 'edit'])->name('edit-product');
     Route::put('/update-product/{product}', [ProductController::class, 'update'])->name('update-product');
+
+    // Route RAM
+    Route::get('/ram', [RamController::class, 'index'])->name('ram');
+    Route::get('/add-ram', [RamController::class, 'create'])->name('add-ram');
+    Route::post('/add-ram', [RamController::class, 'store'])->name('store-ram');
+    Route::get('/edit-ram/{ram}', [RamController::class, 'edit'])->name('edit-ram');
+    Route::post('/update-ram/{ram}', [RamController::class, 'update'])->name('update-ram');
+
+    // Route CPU
+    Route::get('/cpu', [CPUController::class, 'index'])->name('cpu');
+    Route::get('/add-cpu', [CPUController::class, 'create'])->name('add-cpu');
+    Route::post('/add-cpu', [CPUController::class, 'store'])->name('store-cpu');
+    Route::get('/edit-cpu/{cpu}', [CPUController::class, 'edit'])->name('edit-cpu');
+    Route::post('/update-cpu/{cpu}', [CPUController::class, 'update'])->name('update-cpu');
+
+    // Route GPU
+    Route::get('/gpu', [GPUController::class, 'index'])->name('gpu');
+    Route::get('/add-gpu', [GPUController::class, 'create'])->name('add-gpu');
+    Route::post('/add-gpu', [GPUController::class, 'store'])->name('store-gpu');
+    Route::get('/edit-gpu/{gpu}', [GPUController::class, 'edit'])->name('edit-gpu');
+    Route::post('/update-gpu/{gpu}', [GPUController::class, 'update'])->name('update-gpu');
 
     // Route Category
     Route::get('/category', [CategoryController::class, 'index'])->name('category');

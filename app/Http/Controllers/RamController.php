@@ -14,7 +14,10 @@ class RamController extends Controller
      */
     public function index()
     {
-        //
+        $ram = Ram::query()
+            ->select('*', 'ram.id as ram_id')
+            ->get();
+        return view('admin.list.list-ram', ['list_ram' => $ram]);
     }
 
     /**
@@ -24,7 +27,9 @@ class RamController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.add-edit.add-edit-ram', [
+            'ram' => null
+        ]);
     }
 
     /**
@@ -35,7 +40,8 @@ class RamController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Ram::query()->create($request->except('_token'));
+        return redirect()->route('admin.ram')->with('success', "Thêm Ram thành công");
     }
 
     /**
@@ -57,7 +63,9 @@ class RamController extends Controller
      */
     public function edit(Ram $ram)
     {
-        //
+        return view('admin.add-edit.add-edit-ram', [
+            'ram' => $ram
+        ]);
     }
 
     /**

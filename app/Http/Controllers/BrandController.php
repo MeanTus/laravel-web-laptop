@@ -33,7 +33,7 @@ class BrandController extends Controller
      */
     public function create()
     {
-        return view('admin.add.add-brand');
+        return view('admin.add-edit.add-edit-brand', ['brand' => null]);
     }
 
     /**
@@ -80,7 +80,7 @@ class BrandController extends Controller
         $brand = $this->model
             ->where('id', $id)
             ->firstOrFail();
-        return view('admin.edit.edit-brand', ['brand' => $brand]);
+        return view('admin.add-edit.add-edit-brand', ['brand' => $brand]);
     }
 
     /**

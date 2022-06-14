@@ -32,7 +32,7 @@ class SupplierController extends Controller
      */
     public function create()
     {
-        return view('admin.add.add-supplier');
+        return view('admin.add-edit.add-edit-supplier', ['supplier' => null]);
     }
 
     /**
@@ -66,7 +66,7 @@ class SupplierController extends Controller
      */
     public function edit(Supplier $supplier)
     {
-        return view('admin.edit.edit-supplier', [
+        return view('admin.add-edit.add-edit-supplier', [
             'supplier' => $supplier
         ]);
     }

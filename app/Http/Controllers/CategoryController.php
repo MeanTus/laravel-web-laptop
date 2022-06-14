@@ -30,7 +30,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('admin.add.add-category');
+        return view('admin.add-edit.add-edit-category', ['category' => null]);
     }
 
     /**
@@ -67,7 +67,7 @@ class CategoryController extends Controller
         $category = $this->model
             ->where('id', $id)
             ->firstOrFail();
-        return view('admin.edit.edit-category', ['category' => $category]);
+        return view('admin.add-edit.add-edit-category', ['category' => $category]);
     }
 
     /**

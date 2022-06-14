@@ -14,7 +14,10 @@ class GPUController extends Controller
      */
     public function index()
     {
-        //
+        $gpu = GPU::query()
+            ->select('*', 'gpu.id as gpu_id')
+            ->get();
+        return view('admin.list.list-gpu', ['list_gpu' => $gpu]);
     }
 
     /**
@@ -24,7 +27,7 @@ class GPUController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.add-edit.add-edit-gpu', ['gpu' => null]);
     }
 
     /**
@@ -35,7 +38,8 @@ class GPUController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        GPU::query()->create($request->except('_token'));
+        return redirect()->route('admin.gpu')->with('success', 'Thêm GPU thành công');
     }
 
     /**
@@ -57,7 +61,7 @@ class GPUController extends Controller
      */
     public function edit(GPU $gPU)
     {
-        //
+        return view('admin.add-edit.add-edit-gpu', ['gpu' => $gPU]);
     }
 
     /**
