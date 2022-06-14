@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreProductRequest;
 use App\Models\Brand;
 use App\Models\Category;
+use App\Models\CPU;
+use App\Models\GPU;
 use App\Models\Product;
+use App\Models\Ram;
 use App\Models\Supplier;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
@@ -51,11 +54,24 @@ class ProductController extends Controller
         $categories = Category::query()->get();
         $brands = Brand::query()->get();
         $suppliers = Supplier::query()->get();
+        $gpu = GPU::query()
+            ->select('*', 'gpu.id as gpu_id')
+            ->get();
+        $cpu = CPU::query()
+            ->select('*', 'cpu.id as cpu_id')
+            ->get();
+        $ram = Ram::query()
+            ->select('*', 'ram.id as ram_id')
+            ->get();
+
         return view('admin.add-edit.add-edit-product', [
             'product' => null,
             'categories' => $categories,
             'brands' => $brands,
             'suppliers' => $suppliers,
+            'rams' => $ram,
+            'list_gpu' => $gpu,
+            'list_cpu' => $cpu,
         ]);
     }
 
@@ -86,6 +102,11 @@ class ProductController extends Controller
             'price' => $request->get('price'),
             'desc' => trim($request->get('desc')),
             'avatar' => $folder_name . '/' . $avatar_name,
+            'pin' => $request->get('pin'),
+            'weight' => $request->get('weight'),
+            'cpu_id' => $request->get('cpu_id'),
+            'gpu_id' => $request->get('gpu_id'),
+            'ram_id' => $request->get('ram_id'),
             'category_id' => $request->get('category_id'),
             'brand_id' => $request->get('brand_id'),
             'supplier_id' => $request->get('supplier_id'),
@@ -120,11 +141,24 @@ class ProductController extends Controller
         $categories = Category::query()->get();
         $brands = Brand::query()->get();
         $suppliers = Supplier::query()->get();
+        $gpu = GPU::query()
+            ->select('*', 'gpu.id as gpu_id')
+            ->get();
+        $cpu = CPU::query()
+            ->select('*', 'cpu.id as cpu_id')
+            ->get();
+        $ram = Ram::query()
+            ->select('*', 'ram.id as ram_id')
+            ->get();
+
         return view('admin.add-edit.add-edit-product', [
             'product' => $product,
             'categories' => $categories,
             'brands' => $brands,
             'suppliers' => $suppliers,
+            'rams' => $ram,
+            'list_gpu' => $gpu,
+            'list_cpu' => $cpu,
         ]);
     }
 
@@ -135,7 +169,7 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreProductRequest $request, Product $product)
+    public function update(Request $request, Product $product)
     {
         $path = public_path('admin-assets/images/product/');
         $folder_name = str_replace(' ', '_', $request->get('name'));
@@ -165,6 +199,11 @@ class ProductController extends Controller
                 'price' => $request->get('price'),
                 'desc' => trim($request->get('desc')),
                 'avatar' => $folder_name . '/' . $name_avatar,
+                'pin' => $request->get('pin'),
+                'weight' => $request->get('weight'),
+                'cpu_id' => $request->get('cpu_id'),
+                'gpu_id' => $request->get('gpu_id'),
+                'ram_id' => $request->get('ram_id'),
                 'category_id' => $request->get('category_id'),
                 'brand_id' => $request->get('brand_id'),
                 'supplier_id' => $request->get('supplier_id'),
@@ -176,6 +215,11 @@ class ProductController extends Controller
                 'quantity' => $request->get('quantity'),
                 'price' => $request->get('price'),
                 'desc' => trim($request->get('desc')),
+                'pin' => $request->get('pin'),
+                'weight' => $request->get('weight'),
+                'cpu_id' => $request->get('cpu_id'),
+                'gpu_id' => $request->get('gpu_id'),
+                'ram_id' => $request->get('ram_id'),
                 'category_id' => $request->get('category_id'),
                 'brand_id' => $request->get('brand_id'),
                 'supplier_id' => $request->get('supplier_id'),

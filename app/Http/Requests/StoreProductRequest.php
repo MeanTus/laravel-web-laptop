@@ -58,6 +58,26 @@ class StoreProductRequest extends FormRequest
                 'required',
                 'image',
             ],
+            'pin' => [
+                'bail',
+                'required',
+            ],
+            'weight' => [
+                'bail',
+                'required'
+            ],
+            'ram_id' => [
+                'bail',
+                'required',
+            ],
+            'gpu_id' => [
+                'bail',
+                'required',
+            ],
+            'cpu_id' => [
+                'bail',
+                'required',
+            ],
             'category_id' => [
                 'bail',
                 'required',
@@ -94,6 +114,11 @@ class StoreProductRequest extends FormRequest
             'price' => 'Giá sản phẩm',
             'desc' => 'Mô tả',
             'avatar' => 'Ảnh đại diện',
+            'pin' => 'Pin',
+            'weight' => 'Trọng lượng',
+            'ram_id' => 'Ram',
+            'cpu_id' => 'CPU',
+            'gpu_id' => 'GPU',
             'category_id' => 'Danh mục',
             'brand_id' => 'Thương hiệu',
             'supplier_id' => 'Nhà cung cấp',

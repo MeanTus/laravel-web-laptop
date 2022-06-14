@@ -125,6 +125,80 @@
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
+                                            <label>Khối lượng lượng *</label>
+                                            <input 
+                                            name="weight"
+                                            value="{{ $product->weight }}"
+                                            type="text" 
+                                            class="form-control" 
+                                            placeholder="Enter weight" 
+                                            required>
+                                            <div class="help-block with-errors"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Pin *</label>
+                                            <input 
+                                            name="pin"
+                                            value="{{ $product->pin }}"
+                                            type="text" 
+                                            class="form-control" 
+                                            placeholder="Enter pin" 
+                                            required>
+                                            <div class="help-block with-errors"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Ram *</label>
+                                            <select name="ram_id" class="selectpicker form-control" data-style="py-0">
+                                                @foreach ($rams as $ram)
+                                                    <option 
+                                                    @if ($product->ram_id === $ram->ram_id)
+                                                        selected
+                                                    @endif
+                                                    value="{{ $ram->ram_id }}">
+                                                        {{ $ram->name }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>CPU *</label>
+                                            <select name="cpu_id" class="selectpicker form-control" data-style="py-0">
+                                                @foreach ($list_cpu as $cpu)
+                                                    <option 
+                                                    @if ($product->cpu_id === $cpu->cpu_id)
+                                                        selected
+                                                    @endif
+                                                    value="{{ $cpu->cpu_id }}">
+                                                        {{ $cpu->name }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>GPU *</label>
+                                            <select name="gpu_id" class="selectpicker form-control" data-style="py-0">
+                                                @foreach ($list_gpu as $gpu)
+                                                    <option 
+                                                    @if ($product->gpu_id === $gpu->gpu_id)
+                                                        selected
+                                                    @endif
+                                                    value="{{ $gpu->gpu_id }}">
+                                                        {{ $gpu->name }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
                                             <label>Hình ảnh</label><br>
                                             <img 
                                             id="output"
@@ -247,6 +321,60 @@
                                             placeholder="Enter Quantity" 
                                             required>
                                             <div class="help-block with-errors"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Khối lượng lượng *</label>
+                                            <input 
+                                            name="weight"
+                                            type="text" 
+                                            class="form-control" 
+                                            placeholder="Enter weight" 
+                                            required>
+                                            <div class="help-block with-errors"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Pin *</label>
+                                            <input 
+                                            name="pin"
+                                            type="text" 
+                                            class="form-control" 
+                                            placeholder="Enter pin" 
+                                            required>
+                                            <div class="help-block with-errors"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Ram *</label>
+                                            <select name="ram_id" class="selectpicker form-control" data-style="py-0">
+                                                @foreach ($rams as $ram)
+                                                    <option value="{{ $ram->ram_id }}">{{ $ram->name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>CPU *</label>
+                                            <select name="cpu_id" class="selectpicker form-control" data-style="py-0">
+                                                @foreach ($list_cpu as $cpu)
+                                                    <option value="{{ $cpu->cpu_id }}">{{ $cpu->name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>GPU *</label>
+                                            <select name="gpu_id" class="selectpicker form-control" data-style="py-0">
+                                                @foreach ($list_gpu as $gpu)
+                                                    <option value="{{ $gpu->gpu_id }}">{{ $gpu->name }}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="col-md-12">
