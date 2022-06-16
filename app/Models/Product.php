@@ -25,4 +25,9 @@ class Product extends Model
         'brand_id',
         'supplier_id',
     ];
+
+    public function formatPrice()
+    {
+        return number_format($this->price);
+    }
 }

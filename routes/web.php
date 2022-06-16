@@ -14,6 +14,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RamController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\UserPageController;
 use App\Http\Middleware\CheckAdminMiddleware;
 use App\Http\Middleware\CheckLoginMiddleware;
 use Illuminate\Support\Facades\Route;
@@ -47,6 +48,12 @@ Route::group([
     // Route Register
     Route::get('/register', [UserController::class, 'create'])->name('register');
     Route::post('/register', [UserController::class, 'store'])->name('process_register');
+
+    // Shop page
+    Route::get('/shop', [UserPageController::class, 'shopPage'])->name('shop');
+
+    // Detail Product
+    Route::get('/detail/{product}', [UserPageController::class, 'showDetailProduct'])->name('detail');
 });
 
 Route::group([
