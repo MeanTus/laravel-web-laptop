@@ -6,12 +6,14 @@ use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\ColorController;
 use App\Http\Controllers\CPUController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\GPUController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RamController;
+use App\Http\Controllers\SearchController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserPageController;
@@ -54,6 +56,9 @@ Route::group([
 
     // Detail Product
     Route::get('/detail/{product}', [UserPageController::class, 'showDetailProduct'])->name('detail');
+
+    // Search
+    Route::get('/search', [SearchController::class, 'searchByName'])->name('search');
 });
 
 Route::group([
@@ -114,6 +119,13 @@ Route::group([
     Route::post('/add-gpu', [GPUController::class, 'store'])->name('store-gpu');
     Route::get('/edit-gpu/{gpu}', [GPUController::class, 'edit'])->name('edit-gpu');
     Route::post('/update-gpu/{gpu}', [GPUController::class, 'update'])->name('update-gpu');
+
+    // Route Color
+    Route::get('/color', [ColorController::class, 'index'])->name('color');
+    Route::get('/add-color', [ColorController::class, 'create'])->name('add-color');
+    Route::post('/add-color', [ColorController::class, 'store'])->name('store-color');
+    Route::get('/edit-color/{color}', [ColorController::class, 'edit'])->name('edit-color');
+    Route::post('/update-color/{color}', [ColorController::class, 'update'])->name('update-color');
 
     // Route Category
     Route::get('/category', [CategoryController::class, 'index'])->name('category');

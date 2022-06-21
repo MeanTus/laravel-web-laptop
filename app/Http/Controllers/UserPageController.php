@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Brand;
 use App\Models\Category;
+use App\Models\Color;
 use App\Models\CPU;
 use App\Models\GPU;
 use App\Models\Product;
@@ -29,10 +30,12 @@ class UserPageController extends Controller
 
         $brand = Brand::query()->get();
         $category = Category::query()->get();
+        $color = Color::query()->get();
         return view('userpage.shop', [
             'list_product' => $list_product,
             'brands' => $brand,
             'categories' => $category,
+            'colors' => $color
         ]);
     }
 

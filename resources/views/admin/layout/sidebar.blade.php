@@ -68,6 +68,11 @@
                                 <i class="las la-minus"></i><span>GPU</span>
                             </a>
                         </li>
+                        <li class="">
+                            <a href="{{ route('admin.color') }}">
+                                <i class="las la-minus"></i><span>Color</span>
+                            </a>
+                        </li>
                     </ul>
                 </li>
                 <li class=" ">

@@ -97,7 +97,12 @@
                     <h2 class="widget-title">Danh mục</h2>
                     <div class="widget-content">
                         <ul class="list-category">
-                            <li class="category-item has-child-cate">
+                            @foreach ($categories as $category)
+                                <li class="category-item">
+                                    <a href="{{ request()->fullUrlWithQuery(['category' => $category->id]) }}" class="cate-link">{{ $category->category_name }}</a>
+                                </li>
+                            @endforeach
+                            {{-- <li class="category-item has-child-cate">
                                 <a href="#" class="cate-link">Fashion & Accessories</a>
                                 <span class="toggle-control">+</span>
                                 <ul class="sub-cate">
@@ -105,34 +110,7 @@
                                     <li class="category-item"><a href="#" class="cate-link">Headsets (16)</a></li>
                                     <li class="category-item"><a href="#" class="cate-link">Screen (28)</a></li>
                                 </ul>
-                            </li>
-                            <li class="category-item has-child-cate">
-                                <a href="#" class="cate-link">Furnitures & Home Decors</a>
-                                <span class="toggle-control">+</span>
-                                <ul class="sub-cate">
-                                    <li class="category-item"><a href="#" class="cate-link">Batteries (22)</a></li>
-                                    <li class="category-item"><a href="#" class="cate-link">Headsets (16)</a></li>
-                                    <li class="category-item"><a href="#" class="cate-link">Screen (28)</a></li>
-                                </ul>
-                            </li>
-                            <li class="category-item has-child-cate">
-                                <a href="#" class="cate-link">Digital & Electronics</a>
-                                <span class="toggle-control">+</span>
-                                <ul class="sub-cate">
-                                    <li class="category-item"><a href="#" class="cate-link">Batteries (22)</a></li>
-                                    <li class="category-item"><a href="#" class="cate-link">Headsets (16)</a></li>
-                                    <li class="category-item"><a href="#" class="cate-link">Screen (28)</a></li>
-                                </ul>
-                            </li>
-                            <li class="category-item">
-                                <a href="#" class="cate-link">Tools & Equipments</a>
-                            </li>
-                            <li class="category-item">
-                                <a href="#" class="cate-link">Kid’s Toys</a>
-                            </li>
-                            <li class="category-item">
-                                <a href="#" class="cate-link">Organics & Spa</a>
-                            </li>
+                            </li> --}}
                         </ul>
                     </div>
                 </div><!-- Categories widget-->
@@ -143,7 +121,7 @@
                         <ul class="list-style vertical-list list-limited" data-show="6">
                             @foreach ($brands as $brand)
                                 <li class="list-item">
-                                    <a class="filter-link" href="#">{{ $brand->brand_name }}</a>
+                                    <a class="filter-link" href="{{ request()->fullUrlWithQuery(['brand' => $brand->id]) }}">{{ $brand->brand_name }}</a>
                                 </li>
                             @endforeach
                             {{-- <li class="list-item default-hiden"><a class="filter-link " href="#">Printer & Ink</a></li>
@@ -171,30 +149,18 @@
                     <h2 class="widget-title">Color</h2>
                     <div class="widget-content">
                         <ul class="list-style vertical-list has-count-index">
-                            <li class="list-item"><a class="filter-link " href="#">Red <span>(217)</span></a></li>
-                            <li class="list-item"><a class="filter-link " href="#">Yellow <span>(179)</span></a></li>
-                            <li class="list-item"><a class="filter-link " href="#">Black <span>(79)</span></a></li>
-                            <li class="list-item"><a class="filter-link " href="#">Blue <span>(283)</span></a></li>
-                            <li class="list-item"><a class="filter-link " href="#">Grey <span>(116)</span></a></li>
-                            <li class="list-item"><a class="filter-link " href="#">Pink <span>(29)</span></a></li>
+                            @foreach ($colors as $color)
+                            <li class="list-item">
+                                <a class="filter-link" href="#">
+                                    <button 
+                                    style="width: 32px; height: 32px; border-radius: 8px; background-color: {{ $color->hex }}">
+                                    </button>
+                                </a>
+                            </li>
+                            @endforeach
                         </ul>
                     </div>
                 </div><!-- Color -->
-
-                <div class="widget mercado-widget filter-widget">
-                    <h2 class="widget-title">Size</h2>
-                    <div class="widget-content">
-                        <ul class="list-style inline-round ">
-                            <li class="list-item"><a class="filter-link active" href="#">s</a></li>
-                            <li class="list-item"><a class="filter-link " href="#">M</a></li>
-                            <li class="list-item"><a class="filter-link " href="#">l</a></li>
-                            <li class="list-item"><a class="filter-link " href="#">xl</a></li>
-                        </ul>
-                        <div class="widget-banner">
-                            <figure><img src="assets/images/size-banner-widget.jpg" width="270" height="331" alt=""></figure>
-                        </div>
-                    </div>
-                </div><!-- Size -->
 
                 <div class="widget mercado-widget widget-product">
                     <h2 class="widget-title">Popular Products</h2>
