@@ -37,6 +37,9 @@
                                             </div>
                                             <div class="help-block with-errors"></div>
                                         </div>
+                                        <button 
+                                        style="width: 32px; height: 32px; border-radius: 8px; background-color: {{ $color['hex'] }}">
+                                        </button>
                                     </div>
                                 </div>
                                 <button type="submit" class="btn btn-primary mr-2">Cập nhật màu sắc</button>
@@ -78,11 +81,19 @@
                                             <label>Mã hex *</label>
                                             <div class="input-group">
                                                 <span class="input-group-text" id="basic-addon1">#</span>
-                                                <input type="text" class="form-control" placeholder="Enter Name" 
-                                                name="hex" required>
+                                                <input 
+                                                id="hex-color" 
+                                                type="text" 
+                                                class="form-control hex"
+                                                name="hex" 
+                                                required>
                                             </div>
                                             <div class="help-block with-errors"></div>
                                         </div>
+                                        <button 
+                                        id="output-color"
+                                        style="width: 32px; height: 32px; border-radius: 8px;">
+                                        </button>
                                     </div>
                                 </div>
                                 <button type="submit" class="btn btn-primary mr-2">Thêm màu sắc</button>
@@ -98,3 +109,11 @@
 @endif
 
 @endsection
+<script>
+    function readColor(input){
+    console.log('aaaaa');
+}
+    var input = document.getElementsByClassName('hex')
+    console.log(input);
+    input.onchange = readColor(this)
+</script>

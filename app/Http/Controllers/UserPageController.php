@@ -13,30 +13,34 @@ use Illuminate\Http\Request;
 
 class UserPageController extends Controller
 {
-    public function shopPage()
+    public function shopPage(Request $request)
     {
-        $list_product = Product::query()
-            ->join('brands', 'products.brand_id', '=', 'brands.id')
-            ->join('categories', 'products.category_id', '=', 'categories.id')
-            ->join('suppliers', 'products.supplier_id', '=', 'suppliers.id')
-            ->select(
-                '*',
-                'products.name as product_name',
-                'products.id as product_id',
-                'products.avatar as product_avatar',
-                'suppliers.name as supplier_name'
-            )
-            ->get();
+        if ($request->get('category') !== null || $request->get('brand')) {
+            return redirect()->route('userpage.search');
+        } else {
+            $list_product = Product::query()
+                ->join('brands', 'products.brand_id', '=', 'brands.id')
+                ->join('categories', 'products.category_id', '=', 'categories.id')
+                ->join('suppliers', 'products.supplier_id', '=', 'suppliers.id')
+                ->select(
+                    '*',
+                    'products.name as product_name',
+                    'products.id as product_id',
+                    'products.avatar as product_avatar',
+                    'suppliers.name as supplier_name'
+                )
+                ->paginate(9);
 
-        $brand = Brand::query()->get();
-        $category = Category::query()->get();
-        $color = Color::query()->get();
-        return view('userpage.shop', [
-            'list_product' => $list_product,
-            'brands' => $brand,
-            'categories' => $category,
-            'colors' => $color
-        ]);
+            $brand = Brand::query()->get();
+            $category = Category::query()->get();
+            $color = Color::query()->get();
+            return view('userpage.shop', [
+                'list_product' => $list_product,
+                'brands' => $brand,
+                'categories' => $category,
+                'colors' => $color
+            ]);
+        }
     }
 
     public function showDetailProduct(Product $product)
