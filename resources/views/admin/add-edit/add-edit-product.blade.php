@@ -97,7 +97,7 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="col-md-12">
+                                    <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Giá tiền *</label>
                                             <input 
@@ -108,6 +108,22 @@
                                             placeholder="Enter Price" 
                                             required>
                                             <div class="help-block with-errors"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Màu sắc *</label>
+                                            <select name="color_id" class="selectpicker form-control" data-style="py-0">
+                                                @foreach ($colors as $color)
+                                                    <option 
+                                                    @if ($product->color_id === $color->hex)
+                                                        selected
+                                                    @endif
+                                                    value="{{ $color->hex }}">
+                                                        {{ $color->name_color }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="col-md-12">
@@ -299,7 +315,7 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="col-md-12">
+                                    <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Giá tiền *</label>
                                             <input 
@@ -309,6 +325,16 @@
                                             placeholder="Enter Price" 
                                             required>
                                             <div class="help-block with-errors"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Màu sắc *</label>
+                                            <select name="color_id" class="selectpicker form-control" data-style="py-0">
+                                                @foreach ($colors as $color)
+                                                    <option value="{{ $color->hex }}">{{ $color->name_color }}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="col-md-12">

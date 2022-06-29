@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreProductRequest;
 use App\Models\Brand;
 use App\Models\Category;
+use App\Models\Color;
 use App\Models\CPU;
 use App\Models\GPU;
 use App\Models\Product;
@@ -63,6 +64,9 @@ class ProductController extends Controller
         $ram = Ram::query()
             ->select('*', 'ram.id as ram_id')
             ->get();
+        $colors = Color::query()
+            ->select('*', 'colors.id as color_id')
+            ->get();
 
         return view('admin.add-edit.add-edit-product', [
             'product' => null,
@@ -72,6 +76,7 @@ class ProductController extends Controller
             'rams' => $ram,
             'list_gpu' => $gpu,
             'list_cpu' => $cpu,
+            'colors' => $colors,
         ]);
     }
 
@@ -110,6 +115,7 @@ class ProductController extends Controller
             'category_id' => $request->get('category_id'),
             'brand_id' => $request->get('brand_id'),
             'supplier_id' => $request->get('supplier_id'),
+            'color_id' => $request->get('color_id'),
         ]);
 
         // Update quantity supplied
@@ -150,6 +156,9 @@ class ProductController extends Controller
         $ram = Ram::query()
             ->select('*', 'ram.id as ram_id')
             ->get();
+        $colors = Color::query()
+            ->select('*', 'colors.id as color_id')
+            ->get();
 
         return view('admin.add-edit.add-edit-product', [
             'product' => $product,
@@ -159,6 +168,7 @@ class ProductController extends Controller
             'rams' => $ram,
             'list_gpu' => $gpu,
             'list_cpu' => $cpu,
+            'colors' => $colors
         ]);
     }
 
@@ -207,6 +217,7 @@ class ProductController extends Controller
                 'category_id' => $request->get('category_id'),
                 'brand_id' => $request->get('brand_id'),
                 'supplier_id' => $request->get('supplier_id'),
+                'color_id' => $request->get('color_id'),
             ]);
         } else {
             $product->update([
@@ -223,6 +234,7 @@ class ProductController extends Controller
                 'category_id' => $request->get('category_id'),
                 'brand_id' => $request->get('brand_id'),
                 'supplier_id' => $request->get('supplier_id'),
+                'color_id' => $request->get('color_id'),
             ]);
         }
 

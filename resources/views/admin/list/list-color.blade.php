@@ -44,7 +44,7 @@
                                     <td>
                                         <div class="d-flex align-items-center">
                                             <div>
-                                                {{ $color['id'] }}
+                                                {{ $color['hex'] }}
                                                 {{-- <p class="mb-0"><small>This is test Product</small></p> --}}
                                             </div>
                                         </div>

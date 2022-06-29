@@ -14,7 +14,12 @@ class UpdateProductsTable extends Migration
     public function up()
     {
         Schema::table('products', function (Blueprint $table) {
-            $table->foreignId('color_id')->nullable()->constrained('colors');
+            // $table->dropForeign(['color_id']);
+            // $table->dropColumn('color_id');
+
+            $table->string('color_id', 10)->nullable();
+
+            $table->foreign('color_id')->references('hex')->on('colors');
         });
     }
 

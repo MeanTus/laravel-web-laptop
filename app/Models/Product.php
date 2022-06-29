@@ -24,6 +24,7 @@ class Product extends Model
         'category_id',
         'brand_id',
         'supplier_id',
+        'color_id',
     ];
 
     public function formatPrice()
