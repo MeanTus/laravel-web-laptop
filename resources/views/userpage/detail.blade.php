@@ -9,7 +9,6 @@
             </ul>
         </div>
         <div class="row">
-
             <div class="col-lg-9 col-md-8 col-sm-8 col-xs-12 main-content-area">
                 <div class="wrap-product-detail">
                     <div class="detail-media">
@@ -18,7 +17,6 @@
                             {{-- <li data-thumb="{{ asset('admin-assets/images/product') . '/' . $product->avatar }}">
                             </li> --}}
                             <img src="{{ asset('admin-assets/images/product') . '/' . $product->avatar }}" alt="product thumbnail" />
-
                             {{-- <li data-thumb="assets/images/products/digital_17.jpg">
                                 <img src="assets/images/products/digital_17.jpg" alt="product thumbnail" />
                             </li>
@@ -59,42 +57,41 @@
                             <i class="fa fa-star" aria-hidden="true"></i>
                             <a href="#" class="count-review">(05 review)</a>
                         </div>
-                        <h2 class="product-name">{{ $product->name }}</h2>
-                        <div class="short-desc">
-                            <ul>
-                                <li>{{ $ram->name }}</li>
-                                <li>{{ $cpu->name }}</li>
-                                <li>{{ $gpu->name }}</li>
-                            </ul>
-                        </div>
-                        <div class="wrap-social">
-                            <a class="link-socail" href="#"><img src="assets/images/social-list.png" alt=""></a>
-                        </div>
-                        <div class="wrap-price"><span class="product-price">{{ $product->formatPrice() }} VNĐ</span></div>
-                        <div class="stock-info in-stock">
-                            <p class="availability">Availability: <b>In Stock</b></p>
-                        </div>
-                        <div class="quantity">
-                            <span>Quantity:</span>
-                            <div class="quantity-input">
-                                <input type="text" name="product-quatity" value="1" data-max="120" pattern="[0-9]*" >
-                                <a class="btn btn-reduce" href="#"></a>
-                                <a class="btn btn-increase" href="#"></a>
+                        <form action="{{ route('userpage.save-cart') }}" method="POST">
+                            <input type="hidden" name="id" value="{{ $product->id }}">
+                            @csrf
+                            <h2 class="name">{{ $product->name }}</h2>
+                            <div class="short-desc">
+                                <ul>
+                                    <li>{{ $ram->name }}</li>
+                                    <li>{{ $cpu->name }}</li>
+                                    <li>{{ $gpu->name }}</li>
+                                </ul>
                             </div>
-                        </div>
-                        <div class="wrap-butons">
-                            <a href="#" class="btn add-to-cart">Add to Cart</a>
-                            <div class="wrap-btn">
-                                <a href="#" class="btn btn-compare">Add Compare</a>
-                                <a href="#" class="btn btn-wishlist">Add Wishlist</a>
+                            <div class="wrap-price"><span class="price">
+                                {{ $product->formatPrice() }} VNĐ</span>
                             </div>
-                        </div>
+                            <div class="stock-info in-stock">
+                                <p class="availability">Tình trạng: <b>Còn hàng</b></p>
+                            </div>
+                            <div class="quantity">
+                                <span>Số lượng:</span>
+                                <div class="quantity-input">
+                                    <input type="text" name="product-quatity" value="1" data-max="120" pattern="[0-9]*" >
+                                    <a class="btn btn1 btn-increase" href="#"></a>
+                                    <a class="btn btn1 btn-reduce" href="#"></a>
+                                </div>
+                            </div>
+                            <div class="wrap-butons">
+                                <button type="submit" class="btn add-to-cart">Thêm vào giỏ hàng</button>
+                            </div>
+                        </form>
                     </div>
                     <div class="advance-info">
                         <div class="tab-control normal">
-                            <a href="#description" class="tab-control-item active">description</a>
+                            <a href="#description" class="tab-control-item active">Mô tả</a>
                             <a href="#add_infomation" class="tab-control-item">Addtional Infomation</a>
-                            <a href="#review" class="tab-control-item">Reviews</a>
+                            <a href="#review" class="tab-control-item">Đánh giá</a>
                         </div>
                         <div class="tab-contents">
                             <div class="tab-content-item active" id="description">
@@ -116,9 +113,7 @@
                                 </table>
                             </div>
                             <div class="tab-content-item " id="review">
-                                
                                 <div class="wrap-review-form">
-                                    
                                     <div id="comments">
                                         <h2 class="woocommerce-Reviews-title">01 review for <span>Radiant-360 R6 Chainsaw Omnidirectional [Orage]</span></h2>
                                         <ol class="commentlist">

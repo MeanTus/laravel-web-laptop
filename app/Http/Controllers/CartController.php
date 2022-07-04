@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
+use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 
 class CartController extends Controller
@@ -13,7 +15,16 @@ class CartController extends Controller
      */
     public function index()
     {
-        return view('userpage.cart');
+        if (Cart::content() !== null) {
+            $data_cart = Cart::content();
+            return view('userpage.cart', [
+                'data' => $data_cart
+            ]);
+        } else {
+            return view('userpage.cart', [
+                'data' => null
+            ]);
+        }
     }
 
     /**
@@ -34,41 +45,36 @@ class CartController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $product_id = $request->get('id');
+        $quantity = $request->get('product-quatity');
+
+        $product_info = Product::query()->where('id', $product_id)->firstOrFail();
+
+        Cart::add([
+            'id' => $product_info->id,
+            'name' => $product_info->name,
+            'qty' => (int)$quantity,
+            'price' => $product_info->price,
+            'weight' => $product_info->weight,
+            'options' => [
+                'img' => $product_info->avatar
+            ]
+        ]);
+
+        return redirect()->route('userpage.cart');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    public function updateQty(Request $request)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
+        $rowId = $request->get('rowId');
+        $qty = $request->get('qty');
+        if ($request->get('action') == 'increase') {
+            Cart::update($rowId, ['qty' => $qty + 1]);
+        }
+        if ($request->get('action') == 'minus') {
+            Cart::update($rowId, ['qty' => $qty - 1]);
+        }
+        return redirect()->route('userpage.cart');
     }
 
     /**
@@ -77,8 +83,15 @@ class CartController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy()
     {
-        //
+        Cart::destroy();
+        return redirect()->route('userpage.cart');
+    }
+
+    public function deleteRowCart($rowId)
+    {
+        Cart::update($rowId, 0);
+        return redirect()->route('userpage.cart');
     }
 }

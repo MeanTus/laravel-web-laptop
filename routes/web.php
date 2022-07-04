@@ -59,6 +59,13 @@ Route::group([
 
     // Search
     Route::get('/search', [SearchController::class, 'searchByName'])->name('search');
+
+    // Cart
+    Route::get('/cart', [CartController::class, 'index'])->name('cart');
+    Route::post('/save-cart', [CartController::class, 'store'])->name('save-cart');
+    Route::get('/delete-row-cart/{rowId}', [CartController::class, 'deleteRowCart'])->name('delete-row-cart');
+    Route::get('/destroy-all-cart', [CartController::class, 'destroy'])->name('destroy-cart');
+    Route::post('/update-qty', [CartController::class, 'updateQty'])->name('update-qty');
 });
 
 Route::group([
@@ -66,7 +73,6 @@ Route::group([
     'as' => 'userpage.'
 ], function () {
     Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
-    Route::get('/cart', [CartController::class, 'index'])->name('cart');
     Route::get('/profile/{user}', [UserController::class, 'show'])->name('profile');
     Route::post('/update-user/{user}', [UserController::class, 'update'])->name('update_user');
 });

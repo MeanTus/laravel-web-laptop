@@ -4072,6 +4072,78 @@ article.single-post blockquote p:last-child::after{
     -ms-transform: translate(-6px, 4px);*/
 
 }
+/* ------------------- */
+.wrap-iten-in-cart .products-cart .quantity .quantity-inputt{
+    display: inline-block;
+    border: 1px solid #e6e6e6;
+    width: 100%;
+    max-width: 157px;
+}
+.wrap-iten-in-cart .products-cart .quantity .quantity-inputt input[type=number],
+.wrap-iten-in-cart .products-cart .quantity .quantity-inputt input[type=text]{
+    max-width: 71px;
+    float: right;
+    border: none;
+    outline: none;
+    height: 37px;
+    font-size: 16px;
+    line-height: 20px;
+    color: #222222;
+    text-align: right;
+    padding-right: 15px;
+    padding-left: 10px; 
+}
+.wrap-iten-in-cart .products-cart .quantity .quantity-inputt .btn{
+    display: inline-block;
+    float: right;
+    width: 28px;
+    height: 28px;
+    background-color: #dddddd;
+    border: none;
+    padding: 0;
+    line-height: 20px;
+    margin: 4.5px 0 0 10px;
+    border-radius: 50%;
+    position: relative; 
+}
+.wrap-iten-in-cart .products-cart .quantity .quantity-inputt .btn::after,
+.wrap-iten-in-cart .products-cart .quantity .quantity-inputt .btn::before{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    /*transform: translate( -50% , -50% );*/
+    /*-webkit-transform: translate( -50% , -50% );*/
+    /*-ms-transform: translate( -50% , -50% );*/
+}
+.wrap-iten-in-cart .products-cart .quantity .quantity-inputt .btn:hover::before,
+.wrap-iten-in-cart .products-cart .quantity .quantity-inputt .btn:hover::after{
+    background-color: #ffffff !important;
+}
+.wrap-iten-in-cart .products-cart .quantity .quantity-inputt .btn::before{
+    content: "";
+    width: 10px;
+    height: 2px;
+    margin-left: -5px;
+    margin-top: -1px;
+    background-color: #666666;
+    display: inline-block;
+}
+.wrap-iten-in-cart .products-cart .quantity .quantity-inputt .btn.btn-increase{
+    background-color: #999999;
+}
+.wrap-iten-in-cart .products-cart .quantity .quantity-inputt .btn.btn-increase::after{
+    content: "";
+    width: 2px;
+    height: 10px;
+    margin-left: -1px;
+    margin-top: -5px;
+    background-color: #666666;
+    display: block;
+/*    transform: translate(-6px, 4px);
+    -webkit-transform: translate(-6px, 4px);
+    -ms-transform: translate(-6px, 4px);*/
+
+}
 .wrap-iten-in-cart .products-cart .delete a:focus,
 .wrap-iten-in-cart .products-cart .delete a.btn{
     padding: 0;

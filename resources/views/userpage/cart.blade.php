@@ -11,76 +11,64 @@
             </ul>
         </div>
         <div class=" main-content-area">
-
             <div class="wrap-iten-in-cart">
-                <h3 class="box-title">Products Name</h3>
+                <a href="{{ route('userpage.destroy-cart') }}" class="btn btn-danger" style="float: right;">Xóa giỏ hàng</a>
+                <h3 class="box-title">Tên sản phẩm</h3>
                 <ul class="products-cart">
+                    @if (isset($data))
+                    @foreach ($data as $item)
                     <li class="pr-cart-item">
                         <div class="product-image">
-                            <figure><img src="assets/images/products/digital_18.jpg" alt=""></figure>
+                            <figure><img src="{{ asset('admin-assets/images/product/' . $item->options['img']) }}" alt=""></figure>
                         </div>
                         <div class="product-name">
-                            <a class="link-to-product" href="#">Radiant-360 R6 Wireless Omnidirectional Speaker [White]</a>
+                            <a class="link-to-product" href="#">
+                                {{ $item->name }}
+                            </a>
                         </div>
-                        <div class="price-field produtc-price"><p class="price">$256.00</p></div>
+                        <div class="price-field produtc-price">
+                            <p class="price">{{number_format($item->price) }} VNĐ</p>
+                        </div>
                         <div class="quantity">
-                            <div class="quantity-input">
-                                <input type="text" name="product-quatity" value="1" data-max="120" pattern="[0-9]*" >									
-                                <a class="btn btn-increase" href="#"></a>
-                                <a class="btn btn-reduce" href="#"></a>
+                            <div class="quantity-inputt">
+                                <form action="{{ route('userpage.update-qty') }}" method="post">
+                                    @csrf
+                                    <input type="text" name="qty" value="{{ $item->qty }}" >
+                                    <input type="text" name="rowId" value="{{ $item->rowId }}" hidden>
+                                    <button class="btn btn-increase" name="action" type="submit" value="increase"></button>
+                                    <button class="btn btn-reduce" name="action" type="submit" value="minus"></button>
+                                </form>
                             </div>
                         </div>
-                        <div class="price-field sub-total"><p class="price">$256.00</p></div>
-                        <div class="delete">
-                            <a href="#" class="btn btn-delete" title="">
-                                <span>Delete from your cart</span>
-                                <i class="fa fa-times-circle" aria-hidden="true"></i>
+                        <div class="price-field sub-total">
+                            <p class="price">{{number_format($item->price * $item->qty) }} VNĐ</p>
+                        </div>
+                        <div class="">
+                            <a href="{{ route('userpage.delete-row-cart', ['rowId' => $item->rowId]) }}" class="btn btn-delete" title="">
+                                <i class="fa fa-times-circle fa-2x" aria-hidden="true"></i>
                             </a>
                         </div>
                     </li>
-                    <li class="pr-cart-item">
-                        <div class="product-image">
-                            <figure><img src="assets/images/products/digital_20.jpg" alt=""></figure>
-                        </div>
-                        <div class="product-name">
-                            <a class="link-to-product" href="#">Radiant-360 R6 Wireless Omnidirectional Speaker [White]</a>
-                        </div>
-                        <div class="price-field produtc-price"><p class="price">$256.00</p></div>
-                        <div class="quantity">
-                            <div class="quantity-input">
-                                <input type="text" name="product-quatity" value="1" data-max="120" pattern="[0-9]*">									
-                                <a class="btn btn-increase" href="#"></a>
-                                <a class="btn btn-reduce" href="#"></a>
-                            </div>
-                        </div>
-                        <div class="price-field sub-total"><p class="price">$256.00</p></div>
-                        <div class="delete">
-                            <a href="#" class="btn btn-delete" title="">
-                                <span>Delete from your cart</span>
-                                <i class="fa fa-times-circle" aria-hidden="true"></i>
-                            </a>
-                        </div>
-                    </li>												
+                    @endforeach
+                    @endif
                 </ul>
             </div>
 
             <div class="summary">
                 <div class="order-summary">
                     <h4 class="title-box">Order Summary</h4>
-                    <p class="summary-info"><span class="title">Subtotal</span><b class="index">$512.00</b></p>
+                    <p class="summary-info">
+                        <span class="title">Subtotal</span><b class="index">{{ Cart::subtotal(0) }} VNĐ</b>
+                    </p>
                     <p class="summary-info"><span class="title">Shipping</span><b class="index">Free Shipping</b></p>
-                    <p class="summary-info total-info "><span class="title">Total</span><b class="index">$512.00</b></p>
+                    <p class="summary-info total-info "><span class="title">Tổng giá</span><b class="index">$512.00</b></p>
                 </div>
                 <div class="checkout-info">
                     <label class="checkbox-field">
                         <input class="frm-input " name="have-code" id="have-code" value="" type="checkbox"><span>I have promo code</span>
                     </label>
                     <a class="btn btn-checkout" href="checkout.html">Check out</a>
-                    <a class="link-to-shop" href="shop.html">Continue Shopping<i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a>
-                </div>
-                <div class="update-clear">
-                    <a class="btn btn-clear" href="#">Clear Shopping Cart</a>
-                    <a class="btn btn-update" href="#">Update Shopping Cart</a>
+                    <a class="link-to-shop" href="{{ route('userpage.shop') }}">Continue Shopping<i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a>
                 </div>
             </div>
 
