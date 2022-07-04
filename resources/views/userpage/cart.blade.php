@@ -22,7 +22,7 @@
                             <figure><img src="{{ asset('admin-assets/images/product/' . $item->options['img']) }}" alt=""></figure>
                         </div>
                         <div class="product-name">
-                            <a class="link-to-product" href="#">
+                            <a class="link-to-product" href="{{ route('userpage.detail', ['product' => $item->id]) }}">
                                 {{ $item->name }}
                             </a>
                         </div>
@@ -58,7 +58,7 @@
                 <div class="order-summary">
                     <h4 class="title-box">Order Summary</h4>
                     <p class="summary-info">
-                        <span class="title">Subtotal</span><b class="index">{{ Cart::subtotal(0) }} VNĐ</b>
+                        <span class="title">Subtotal</span><b class="index">{{ Cart::priceTotal(0) }} VNĐ</b>
                     </p>
                     <p class="summary-info"><span class="title">Shipping</span><b class="index">Free Shipping</b></p>
                     <p class="summary-info total-info "><span class="title">Tổng giá</span><b class="index">$512.00</b></p>
@@ -67,7 +67,7 @@
                     <label class="checkbox-field">
                         <input class="frm-input " name="have-code" id="have-code" value="" type="checkbox"><span>I have promo code</span>
                     </label>
-                    <a class="btn btn-checkout" href="checkout.html">Check out</a>
+                    <a class="btn btn-checkout" href="{{ route('userpage.checkout') }}">Check out</a>
                     <a class="link-to-shop" href="{{ route('userpage.shop') }}">Continue Shopping<i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a>
                 </div>
             </div>
