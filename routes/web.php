@@ -73,6 +73,7 @@ Route::group([
     'as' => 'userpage.'
 ], function () {
     Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
+    Route::post('/save-checkout', [CheckoutController::class, 'store'])->name('save-checkout');
     Route::get('/profile/{user}', [UserController::class, 'show'])->name('profile');
     Route::post('/update-user/{user}', [UserController::class, 'update'])->name('update_user');
 });

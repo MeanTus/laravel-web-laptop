@@ -15,7 +15,6 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
             $table->string('customer_name', 50);
             $table->string('phone_number', 20);
             $table->string('address', 50);
@@ -24,6 +23,7 @@ class CreateOrdersTable extends Migration
             $table->string('discount_code', 20)->nullable();
             $table->double('discount_price')->nullable();
             $table->string('payment_method', 20);
+            $table->text('note')->nullable();
             $table->double('total_price');
             $table->smallInteger('status')->default(0);
 
@@ -32,6 +32,7 @@ class CreateOrdersTable extends Migration
 
             $table->unsignedBigInteger('admin_id')->nullable();
             $table->foreign('admin_id')->references('user_id')->on('users');
+            $table->timestamps();
         });
     }
 

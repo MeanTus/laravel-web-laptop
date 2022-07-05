@@ -1,5 +1,8 @@
 @extends('layout.master')
 @section('content')
+@if ($errors->any())
+    @include('layout.alert-err')
+@endif
 <main id="main" class="main-site">
 
     <div class="container">
@@ -13,56 +16,69 @@
         <div class=" main-content-area">
             <div class="wrap-address-billing">
                 <h3 class="box-title">Billing Address</h3>
-                <form action="#" method="get" name="frm-billing">
-                    <p class="row-in-form">
+                <form action="{{ route('userpage.save-checkout') }}" method="post" name="frm-billing">
+                    @csrf
+                    <input type="text" name="customer_id" value="{{ session()->get('user_id') }}" hidden>
+                    <p class="row-in-form" >
                         <label for="fname">Tên người nhận<span>*</span></label>
-                        <input id="fname" type="text" name="fname">
+                        <input id="fname" type="text" name="customer_name">
                     </p>
                     <p class="row-in-form">
                         <label for="phone">Số điện thoại<span>*</span></label>
-                        <input id="phone" type="number" name="phone">
+                        <input id="phone" type="number" name="phone_number">
                     </p>
                     <p class="row-in-form">
                         <label for="city">Thành phố<span>*</span></label>
-                        <input id="city" type="text" name="city">
+                        <select name="city" class="form-control" style="display: block;">
+                            <option value="Hồ Chí Minh" selected>Hồ Chí Minh</option>
+                            <option value="Đà Nẵng">Đà Nẵng</option>
+                            <option value="Hà Nội">Hà Nội</option>
+                        </select>
                     </p>
                     <p class="row-in-form">
                         <label for="country">Quốc gia<span>*</span></label>
-                        <input id="country" type="text" name="country">
+                        <select name="country" class="form-control" style="display: block;">
+                            <option value="Việt Nam" selected>Việt Nam</option>
+                            <option value="Malaysia">Malaysia</option>
+                            <option value="Indonesia">Indonesia</option>
+                        </select>
                     </p>
                     <p class="row-in-form" style="width: 100%;">
                         <label for="add">Địa chỉ:</label>
-                        <input id="add" type="text" name="add">
+                        <input id="add" type="text" name="address">
                     </p>
                     <p class="row-in-form" style="width: 100%;">
                         <label for="country">Ghi chú<span>*</span></label>
                         <textarea name="note" style="width: 100%; border: 1px solid #e6e6e6;" rows="8"></textarea>
                     </p>
-                    <p class="row-in-form fill-wife">
-                        {{-- <label class="checkbox-field">
+                    {{-- <p class="row-in-form fill-wife">
+                        <label class="checkbox-field">
                             <input name="create-account" id="create-account" value="forever" type="checkbox">
                             <span>Create an account?</span>
                         </label>
                         <label class="checkbox-field">
                             <input name="different-add" id="different-add" value="forever" type="checkbox">
                             <span>Ship to a different address?</span>
-                        </label> --}}
-                    </p>
+                        </label>
+                    </p> --}}
                     <div class="summary summary-checkout">
                         <div class="summary-item payment-method">
                             <h4 class="title-box">Payment Method</h4>
                             <div class="choose-payment-methods">
                                 <label class="payment-method">
-                                    <input name="payment-method" id="payment-method-bank" value="bank" type="radio">
+                                    <input name="payment_method" id="payment-method-bank" value="trực tiếp" type="radio" checked>
                                     <span>Thanh toán trực tiếp</span>
                                 </label>
                                 <label class="payment-method">
-                                    <input name="payment-method" id="payment-method-visa" value="visa" type="radio">
+                                    <input name="payment_method" id="payment-method-visa" value="banking" type="radio">
                                     <span>Thanh toán online</span>
                                 </label>
                             </div>
-                            <p class="summary-info grand-total"><span>Tổng tiền</span> <span class="grand-total-price">$100.00</span></p>
-                            <a href="thankyou.html" class="btn btn-medium">Place order now</a>
+                            <p class="summary-info grand-total">
+                                <span>Tổng tiền</span> <span class="grand-total-price">{{ number_format(Cart::total()) }} VNĐ</span>
+                                <input type="text" name="total_price" value="{{ Cart::total() }}" hidden>
+                            </p>
+                            <button type="submit" class="btn btn-medium">Place order now</button>
                         </div>
                         <div class="summary-item shipping-method">
                             <h4 class="title-box f-title">Shipping method</h4>
@@ -71,9 +87,9 @@
                             <h4 class="title-box">Discount Codes</h4>
                             <p class="row-in-form" style="width: 100%;">
                                 <label for="coupon-code">Enter Your Coupon code:</label>
-                                <input id="coupon-code" type="text" name="coupon-code"placeholder="">	
+                                <input id="discount_code" type="text" name="coupon-code">	
                             </p>
-                            <a href="#" class="btn btn-small">Apply</a>
+                            <button type="submit" class="btn btn-small">Apply</button>
                         </div>
                     </div>
                 </form>

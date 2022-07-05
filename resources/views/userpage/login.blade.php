@@ -1,11 +1,7 @@
 @extends('layout.master')
 @section('content')
-@if (session()->get('error'))
-    <div class="alert alert-danger text-center">
-        <div>
-            {{ session()->get('error') }}
-        </div>
-    </div>
+@if ($errors->any())
+    @include('layout.alert-err')
 @endif
 <main id="main" class="main-site left-sidebar">
 
