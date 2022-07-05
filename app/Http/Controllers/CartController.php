@@ -60,6 +60,7 @@ class CartController extends Controller
                 'img' => $product_info->avatar
             ]
         ]);
+        Cart::setGlobalTax(0);
 
         return redirect()->route('userpage.cart');
     }

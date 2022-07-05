@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreOrderRequest;
 use App\Models\Order;
+use App\Models\OrderDetail;
+use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 
 class CheckoutController extends Controller
@@ -15,7 +17,16 @@ class CheckoutController extends Controller
      */
     public function index()
     {
-        return view('userpage.checkout');
+        if (Cart::content() !== null) {
+            $data_cart = Cart::content();
+            return view('userpage.checkout', [
+                'data' => $data_cart
+            ]);
+        } else {
+            return view('userpage.checkout', [
+                'data' => null
+            ]);
+        }
     }
 
     /**
@@ -36,7 +47,19 @@ class CheckoutController extends Controller
      */
     public function store(StoreOrderRequest $request)
     {
-        Order::create($request->except('__token'));
+        // Add to table order
+        $order = Order::create($request->except('__token'));
+
+        // Add detail order
+        foreach (Cart::content() as $product) {
+            OrderDetail::create([
+                'price' => $product->price,
+                'quantity' => $product->qty,
+                'total_price' => $product->price * $product->qty,
+                'order_id' => $order->id,
+                'product_id' => $product->id,
+            ]);
+        }
         return view('userpage.thankyou');
     }
 
