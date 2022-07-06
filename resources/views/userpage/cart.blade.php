@@ -11,7 +11,67 @@
             </ul>
         </div>
         <div class=" main-content-area">
-            <div class="wrap-iten-in-cart">
+            <table class="data-table table mb-0 tbl-server-info">
+                <thead class="bg-white text-uppercase">
+                <tr class="ligth ligth-data">
+                    <th>Hình ảnh</th>
+                    <th>Tên sản phẩm</th>
+                    <th>Đơn giá</th>
+                    <th>Số lượng</th>
+                    <th>Tổng giá</th>
+                    <th>Xóa</th>
+                </tr>
+                </thead>
+                <tbody class="ligth-body">
+                    @foreach ($data as $item)
+                    <tr>
+                        <td>
+                            <div class="d-flex align-items-center">
+                                <img 
+                                src="{{ asset('admin-assets/images/product') . '/' . $item->options['img'] }}" 
+                                style="width: 80px; height: 80px; margin-right: 20px" alt="image">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="d-flex align-items-center">
+                                <div>
+                                    <a class="link-to-product" 
+                                    href="{{ route('userpage.detail', ['product' => $item->id]) }}">
+                                        {{ $item->name }}
+                                    </a>
+                                </div>
+                            </div>
+                        </td>
+                        <td>{{number_format($item->price) }} VNĐ</td>
+                        <td>
+                            <div class="quantity">
+                                <div class="quantity-inputt">
+                                    <form action="{{ route('userpage.update-qty') }}" method="post">
+                                        @csrf
+                                        <input type="text" name="rowId" value="{{ $item->rowId }}" hidden>
+                                        <button class="btn btn-reduce" name="action" type="submit" value="minus"><i class="fa fa-minus" aria-hidden="true"></i>
+                                        </button>
+                                        <input type="text" name="qty" value="{{ $item->qty }}" >
+                                        <button class="btn btn-increase" name="action" type="submit" value="increase">
+                                            <i class="fa fa-plus" aria-hidden="true"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </td>
+                        <td>{{number_format($item->price * $item->qty) }} VNĐ</td>
+                        <td>
+                            <div class="">
+                                <a href="{{ route('userpage.delete-row-cart', ['rowId' => $item->rowId]) }}" class="btn btn-delete" title="">
+                                    <i class="fa fa-times-circle fa-2x" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+            {{-- <div class="wrap-iten-in-cart">
                 <a href="{{ route('userpage.destroy-cart') }}" class="btn btn-danger" style="float: right;">Xóa giỏ hàng</a>
                 <h3 class="box-title">Tên sản phẩm</h3>
                 <ul class="products-cart">
@@ -52,7 +112,7 @@
                     @endforeach
                     @endif
                 </ul>
-            </div>
+            </div> --}}
 
             <div class="summary">
                 <div class="order-summary">
@@ -61,7 +121,9 @@
                         <span class="title">Subtotal</span><b class="index">{{ Cart::priceTotal(0) }} VNĐ</b>
                     </p>
                     <p class="summary-info"><span class="title">Shipping</span><b class="index">Free Shipping</b></p>
-                    <p class="summary-info total-info "><span class="title">Tổng giá</span><b class="index">$512.00</b></p>
+                    <p class="summary-info total-info ">
+                        <span class="title">Tổng giá</span><b class="index">{{ Cart::total(0) }} VNĐ</b>
+                    </p>
                 </div>
                 <div class="checkout-info">
                     <label class="checkbox-field">
