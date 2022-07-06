@@ -160,6 +160,8 @@ Route::group([
     // Route Order
     Route::get('/order', [OrderController::class, 'index'])->name('order');
     Route::get('/add-order', [OrderController::class, 'create'])->name('add-order');
+    Route::get('/detail-order/{order}', [OrderController::class, 'show'])->name('show-order');
+    Route::get('/confirm-order/{order}', [OrderController::class, 'show'])->name('confirm-order');
 
     // Route Customer
     Route::get('/customer', [CustomerController::class, 'index'])->name('customer');

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
+use App\Models\OrderDetail;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -13,7 +15,8 @@ class OrderController extends Controller
      */
     public function index()
     {
-        return view('admin.list.list-order');
+        $list_order = Order::orderBy('created_at', 'desc')->get();
+        return view('admin.list.list-order', ['list_order' => $list_order]);
     }
 
     /**
@@ -43,9 +46,21 @@ class OrderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Order $order)
     {
-        //
+        $list_product = OrderDetail::query()
+            ->join('products', 'order_detail.product_id', '=', 'products.id')
+            ->where('order_id', $order->id)
+            ->select(
+                '*',
+                'order_detail.quantity as order_quantity',
+                'order_detail.price as order_price'
+            )
+            ->get();
+        return view('admin.detail.detail-order', [
+            'order' => $order,
+            'list_product' => $list_product
+        ]);
     }
 
     /**

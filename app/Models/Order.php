@@ -24,4 +24,20 @@ class Order extends Model
         'customer_id',
         'admin_id',
     ];
+
+    public function getStatusOrder()
+    {
+        $status = '';
+        if ($this->status == 0) {
+            $status = 'Chờ duyệt';
+        } elseif ($this->status == 1) {
+            $status = 'Đã duyệt';
+        } else {
+            $status = 'Bị hủy';
+        }
+
+        return $status;
+    }
+
+    
 }
