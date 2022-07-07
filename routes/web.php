@@ -72,8 +72,15 @@ Route::group([
     'middleware' => CheckLoginMiddleware::class,
     'as' => 'userpage.'
 ], function () {
+    // Checkout
     Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
     Route::post('/save-checkout', [CheckoutController::class, 'store'])->name('save-checkout');
+
+    //Order
+    Route::get('/history-order/{user}', [OrderController::class, 'showHistoryOrderUser'])->name('history-order');
+    Route::get('/detail-order/{order}', [OrderController::class, 'showDetailOrderUser'])->name('detail-order');
+
+    // User
     Route::get('/profile/{user}', [UserController::class, 'show'])->name('profile');
     Route::post('/update-user/{user}', [UserController::class, 'update'])->name('update_user');
 });

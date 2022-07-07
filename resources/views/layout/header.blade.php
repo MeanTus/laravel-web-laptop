@@ -29,8 +29,9 @@
                                     <li class="menu-item menu-item-has-children parent" >
                                         <a title="My Account" href="#">Hello {{ session()->get('name') }}<i class="fa fa-angle-down" aria-hidden="true"></i></a>
                                         <ul class="submenu curency" >
-                                            <li class="menu-item"><a href="#">Orders</a></li>
-                                            <li class="menu-item"><a href="#">Address</a></li>
+                                            <li class="menu-item">
+                                                <a href="{{ route('userpage.history-order', ['user' => session()->get('user_id')]) }}">Orders</a>
+                                            </li>
                                             <li class="menu-item">
                                                 <a href="{{ route('userpage.profile', ['user' => session()->get('user_id')]) }}">Account Details</a></li>
                                             <li class="menu-item" >
@@ -86,7 +87,7 @@
                                 <a href="{{ route('userpage.cart') }}" class="link-direction">
                                     <i class="fa fa-shopping-basket" aria-hidden="true"></i>
                                     <div class="left-info">
-                                        <span class="index">4 items</span>
+                                        <span class="index">{{ count(Cart::content()) }} items</span>
                                         <span class="title">CART</span>
                                     </div>
                                 </a>

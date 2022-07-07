@@ -1,10 +1,6 @@
 @extends('admin.layout.master')
 @section('content')
-
     <div class="content-page">
-        @if ($errors->any())
-            @include('layout.alert-err')
-        @endif
         <div class="container-fluid add-form-list">
             <div class="row">
                 <div class="col-sm-12">

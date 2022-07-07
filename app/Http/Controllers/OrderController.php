@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use App\Models\OrderDetail;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -86,14 +87,32 @@ class OrderController extends Controller
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    // ============= User page ==================
+
+    public function showHistoryOrderUser($user)
     {
-        //
+        $list_order = Order::query()
+            ->orderBy('created_at', 'desc')
+            ->where('customer_id', $user)
+            ->paginate(10);
+
+        return view('userpage.history-order', ['list_order' => $list_order]);
+    }
+
+    public function showDetailOrderUser(Order $order)
+    {
+        $list_product = OrderDetail::query()
+            ->join('products', 'order_detail.product_id', '=', 'products.id')
+            ->where('order_id', $order->id)
+            ->select(
+                '*',
+                'order_detail.quantity as order_quantity',
+                'order_detail.price as order_price'
+            )
+            ->get();
+        return view('userpage.detail-order', [
+            'order' => $order,
+            'list_product' => $list_product
+        ]);
     }
 }
