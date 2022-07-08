@@ -32,12 +32,12 @@ class Order extends Model
             $status = 'Chờ duyệt';
         } elseif ($this->status == 1) {
             $status = 'Đã duyệt';
+        } elseif ($this->status == 2) {
+            $status = 'Bị hủy bởi người dùng';
         } else {
-            $status = 'Bị hủy';
+            $status = 'Bị hủy bởi quản trị viên';
         }
 
         return $status;
     }
-
-    
 }

@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use App\Models\OrderDetail;
+use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
 {
@@ -75,16 +77,44 @@ class OrderController extends Controller
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function confirmOrder(Order $order)
     {
-        //
+        Order::query()
+            ->where('id', $order->id)
+            ->update([
+                'admin_id' => session()->get('admin_id'),
+                'status' => 1
+            ]);
+
+        // Update quantity product
+        $product_id = OrderDetail::query()
+            ->select('product_id', 'quantity')
+            ->where('order_id', $order->id)
+            ->get();
+
+        foreach ($product_id as $item) {
+            $current_quantity_product = Product::query()->where('id', $item->product_id)->value('quantity');
+            Product::query()
+                ->where('id', $item->product_id)
+                ->update([
+                    'quantity_sold' => $item->quantity,
+                    'quantity' => $current_quantity_product - $item->quantity,
+                ]);
+        }
+        return redirect()->route('admin.show-order', ['order' => $order])->with('success', 'Duyệt đơn thành công');
+    }
+
+    public function cancelOrder(Request $request)
+    {
+        Order::query()
+            ->where('id', $request->order_id)
+            ->update([
+                'admin_id' => session()->get('admin_id'),
+                'status' => 3,
+                'desc_cancel' => $request->desc_cancel,
+            ]);
+        $order = Order::query()->where('id', $request->order_id)->firstOrFail();
+        return redirect()->route('admin.show-order', ['order' => $order])->with('success', 'Hủy đơn thành công');
     }
 
     // ============= User page ==================
@@ -114,5 +144,18 @@ class OrderController extends Controller
             'order' => $order,
             'list_product' => $list_product
         ]);
+    }
+
+    public function cancelOrderUser(Request $request)
+    {
+        Order::query()
+            ->where('id', $request->order_id)
+            ->update([
+                'admin_id' => session()->get('user_id'),
+                'status' => 2,
+                'desc_cancel' => $request->desc_cancel,
+            ]);
+        $order = Order::query()->where('id', $request->order_id)->firstOrFail();
+        return redirect()->route('userpage.detail-order', ['order' => $order])->with('success', 'Hủy đơn thành công');
     }
 }

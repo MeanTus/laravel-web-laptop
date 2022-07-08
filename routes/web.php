@@ -79,6 +79,7 @@ Route::group([
     //Order
     Route::get('/history-order/{user}', [OrderController::class, 'showHistoryOrderUser'])->name('history-order');
     Route::get('/detail-order/{order}', [OrderController::class, 'showDetailOrderUser'])->name('detail-order');
+    Route::post('/cancel-order', [OrderController::class, 'cancelOrderUser'])->name('cancel-order');
 
     // User
     Route::get('/profile/{user}', [UserController::class, 'show'])->name('profile');
@@ -168,7 +169,8 @@ Route::group([
     Route::get('/order', [OrderController::class, 'index'])->name('order');
     Route::get('/add-order', [OrderController::class, 'create'])->name('add-order');
     Route::get('/detail-order/{order}', [OrderController::class, 'show'])->name('show-order');
-    Route::get('/confirm-order/{order}', [OrderController::class, 'show'])->name('confirm-order');
+    Route::get('/confirm-order/{order}', [OrderController::class, 'confirmOrder'])->name('confirm-order');
+    Route::post('/cancel_order', [OrderController::class, 'cancelOrder'])->name('cancel-order');
 
     // Route Customer
     Route::get('/customer', [CustomerController::class, 'index'])->name('customer');

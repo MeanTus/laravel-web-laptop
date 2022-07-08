@@ -42,7 +42,7 @@
                                             Địa chỉ:
                                         </label>
                                         <div class="col-sm-10">
-                                          <input style="border: 0px" type="text" readonly id="staticEmail" value="{{ $order->address . ', ' . $order->city . ', ' . $order->country }}">
+                                          <input style="border: 0px; width: 100%;" type="text" readonly id="staticEmail" value="{{ $order->address . ', ' . $order->city . ', ' . $order->country }}">
                                         </div>
                                       </div>
                                 </div>
@@ -151,11 +151,62 @@
                             </tbody>
                         </table>
                     </div>
-                    <a href="#" class="btn btn-danger">Hủy Đơn</a>
+                    <button 
+                    @if ($order->status !== 0)
+                        disabled
+                    @endif
+                    type="button" 
+                    class="btn btn-danger" 
+                    data-toggle="modal" 
+                    data-target="#myModal">
+                        Hủy Đơn
+                    </button>
                 </div>
             </div>
         </div>
     </div><!--end container-->
+
+    {{-- Modal desc_cancel --}}
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Lý do hủy đơn</h4>
+            </div>
+            <div class="modal-body">
+                <form action="{{ route('userpage.cancel-order') }}" method="post">
+                    @csrf
+                    <input type="text" name="order_id" value="{{ $order->id }}" hidden>
+                    <div class="modal-body">
+                        <div class="form-check">
+                            <input value="Địa chỉ không hợp lệ" class="form-check-input" type="radio" name="desc_cancel" checked>
+                            <label class="form-check-label">
+                                Địa chỉ không hợp lệ
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input value="Sản phẩm đã hết hàng" class="form-check-input" type="radio" name="desc_cancel">
+                            <label class="form-check-label">
+                                Sản phẩm đã hết hàng
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input value="Không hỗ trợ giao hàng" class="form-check-input" type="radio" name="desc_cancel">
+                            <label class="form-check-label">
+                                Không hỗ trợ giao hàng
+                            </label>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Thoát</button>
+                      <button type="submit" class="btn btn-primary">Xác Nhận</button>
+                    </div>
+                </form>
+            </div>
+          </div>
+        </div>
+      </div>
 
 </main>
 @endsection

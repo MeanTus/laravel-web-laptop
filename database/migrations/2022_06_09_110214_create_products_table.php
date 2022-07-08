@@ -18,6 +18,7 @@ class CreateProductsTable extends Migration
             $table->string('name', 50);
             $table->string('unit', 30);
             $table->integer('quantity', false, true);
+            $table->integer('quantity_sold', false, true)->default(0);
             $table->double('price', null, null, true);
             $table->string('desc', 200);
             $table->string('avatar', 50)->nullable();

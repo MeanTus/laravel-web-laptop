@@ -54,13 +54,13 @@
                                 {{ $order->city }}
                             </td>
                             <td>
-                                {{ $order->total_price }}
-                            </td>
-                            <td>
-                                {{ $order->city }}
+                                {{ number_format($order->total_price) }} VNĐ
                             </td>
                             <td>
                                 {{ $order->getStatusOrder() }}
+                            </td>
+                            <td>
+                                {{ $order->created_at }}
                             </td>
                             <td>
                                 <div class="d-flex align-items-center list-action">

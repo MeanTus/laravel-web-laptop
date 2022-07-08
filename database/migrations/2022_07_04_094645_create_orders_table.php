@@ -26,6 +26,7 @@ class CreateOrdersTable extends Migration
             $table->text('note')->nullable();
             $table->double('total_price');
             $table->smallInteger('status')->default(0);
+            $table->string('desc_cancel', 50)->nullable();
 
             $table->unsignedBigInteger('customer_id')->nullable();
             $table->foreign('customer_id')->references('user_id')->on('users');
