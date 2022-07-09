@@ -15,32 +15,48 @@ class UserPageController extends Controller
 {
     public function shopPage(Request $request)
     {
-        if ($request->get('category') !== null || $request->get('brand')) {
-            return redirect()->route('userpage.search');
-        } else {
-            $list_product = Product::query()
-                ->join('brands', 'products.brand_id', '=', 'brands.id')
-                ->join('categories', 'products.category_id', '=', 'categories.id')
-                ->join('suppliers', 'products.supplier_id', '=', 'suppliers.id')
-                ->select(
-                    '*',
-                    'products.name as product_name',
-                    'products.id as product_id',
-                    'products.avatar as product_avatar',
-                    'suppliers.name as supplier_name'
-                )
-                ->paginate(9);
-
-            $brand = Brand::query()->get();
-            $category = Category::query()->get();
-            $color = Color::query()->get();
-            return view('userpage.shop', [
-                'list_product' => $list_product,
-                'brands' => $brand,
-                'categories' => $category,
-                'colors' => $color
-            ]);
+        $condition = [];
+        if ($request->get('search') !== null) {
+            $condition[] = ['products.name', 'like', '%' . $request->get('search') . '%'];
         }
+        if ($request->get('brand') !== null) {
+            $condition[] = ['brand_id', $request->get('brand')];
+        }
+        if ($request->get('category') !== null) {
+            $condition[] = ['category_id', $request->get('category')];
+        }
+        if ($request->get('color') !== null) {
+            $condition[] = ['color_id', $request->get('color')];
+        }
+        $list_product = Product::query()
+            ->join('brands', 'products.brand_id', '=', 'brands.id')
+            ->join('categories', 'products.category_id', '=', 'categories.id')
+            ->join('suppliers', 'products.supplier_id', '=', 'suppliers.id')
+            ->select(
+                '*',
+                'products.name as product_name',
+                'products.id as product_id',
+                'products.avatar as product_avatar',
+                'suppliers.name as supplier_name'
+            )
+            ->where($condition)
+            ->paginate(9);
+
+        $list_product->appends([
+            'search' => $request->get('search'),
+            'brand' => $request->get('brand'),
+            'category' => $request->get('category'),
+        ]);
+
+        $brand = Brand::query()->get();
+        $category = Category::query()->get();
+        $color = Color::query()->get();
+        return view('userpage.shop', [
+            'list_product' => $list_product,
+            'brands' => $brand,
+            'categories' => $category,
+            'colors' => $color
+        ]);
     }
 
     public function showDetailProduct(Product $product)

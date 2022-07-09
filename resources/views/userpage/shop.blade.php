@@ -97,7 +97,7 @@
                                 <li class="category-item">
                                     <a 
                                     {{-- href="{{ request()->fullUrlWithQuery(['category' => $category->id]) }}" --}}
-                                    href="{{ route('userpage.search') . '?category=' . $category->id }}"
+                                    href="{{ request()->fullUrlWithQuery(['category' => $category->id]) }}"
                                     class="cate-link">
                                         {{ $category->category_name }}
                                     </a>
@@ -137,12 +137,33 @@
                 <div class="widget mercado-widget filter-widget price-filter">
                     <h2 class="widget-title">Price</h2>
                     <div class="widget-content">
-                        <div id="slider-range"></div>
-                        <p>
-                            <label for="amount">Price:</label>
-                            <input type="text" id="amount" readonly>
-                            <button class="filter-submit">Filter</button>
-                        </p>
+                        <ul class="list-style vertical-list list-limited" data-show="6">
+                        <li class="list-item">
+                            <a class="filter-link" href="{{ request()->fullUrlWithQuery(['price' => '10000000_20000000']) }}">
+                                10,000,000đ - 20,000,000đ
+                            </a>
+                        </li>
+                        <li class="list-item">
+                            <a class="filter-link" href="{{ request()->fullUrlWithQuery(['price' => '20000000_30000000']) }}">
+                                20,000,000đ - 30,000,000đ
+                            </a>
+                        </li>
+                        <li class="list-item">
+                            <a class="filter-link" href="{{ request()->fullUrlWithQuery(['price' => '30000000_40000000']) }}">
+                                30,000,000đ - 40,000,000đ
+                            </a>
+                        </li>
+                        <li class="list-item">
+                            <a class="filter-link" href="{{ request()->fullUrlWithQuery(['price' => '40000000_50000000']) }}">
+                                40,000,000đ - 50,000,000đ
+                            </a>
+                        </li>
+                        <li class="list-item">
+                            <a class="filter-link" href="{{ request()->fullUrlWithQuery(['price' => '50000000_null']) }}">
+                                50,000,000đ trở lên
+                            </a>
+                        </li>
+                        </ul>
                     </div>
                 </div><!-- Price-->
 
@@ -152,7 +173,7 @@
                         <ul class="list-style vertical-list has-count-index">
                             @foreach ($colors as $color)
                             <li class="list-item">
-                                <a class="filter-link" href="#">
+                                <a class="filter-link" href="{{ request()->fullUrlWithQuery(['color' => $color->hex]) }}">
                                     <button 
                                     style="width: 32px; height: 32px; border-radius: 8px; background-color: {{ $color->hex }}">
                                     </button>
