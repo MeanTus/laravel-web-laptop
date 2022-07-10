@@ -94,12 +94,22 @@ class OrderController extends Controller
 
         foreach ($product_id as $item) {
             $current_quantity_product = Product::query()->where('id', $item->product_id)->value('quantity');
-            Product::query()
-                ->where('id', $item->product_id)
-                ->update([
-                    'quantity_sold' => $item->quantity,
-                    'quantity' => $current_quantity_product - $item->quantity,
-                ]);
+            if ($item->quantity > $current_quantity_product) {
+                Order::query()
+                    ->where('id', $order->id)
+                    ->update([
+                        'admin_id' => session()->get('admin_id'),
+                        'status' => 0
+                    ]);
+                return redirect()->route('admin.show-order', ['order' => $order])->withErrors('Sản phẩm không đủ số lượng, không thể duyệt đơn');
+            } else {
+                Product::query()
+                    ->where('id', $item->product_id)
+                    ->update([
+                        'quantity_sold' => $item->quantity,
+                        'quantity' => $current_quantity_product - $item->quantity,
+                    ]);
+            }
         }
         return redirect()->route('admin.show-order', ['order' => $order])->with('success', 'Duyệt đơn thành công');
     }

@@ -5,6 +5,9 @@
             @if (session('success'))
                 @include('layout.alert-success')
             @endif
+            @if ($errors->any())
+                @include('layout.alert-err')
+            @endif
             <div class="row">
                 <div class="col-sm-12">
                     <div class="card">
