@@ -27,6 +27,7 @@ class AuthController extends Controller
             }
 
             session()->put('user_id', $user->user_id);
+            session()->put('user_email', $user->email);
             session()->put('name', $user->name);
 
             return redirect()->route('userpage.index');

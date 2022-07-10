@@ -15,7 +15,7 @@
     <div class="container pb-60">
         <div class="row">
             <div class="col-md-12 text-center">
-                <h2>Cảm ơn bạn đã tin tưởng chúng tôi</h2>
+                <h2>Kiểm tra email để xem lại thông tin đơn hàng nhé!</h2>
                 <a href="{{ route('userpage.index') }}" class="btn btn-submit btn-submitx">Tiếp tục mua sắm</a>
             </div>
         </div>

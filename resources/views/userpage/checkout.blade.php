@@ -18,6 +18,7 @@
                 <form action="{{ route('userpage.save-checkout') }}" method="post" name="frm-billing">
                     @csrf
                     <input type="text" name="customer_id" value="{{ session()->get('user_id') }}" hidden>
+                    <input type="text" name="email" value="{{ session()->get('user_email') }}" hidden>
                     <p class="row-in-form" >
                         <label for="fname">Tên người nhận<span>*</span></label>
                         <input id="fname" type="text" name="customer_name">
