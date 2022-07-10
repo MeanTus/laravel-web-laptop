@@ -3,6 +3,7 @@
 namespace App\Observers;
 
 use App\Models\Order;
+use App\Notifications\CancelOrderNotificationMail;
 use App\Notifications\CreatedOrderNotificationMail;
 use Illuminate\Support\Facades\Notification;
 

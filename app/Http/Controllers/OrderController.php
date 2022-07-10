@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\CancelOrderEvent;
 use App\Models\Order;
 use App\Models\OrderDetail;
 use App\Models\Product;
@@ -124,6 +125,7 @@ class OrderController extends Controller
                 'desc_cancel' => $request->desc_cancel,
             ]);
         $order = Order::query()->where('id', $request->order_id)->firstOrFail();
+        CancelOrderEvent::dispatch($order);
         return redirect()->route('admin.show-order', ['order' => $order])->with('success', 'Hủy đơn thành công');
     }
 

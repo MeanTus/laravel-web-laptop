@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Events\CancelOrderEvent;
+use App\Listeners\CancelOrderNotification;
 use App\Models\Order;
 use App\Observers\OrderObserver;
 use Illuminate\Auth\Events\Registered;
@@ -17,8 +19,8 @@ class EventServiceProvider extends ServiceProvider
      * @var array<class-string, array<int, class-string>>
      */
     protected $listen = [
-        Registered::class => [
-            SendEmailVerificationNotification::class,
+        CancelOrderEvent::class => [
+            CancelOrderNotification::class,
         ],
     ];
 
