@@ -3,13 +3,12 @@
 namespace App\Providers;
 
 use App\Events\CancelOrderEvent;
+use App\Events\ConfirmOrderEvent;
 use App\Listeners\CancelOrderNotification;
+use App\Listeners\ConfirmOrderNotification;
 use App\Models\Order;
 use App\Observers\OrderObserver;
-use Illuminate\Auth\Events\Registered;
-use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
-use Illuminate\Support\Facades\Event;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -22,6 +21,9 @@ class EventServiceProvider extends ServiceProvider
         CancelOrderEvent::class => [
             CancelOrderNotification::class,
         ],
+        ConfirmOrderEvent::class => [
+            ConfirmOrderNotification::class,
+        ]
     ];
 
     /**

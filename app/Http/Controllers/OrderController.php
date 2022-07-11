@@ -3,12 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Events\CancelOrderEvent;
+use App\Events\ConfirmOrderEvent;
 use App\Models\Order;
 use App\Models\OrderDetail;
 use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
 {
@@ -34,17 +34,6 @@ class OrderController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
      * Display the specified resource.
      *
      * @param  int  $id
@@ -65,17 +54,6 @@ class OrderController extends Controller
             'order' => $order,
             'list_product' => $list_product
         ]);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
     }
 
     public function confirmOrder(Order $order)
@@ -112,6 +90,7 @@ class OrderController extends Controller
                     ]);
             }
         }
+        ConfirmOrderEvent::dispatch($order);
         return redirect()->route('admin.show-order', ['order' => $order])->with('success', 'Duyệt đơn thành công');
     }
 
