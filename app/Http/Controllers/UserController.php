@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreUserReQuest;
+use App\Models\Product;
 use App\Models\User;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
@@ -22,7 +23,29 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('userpage.index');
+        $latest_product = Product::query()
+            ->orderBy('created_at', 'desc')
+            ->skip(0)
+            ->take(10)
+            ->get();
+
+        $gaming_laptop = Product::query()
+            ->where('category_id', 1)
+            ->inRandomOrder()
+            ->limit(8)
+            ->get();
+
+        $office_laptop = Product::query()
+            ->where('category_id', 2)
+            ->inRandomOrder()
+            ->limit(8)
+            ->get();
+
+        return view('userpage.index', [
+            'latest_product' => $latest_product,
+            'gaming_laptop' => $gaming_laptop,
+            'office_laptop' => $office_laptop,
+        ]);
     }
 
     /**
