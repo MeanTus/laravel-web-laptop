@@ -9,7 +9,7 @@
                     <img 
                     id="output"
                     class="rounded-circle mt-5" 
-                    style="border-radius: 100%; margin-top: 50%; margin-bottom: 20px; width: 150px"
+                    style="border-radius: 100%; margin-top: 50%; margin-bottom: 20px; width: 150px; height: 150px;"
                     @if ($user->avatar === null)
                         src="{{ asset('assets/images/users/default-user-avatar.jpg') }}"
                     @else
