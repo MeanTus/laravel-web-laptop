@@ -61,13 +61,23 @@ class UserPageController extends Controller
 
     public function showDetailProduct(Product $product)
     {
-        $brand = Brand::query()->where('id', $product->brand_id)->get();
+        $brand = Brand::query()->where('id', $product->brand_id)->firstOrFail();
+        $category = Category::query()->where('id', $product->category_id)->firstOrFail();
         $ram = Ram::query()->where('id', $product->ram_id)->firstOrFail();
         $cpu = CPU::query()->where('id', $product->cpu_id)->firstOrFail();
         $gpu = GPU::query()->where('id', $product->gpu_id)->firstOrFail();
-        return view('userpage.detail', [
+
+        $related_product = Product::query()
+            ->where('category_id', $product->category_id)
+            ->where('id', '!=', $product->id)
+            ->inRandomOrder()
+            ->limit(8)
+            ->get();
+        return view('userpage.detail-product', [
             'product' => $product,
+            'related_product' => $related_product,
             'brand' => $brand,
+            'category' => $category,
             'ram' => $ram,
             'cpu' => $cpu,
             'gpu' => $gpu,
