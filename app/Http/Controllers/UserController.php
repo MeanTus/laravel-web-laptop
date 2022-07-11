@@ -144,7 +144,7 @@ class UserController extends Controller
             ]);
         }
 
-        return redirect()->route('userpage.profile', ['user_id' => $id]);
+        return redirect()->route('userpage.profile', ['user' => $id]);
     }
 
     /**

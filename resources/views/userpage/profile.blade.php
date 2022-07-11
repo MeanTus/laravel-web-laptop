@@ -9,14 +9,13 @@
                     <img 
                     id="output"
                     class="rounded-circle mt-5" 
-                    style="border-radius: 100%; margin-top: 50%; margin-bottom: 20px;"
-                    width="150px"
+                    style="border-radius: 100%; margin-top: 50%; margin-bottom: 20px; width: 150px"
                     @if ($user->avatar === null)
                         src="{{ asset('assets/images/users/default-user-avatar.jpg') }}"
                     @else
-                        src= "{{ asset('assets/images/users') . '/' . $user->avatar}}" >
+                        src= "{{ asset('assets/images/users') . '/' . $user->avatar}}"
                     @endif
-
+                    >
                     <input type="text" name="old-avatar" value="{{ $user->avatar }}" hidden>
 
                     @include('layout.edit-avatar')
