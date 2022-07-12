@@ -11,6 +11,7 @@
             </ul>
         </div>
         <div class=" main-content-area">
+            <a href="{{ route('userpage.destroy-cart') }}" class="btn btn-danger">Xóa giỏ hàng</a>
             <table class="data-table table mb-0 tbl-server-info">
                 <thead class="bg-white text-uppercase">
                 <tr class="ligth ligth-data">
@@ -71,48 +72,6 @@
                     @endforeach
                 </tbody>
             </table>
-            {{-- <div class="wrap-iten-in-cart">
-                <a href="{{ route('userpage.destroy-cart') }}" class="btn btn-danger" style="float: right;">Xóa giỏ hàng</a>
-                <h3 class="box-title">Tên sản phẩm</h3>
-                <ul class="products-cart">
-                    @if (isset($data))
-                    @foreach ($data as $item)
-                    <li class="pr-cart-item">
-                        <div class="product-image">
-                            <figure><img src="{{ asset('admin-assets/images/product/' . $item->options['img']) }}" alt=""></figure>
-                        </div>
-                        <div class="product-name">
-                            <a class="link-to-product" href="{{ route('userpage.detail', ['product' => $item->id]) }}">
-                                {{ $item->name }}
-                            </a>
-                        </div>
-                        <div class="price-field produtc-price">
-                            <p class="price">{{number_format($item->price) }} VNĐ</p>
-                        </div>
-                        <div class="quantity">
-                            <div class="quantity-inputt">
-                                <form action="{{ route('userpage.update-qty') }}" method="post">
-                                    @csrf
-                                    <input type="text" name="qty" value="{{ $item->qty }}" >
-                                    <input type="text" name="rowId" value="{{ $item->rowId }}" hidden>
-                                    <button class="btn btn-increase" name="action" type="submit" value="increase"></button>
-                                    <button class="btn btn-reduce" name="action" type="submit" value="minus"></button>
-                                </form>
-                            </div>
-                        </div>
-                        <div class="price-field sub-total">
-                            <p class="price">{{number_format($item->price * $item->qty) }} VNĐ</p>
-                        </div>
-                        <div class="">
-                            <a href="{{ route('userpage.delete-row-cart', ['rowId' => $item->rowId]) }}" class="btn btn-delete" title="">
-                                <i class="fa fa-times-circle fa-2x" aria-hidden="true"></i>
-                            </a>
-                        </div>
-                    </li>
-                    @endforeach
-                    @endif
-                </ul>
-            </div> --}}
 
             <div class="summary">
                 <div class="order-summary">

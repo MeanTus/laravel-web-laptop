@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cart as ModelsCart;
 use App\Models\Product;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
@@ -15,6 +16,28 @@ class CartController extends Controller
      */
     public function index()
     {
+        Cart::destroy();
+        $user_cart = ModelsCart::query()
+            ->where('customer_id', session()->get('user_id'))
+            ->get();
+
+        foreach ($user_cart as $cart) {
+            $product_info = Product::query()
+                ->where('id', $cart->product_id)
+                ->select('name', 'avatar', 'weight')
+                ->firstOrFail();
+
+            Cart::add([
+                'id' => $cart->product_id,
+                'name' => $product_info->name,
+                'qty' => $cart->qty,
+                'price' => $cart->price,
+                'weight' => $product_info->weight,
+                'options' => [
+                    'img' => $product_info->avatar
+                ]
+            ]);
+        }
         if (Cart::content() !== null) {
             $data_cart = Cart::content();
             return view('userpage.cart', [
@@ -28,16 +51,6 @@ class CartController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -48,17 +61,14 @@ class CartController extends Controller
         $product_id = $request->get('id');
         $quantity = $request->get('product-quatity');
 
-        $product_info = Product::query()->where('id', $product_id)->firstOrFail();
+        $product_price = Product::query()->where('id', $product_id)->select('price')->firstOrFail();
 
-        Cart::add([
-            'id' => $product_info->id,
-            'name' => $product_info->name,
-            'qty' => (int)$quantity,
-            'price' => $product_info->price,
-            'weight' => $product_info->weight,
-            'options' => [
-                'img' => $product_info->avatar
-            ]
+        // Add cart to db
+        ModelsCart::create([
+            'qty' => $quantity,
+            'price' => $product_price->price,
+            'product_id' => $product_id,
+            'customer_id' => session()->get('user_id'),
         ]);
         Cart::setGlobalTax(0);
 
@@ -68,12 +78,32 @@ class CartController extends Controller
     public function updateQty(Request $request)
     {
         $rowId = $request->get('rowId');
-        $qty = $request->get('qty');
+        $product_id = Cart::get($rowId)->id;
+        $quantity_product = Cart::get($rowId)->qty;
         if ($request->get('action') == 'increase') {
-            Cart::update($rowId, ['qty' => $qty + 1]);
+            ModelsCart::query()
+                ->where('product_id', $product_id)
+                ->update([
+                    'qty' => $quantity_product + 1
+                ]);
         }
         if ($request->get('action') == 'minus') {
-            Cart::update($rowId, ['qty' => $qty - 1]);
+            $current_quantity = ModelsCart::query()
+                ->where('product_id', $product_id)
+                ->select('qty')
+                ->firstOrFail();
+            $update_quantity = $current_quantity->qty - 1;
+            if ($update_quantity === 0) {
+                ModelsCart::query()
+                    ->where('product_id', $product_id)
+                    ->delete();
+            } else {
+                ModelsCart::query()
+                    ->where('product_id', $product_id)
+                    ->update([
+                        'qty' => $quantity_product - 1
+                    ]);
+            }
         }
         return redirect()->route('userpage.cart');
     }
@@ -86,13 +116,14 @@ class CartController extends Controller
      */
     public function destroy()
     {
-        Cart::destroy();
+        ModelsCart::query()->where('customer_id', session()->get('user_id'))->delete();
         return redirect()->route('userpage.cart');
     }
 
     public function deleteRowCart($rowId)
     {
-        Cart::update($rowId, 0);
+        $product_id = Cart::get($rowId)->id;
+        ModelsCart::query()->where('product_id', $product_id)->delete();
         return redirect()->route('userpage.cart');
     }
 }

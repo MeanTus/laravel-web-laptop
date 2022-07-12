@@ -13,7 +13,6 @@ use App\Http\Controllers\GPUController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RamController;
-use App\Http\Controllers\SearchController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserPageController;
@@ -56,22 +55,19 @@ Route::group([
 
     // Detail Product
     Route::get('/detail/{product}', [UserPageController::class, 'showDetailProduct'])->name('detail');
-
-    // Search
-    Route::get('/search', [SearchController::class, 'searchByName'])->name('search');
-
-    // Cart
-    Route::get('/cart', [CartController::class, 'index'])->name('cart');
-    Route::post('/save-cart', [CartController::class, 'store'])->name('save-cart');
-    Route::get('/delete-row-cart/{rowId}', [CartController::class, 'deleteRowCart'])->name('delete-row-cart');
-    Route::get('/destroy-all-cart', [CartController::class, 'destroy'])->name('destroy-cart');
-    Route::post('/update-qty', [CartController::class, 'updateQty'])->name('update-qty');
 });
 
 Route::group([
     'middleware' => CheckLoginMiddleware::class,
     'as' => 'userpage.'
 ], function () {
+    // Cart
+    Route::get('/cart', [CartController::class, 'index'])->name('cart');
+    Route::post('/save-cart', [CartController::class, 'store'])->name('save-cart');
+    Route::get('/delete-row-cart/{rowId}', [CartController::class, 'deleteRowCart'])->name('delete-row-cart');
+    Route::get('/destroy-all-cart', [CartController::class, 'destroy'])->name('destroy-cart');
+    Route::post('/update-qty', [CartController::class, 'updateQty'])->name('update-qty');
+
     // Checkout
     Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
     Route::post('/save-checkout', [CheckoutController::class, 'store'])->name('save-checkout');

@@ -70,9 +70,14 @@
                                     </a>
                                 </div>
                                 <div class="product-info">
-                                    <a href="#" class="product-name"><span>{{ $product->product_name }}</span></a>
+                                    <a href="{{ route('userpage.detail', ['product' => $product->product_id]) }}" class="product-name"><span>{{ $product->product_name }}</span></a>
                                     <div class="wrap-price"><span class="product-price">{{$product->formatPrice()}} VNĐ</span></div>
-                                    <a href="#" class="btn add-to-cart">Add To Cart</a>
+                                    <form action="{{ route('userpage.save-cart') }}" method="POST">
+                                        @csrf
+                                        <input type="text" name="id" value="{{ $product->id }}" hidden>
+                                        <input type="text" name="product-quatity" value="1" hidden>
+                                        <button style="width: 100%;" type="submit" class="btn add-to-cart">Add To Cart</button>
+                                    </form>
                                 </div>
                             </div>
                         </li>
