@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\File;
 
 class BrandController extends Controller
 {
-    public function __construct(Brand $user)
+    public function __construct()
     {
         $this->model = (new Brand())->query();
     }

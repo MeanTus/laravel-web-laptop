@@ -7,6 +7,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\ColorController;
+use App\Http\Controllers\CouponController;
 use App\Http\Controllers\CPUController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\GPUController;
@@ -157,6 +158,14 @@ Route::group([
     Route::get('/edit-brand/{brand}', [BrandController::class, 'edit'])->name('edit-brand');
     Route::post('/update-brand/{brand}', [BrandController::class, 'update'])->name('update-brand');
     Route::get('/delete-brand/{brand}', [BrandController::class, 'destroy'])->name('delete-brand');
+
+    // Route Coupon
+    Route::get('/coupon', [CouponController::class, 'index'])->name('coupon');
+    Route::get('/add-coupon', [CouponController::class, 'create'])->name('add-coupon');
+    Route::post('/store-coupon', [CouponController::class, 'store'])->name('store-coupon');
+    Route::get('/edit-coupon/{coupon}', [CouponController::class, 'edit'])->name('edit-coupon');
+    Route::post('/update-coupon/{coupon}', [CouponController::class, 'update'])->name('update-coupon');
+    Route::get('/delete-coupon/{coupon}', [CouponController::class, 'destroy'])->name('delete-coupon');
 
     // Route Supplier
     Route::get('/supplier', [SupplierController::class, 'index'])->name('supplier');

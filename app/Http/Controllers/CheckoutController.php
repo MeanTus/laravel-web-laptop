@@ -42,19 +42,19 @@ class CheckoutController extends Controller
      */
     public function store(Request $request)
     {
-        // // Add to table order
-        // $order = Order::create($request->except('__token'));
+        // Add to table order
+        $order = Order::create($request->except('__token'));
 
-        // // Add detail order
-        // foreach (Cart::content() as $product) {
-        //     OrderDetail::create([
-        //         'price' => $product->price,
-        //         'quantity' => $product->qty,
-        //         'total_price' => $product->price * $product->qty,
-        //         'order_id' => $order->id,
-        //         'product_id' => $product->id,
-        //     ]);
-        // }
+        // Add detail order
+        foreach (Cart::content() as $product) {
+            OrderDetail::create([
+                'price' => $product->price,
+                'quantity' => $product->qty,
+                'total_price' => $product->price * $product->qty,
+                'order_id' => $order->id,
+                'product_id' => $product->id,
+            ]);
+        }
 
         if ($request->payment_method === 'vnpay') {
             $this->checkoutVNPay($request);

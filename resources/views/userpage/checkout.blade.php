@@ -88,11 +88,13 @@
                             <p class="summary-info"><span class="title">Flat Rate</span></p>
                             <p class="summary-info"><span class="title">Fixed $50.00</span></p>
                             <h4 class="title-box">Discount Codes</h4>
-                            <p class="row-in-form" style="width: 100%;">
-                                <label for="coupon-code">Enter Your Coupon code:</label>
-                                <input id="discount_code" type="text" name="coupon-code">	
-                            </p>
-                            <button type="submit" class="btn btn-small">Apply</button>
+                            <form action="{{ route('userpage.check-coupon') }}" method="post">
+                                <p class="row-in-form" style="width: 100%;">
+                                    <label for="coupon-code">Enter Your Coupon code:</label>
+                                    <input id="discount_code" type="text" name="coupon-code">	
+                                </p>
+                                <button type="submit" class="btn btn-small">Apply</button>
+                            </form>
                         </div>
                     </div>
                 </form>

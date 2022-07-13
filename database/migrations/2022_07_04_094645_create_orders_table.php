@@ -21,13 +21,15 @@ class CreateOrdersTable extends Migration
             $table->string('address', 50);
             $table->string('city', 30);
             $table->string('country', 30);
-            $table->string('discount_code', 20)->nullable();
             $table->double('discount_price')->nullable();
             $table->string('payment_method', 20);
             $table->text('note')->nullable();
             $table->double('total_price');
             $table->smallInteger('status')->default(0);
             $table->string('desc_cancel', 50)->nullable();
+
+            $table->string('discount_code', 20)->nullable();
+            $table->foreign('discount_code')->references('code')->on('coupons');
 
             $table->unsignedBigInteger('customer_id')->nullable();
             $table->foreign('customer_id')->references('user_id')->on('users');
