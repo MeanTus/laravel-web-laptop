@@ -76,6 +76,12 @@
                                 Thanh toán VN Pay
                                 <input type="text" name="redirect" value="{{ route('userpage.save-checkout') }}" hidden>
                             </button>
+                            {{-- <br>
+                            <br>
+                            <button type="submit" name="payment_method" value="momo" class="btn btn-medium">
+                                Thanh toán Momo
+                                <input type="text" name="redirect" value="{{ route('userpage.save-checkout') }}" hidden>
+                            </button> --}}
                         </div>
                         <div class="summary-item shipping-method">
                             <h4 class="title-box f-title">Shipping method</h4>
