@@ -70,6 +70,7 @@ Route::group([
 
     // Checkout
     Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
+    Route::get('/thank-you', [CheckoutController::class, 'thankYouPage'])->name('thank-you');
     Route::post('/save-checkout', [CheckoutController::class, 'store'])->name('save-checkout');
 
     //Order

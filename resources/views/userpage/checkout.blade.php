@@ -63,22 +63,19 @@
                     </p> --}}
                     <div class="summary summary-checkout">
                         <div class="summary-item payment-method">
-                            <h4 class="title-box">Payment Method</h4>
-                            <div class="choose-payment-methods">
-                                <label class="payment-method">
-                                    <input name="payment_method" id="payment-method-bank" value="trực tiếp" type="radio" checked>
-                                    <span>Thanh toán trực tiếp</span>
-                                </label>
-                                <label class="payment-method">
-                                    <input name="payment_method" id="payment-method-visa" value="banking" type="radio">
-                                    <span>Thanh toán online</span>
-                                </label>
-                            </div>
                             <p class="summary-info grand-total">
                                 <span>Tổng tiền</span> <span class="grand-total-price">{{Cart::total(0)}} VNĐ</span>
                                 <input type="number" name="total_price" value="{{ Cart::totalFloat() }}" hidden>
                             </p>
-                            <button type="submit" class="btn btn-medium">Place order now</button>
+                            <button type="submit" name="payment_method" value="trực tiếp" class="btn btn-medium">
+                                Thanh toán trực tiếp
+                            </button>
+                            <br>
+                            <br>
+                            <button type="submit" name="payment_method" value="vnpay" class="btn btn-medium">
+                                Thanh toán VN Pay
+                                <input type="text" name="redirect" value="{{ route('userpage.save-checkout') }}" hidden>
+                            </button>
                         </div>
                         <div class="summary-item shipping-method">
                             <h4 class="title-box f-title">Shipping method</h4>
