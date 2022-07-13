@@ -43,6 +43,10 @@ Route::group([
     Route::get('/login', [AuthController::class, 'login'])->name('login');
     Route::post('/login', [AuthController::class, 'processLogin'])->name('process_login');
 
+    //Login facebook
+    Route::get('/login-facebook', [AuthController::class, 'login_facebook']);
+    Route::get('/admin/callback', [AuthController::class, 'callback_facebook']);
+
     // Route Log out
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 

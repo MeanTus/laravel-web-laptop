@@ -20,6 +20,12 @@ return [
         'endpoint' => env('MAILGUN_ENDPOINT', 'api.mailgun.net'),
     ],
 
+    'facebook' => [
+        'client_id' => '586334223146450', //client face của bạn
+        'client_secret' => 'e86d7253a849b842631a35c002bd9ca5', //client app service face của bạn
+        'redirect' => 'http://web-laptop.tk:81/login/callback' //callback trả về
+    ],
+
     'postmark' => [
         'token' => env('POSTMARK_TOKEN'),
     ],

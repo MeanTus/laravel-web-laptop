@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Social;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Exception;
+use Socialite;
 use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
@@ -40,6 +42,59 @@ class AuthController extends Controller
     {
         session()->flush();
         return redirect()->route('userpage.index');
+    }
+
+    public function login_facebook()
+    {
+        return Socialite::driver('facebook')->redirect();
+    }
+
+    public function callback_facebook()
+    {
+        $provider = Socialite::driver('facebook')->user();
+        $account = Social::where('provider', 'facebook')
+            ->where('provider_user_id', $provider->getId())
+            ->first();
+        if ($account) {
+            //login in vao trang quan tri
+            $account_name = User::where('user_id', $account->user)->first();
+            session()->put('user_id', $account->user_id);
+            session()->put('user_email', $account->email);
+            session()->put('name', $account->name);
+            return redirect()->route('userpage.index');
+        } else {
+
+            $hieu = new Social([
+                'provider_user_id' => $provider->getId(),
+                'provider' => 'facebook'
+            ]);
+
+            $orang = User::where('email', $provider->getEmail())->first();
+
+            if (!$orang) {
+                $orang = User::create([
+                    // 'admin_name' => $provider->getName(),
+                    // 'admin_email' => $provider->getEmail(),
+                    // 'admin_password' => '',
+                    // 'admin_status' => 1,
+
+                    'name' => $provider->getName(),
+                    'email' => $provider->getEmail(),
+                    'gender' => 1,
+                    'birthdate' => '',
+                    'password' => '',
+                ]);
+            }
+            $hieu->login()->associate($orang);
+            $hieu->save();
+
+            $account_name = User::where('user_id', $account->user)->first();
+
+            session()->put('user_id', $account_name->user_id);
+            session()->put('user_email', $account_name->email);
+            session()->put('name', $account_name->name);
+            return redirect()->route('userpage.index');
+        }
     }
 
     // =================== Admin Login ==================
