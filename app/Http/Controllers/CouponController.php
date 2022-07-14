@@ -38,6 +38,9 @@ class CouponController extends Controller
      */
     public function store(Request $request)
     {
+        if ($request->get('feature') == 0 && $request->get('discount_rate') > 100) {
+            return redirect()->route('admin.add-coupon')->withErrors('Tỷ lệ % không được lớn hơn 100');
+        }
         Coupon::query()->create($request->except('__token'));
         return redirect()->route('admin.coupon');
     }

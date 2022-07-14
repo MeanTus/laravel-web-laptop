@@ -12,6 +12,7 @@ class Coupon extends Model
     protected $fillable = [
         'code',
         'discount_rate',
+        'feature',
         'quantity',
         'status',
         'desc_coupon',
@@ -28,5 +29,18 @@ class Coupon extends Model
         }
 
         return $status;
+    }
+
+    public function getFeatureCoupon()
+    {
+        $feature = '';
+        if ($this->feature == 0) {
+            $feature = 'Giảm theo phần trăm';
+        }
+        if ($this->feature == 1) {
+            $feature = 'Giảm tiền';
+        }
+
+        return $feature;
     }
 }

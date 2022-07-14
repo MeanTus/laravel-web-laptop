@@ -31,7 +31,7 @@
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label>Tỷ lệ giảm giá *</label>
+                                        <label>Số % hoặc tiền giảm *</label>
                                         <input type="number" class="form-control" 
                                         name="discount_rate"
                                         value="{{ $coupon['discount_rate'] }}"
@@ -118,7 +118,17 @@
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label>Tỷ lệ giảm giá *</label>
+                                            <label>Chức năng mã code *</label>
+                                            <select name="feature" class="selectpicker form-control">
+                                                <option value="0" selected>Giảm theo phần trăm</option>
+                                                <option value="1">Giảm tiền</option>
+                                            </select>
+                                            <div class="help-block with-errors"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Số % hoặc tiền giảm *</label>
                                             <input type="number" class="form-control" 
                                             name="discount_rate" required>
                                             <div class="help-block with-errors"></div>
