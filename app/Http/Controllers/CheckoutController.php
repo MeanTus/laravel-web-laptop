@@ -29,6 +29,11 @@ class CheckoutController extends Controller
         }
     }
 
+    public function checkCoupon()
+    {
+        return redirect()->route('userpage.checkout');
+    }
+
     public function thankYouPage()
     {
         return view('userpage.thankyou');

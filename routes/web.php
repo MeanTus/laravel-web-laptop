@@ -78,6 +78,9 @@ Route::group([
     Route::get('/thank-you', [CheckoutController::class, 'thankYouPage'])->name('thank-you');
     Route::post('/save-checkout', [CheckoutController::class, 'store'])->name('save-checkout');
 
+    // Coupon
+    Route::post('/check-coupon', [CheckoutController::class, 'checkCoupon'])->name('check-coupon');
+
     //Order
     Route::get('/history-order/{user}', [OrderController::class, 'showHistoryOrderUser'])->name('history-order');
     Route::get('/detail-order/{order}', [OrderController::class, 'showDetailOrderUser'])->name('detail-order');

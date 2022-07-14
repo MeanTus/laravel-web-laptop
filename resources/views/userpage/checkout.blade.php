@@ -89,6 +89,7 @@
                             <p class="summary-info"><span class="title">Fixed $50.00</span></p>
                             <h4 class="title-box">Discount Codes</h4>
                             <form action="{{ route('userpage.check-coupon') }}" method="post">
+                                @csrf
                                 <p class="row-in-form" style="width: 100%;">
                                     <label for="coupon-code">Enter Your Coupon code:</label>
                                     <input id="discount_code" type="text" name="coupon-code">	
