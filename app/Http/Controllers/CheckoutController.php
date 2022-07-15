@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreOrderRequest;
+use App\Models\Coupon;
 use App\Models\Order;
 use App\Models\OrderDetail;
 use Gloudemans\Shoppingcart\Facades\Cart;
@@ -29,9 +30,35 @@ class CheckoutController extends Controller
         }
     }
 
-    public function checkCoupon()
+    public function checkCoupon(Request $request)
     {
-        return redirect()->route('userpage.checkout');
+        if (session()->has('discount')) {
+            return redirect()->route('userpage.cart')->withErrors('Chỉ được nhập mã giảm giá 1 lần');
+        }
+        $coupon = Coupon::query()->where('code', $request->get('code'))->first();
+        $discount = 0;
+        if (!$coupon) {
+            return redirect()->route('userpage.cart')->withErrors('Mã giảm giá không đúng');
+        } else {
+            if ($coupon->feature == 0) {
+                $discount = $coupon->discount_rate;
+                session()->put('discount', $discount);
+                session()->put('discount_code', $coupon->code);
+            } else {
+                // Kiểm tra xem số tiền được giảm bằng bao nhiêu % đơn hàng
+                $discount = $coupon->discount_rate;
+                $rate = $discount * 100 / Cart::totalFloat();
+
+                // Nếu số tiền giảm lớn hơn tổng tiền đơn hàng thì giảm 100%
+                if ($rate > 100) {
+                    $rate = 100;
+                }
+
+                session()->put('discount', $rate);
+                session()->put('discount_code', $coupon->code);
+            }
+            return redirect()->route('userpage.cart');
+        }
     }
 
     public function thankYouPage()

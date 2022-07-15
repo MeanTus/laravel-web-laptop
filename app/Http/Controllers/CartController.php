@@ -61,6 +61,7 @@ class CartController extends Controller
         $product_id = $request->get('id');
         $quantity = $request->get('product-quatity');
 
+        Cart::setGlobalTax(0);
         $product_price = Product::query()->where('id', $product_id)->select('price')->firstOrFail();
 
         // Add cart to db
@@ -70,7 +71,6 @@ class CartController extends Controller
             'product_id' => $product_id,
             'customer_id' => session()->get('user_id'),
         ]);
-        Cart::setGlobalTax(0);
 
         return redirect()->route('userpage.cart');
     }

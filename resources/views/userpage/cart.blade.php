@@ -1,9 +1,16 @@
 @extends('layout.master')
 @section('content')
+@if ($errors->any())
+    @include('layout.alert-err')
+@endif
+@if (session('success'))
+    @include('layout.alert-success')
+@endif
+@if (session()->get('discount'))
+    {{ Cart::setGlobalDiscount(session()->get('discount'))}}
+@endif
 <main id="main" class="main-site">
-
     <div class="container">
-
         <div class="wrap-breadcrumb">
             <ul>
                 <li class="item-link"><a href="#" class="link">home</a></li>
@@ -77,17 +84,26 @@
                 <div class="order-summary">
                     <h4 class="title-box">Order Summary</h4>
                     <p class="summary-info">
-                        <span class="title">Subtotal</span><b class="index">{{ Cart::priceTotal(0) }} VNĐ</b>
+                        <span class="title">Subtotal</span><b class="index">{{ Cart::total(0) }} VNĐ</b>
                     </p>
                     <p class="summary-info"><span class="title">Shipping</span><b class="index">Free Shipping</b></p>
                     <p class="summary-info total-info ">
                         <span class="title">Tổng giá</span><b class="index">{{ Cart::total(0) }} VNĐ</b>
                     </p>
                 </div>
+                <br>
                 <div class="checkout-info">
-                    <label class="checkbox-field">
-                        <input class="frm-input " name="have-code" id="have-code" value="" type="checkbox"><span>I have promo code</span>
-                    </label>
+                    <div class="summary-item shipping-method">
+                        <h4 class="title-box">Discount Codes</h4>
+                        <form action="{{ route('userpage.check-coupon') }}" method="post">
+                            @csrf
+                            <p class="row-in-form" style="width: 100%;">
+                                <label for="coupon-code">Enter Your Coupon code:</label>
+                                <input id="discount_code" type="text" name="code">	
+                            </p>
+                            <button type="submit" class="btn btn-small">Apply</button>
+                        </form>
+                    </div>
                     <a class="btn btn-checkout" href="{{ route('userpage.checkout') }}">Check out</a>
                     <a class="link-to-shop" href="{{ route('userpage.shop') }}">Continue Shopping<i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a>
                 </div>
