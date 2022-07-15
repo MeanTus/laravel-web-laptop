@@ -38,7 +38,7 @@ Route::group([
     'as' => 'userpage.'
 ], function () {
     // Route home page
-    Route::get('/', [UserController::class, 'index'])->name('index');
+    Route::get('/', [UserPageController::class, 'indexHomePage'])->name('index');
 
     // Route Login
     Route::get('/login', [AuthController::class, 'login'])->name('login');
@@ -188,6 +188,9 @@ Route::group([
     // Route Customer
     Route::get('/customer', [CustomerController::class, 'index'])->name('customer');
     Route::get('/add-customer', [CustomerController::class, 'create'])->name('add-customer');
+    Route::get('/view-customer/{user}', [CustomerController::class, 'show'])->name('view-customer');
+    Route::post('/block-customer', [CustomerController::class, 'blockUser'])->name('block-customer');
+    Route::post('/unblock-customer', [CustomerController::class, 'unblockUser'])->name('unblock-customer');
 
     // Route Admin
     Route::get('/list-admin', [AdminController::class, 'index'])->name('admin');

@@ -7,14 +7,10 @@ use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
-    public function __construct()
-    {
-        $this->model = (new User())->query();
-    }
-
     public function index()
     {
-        return view('admin.people.admin');
+        $list_admin = User::query()->where('role_id', '<', 2)->get();
+        return view('admin.people.admin', ['list_admin' => $list_admin]);
     }
 
     /**

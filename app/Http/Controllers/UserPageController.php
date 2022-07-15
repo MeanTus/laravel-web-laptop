@@ -13,6 +13,33 @@ use Illuminate\Http\Request;
 
 class UserPageController extends Controller
 {
+    public function indexHomePage()
+    {
+        $latest_product = Product::query()
+            ->orderBy('created_at', 'desc')
+            ->skip(0)
+            ->take(10)
+            ->get();
+
+        $gaming_laptop = Product::query()
+            ->where('category_id', 1)
+            ->inRandomOrder()
+            ->limit(8)
+            ->get();
+
+        $office_laptop = Product::query()
+            ->where('category_id', 2)
+            ->inRandomOrder()
+            ->limit(8)
+            ->get();
+
+        return view('userpage.index', [
+            'latest_product' => $latest_product,
+            'gaming_laptop' => $gaming_laptop,
+            'office_laptop' => $office_laptop,
+        ]);
+    }
+
     public function shopPage(Request $request)
     {
         $condition = [];

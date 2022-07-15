@@ -2,15 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
 use App\Models\User;
 use Illuminate\Http\Request;
 
 class CustomerController extends Controller
 {
-    public function __construct()
-    {
-        $this->model = (new User())->query();
-    }
 
     /**
      * Display a listing of the resource.
@@ -19,7 +16,8 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        return view('admin.people.customer');
+        $list_customer = User::query()->where('role_id', 3)->get();
+        return view('admin.people.customer', ['list_customer' => $list_customer]);
     }
 
     /**
@@ -33,17 +31,6 @@ class CustomerController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
      * Display the specified resource.
      *
      * @param  int  $id
@@ -51,40 +38,33 @@ class CustomerController extends Controller
      */
     public function show($id)
     {
-        //
+        $customer = User::query()->where('user_id', $id)->firstOrFail();
+        $count_orders = Order::query()->where('customer_id', $id)->count();
+        return view('admin.people.detail-customer', [
+            'customer' => $customer,
+            'count_order' => $count_orders
+        ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    public function blockUser(Request $request)
     {
-        //
+        User::query()
+            ->where('user_id', $request->customer_id)
+            ->update([
+                'status' => 1,
+                'desc_block' => $request->desc_block,
+            ]);
+        return redirect()->route('admin.view-customer', ['user' => $request->customer_id])->with('success', 'Khóa người dùng thành công');
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function unblockUser(Request $request)
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        User::query()
+            ->where('user_id', $request->customer_id)
+            ->update([
+                'status' => 0,
+                'desc_block' => null,
+            ]);
+        return redirect()->route('admin.view-customer', ['user' => $request->customer_id])->with('success', 'Mở khóa người dùng thành công');
     }
 }

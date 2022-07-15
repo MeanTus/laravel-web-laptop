@@ -24,8 +24,14 @@ class AuthController extends Controller
                 ->where('email', $request->get('email'))
                 ->firstOrFail();
 
+            // Kiểm tra mật khẩu
             if (!Hash::check($request->get('password'), $user->password)) {
-                throw new Exception('Mật khẩu không chính xác');
+                return redirect()->route('userpage.login')->withErrors('Mật khẩu không chính xác');
+            }
+
+            // Kiểm tra trạng thái có bị block hay không
+            if ($user->status == 1) {
+                return redirect()->route('userpage.login')->withErrors('Tài khoản của bạn đã bị khóa');
             }
 
             session()->put('user_id', $user->user_id);

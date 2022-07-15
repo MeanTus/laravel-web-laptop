@@ -16,8 +16,7 @@ class CreateRolesTable extends Migration
         Schema::create('roles', function (Blueprint $table) {
             $table->increments('role_id');
             $table->string('name_role', 30);
-            $table->date('created_at')->useCurrent();
-            $table->date('updated_at')->useCurrent()->useCurrentOnUpdate()->nullable();
+            $table->timestamps();
         });
     }
 
