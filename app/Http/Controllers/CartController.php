@@ -61,16 +61,27 @@ class CartController extends Controller
         $product_id = $request->get('id');
         $quantity = $request->get('product-quatity');
 
-        Cart::setGlobalTax(0);
         $product_price = Product::query()->where('id', $product_id)->select('price')->firstOrFail();
 
-        // Add cart to db
-        ModelsCart::create([
-            'qty' => $quantity,
-            'price' => $product_price->price,
-            'product_id' => $product_id,
-            'customer_id' => session()->get('user_id'),
-        ]);
+        // Kiểm tra xem trong db đã có product này hay chưa
+        $product_exist = ModelsCart::query()
+            ->where('product_id', $product_id)
+            ->where('customer_id', session()->get('user_id'))
+            ->first();
+
+        if ($product_exist) {
+            ModelsCart::query()->update([
+                'qty' => $product_exist->qty + 1
+            ]);
+        } else {
+            // Add cart to db
+            ModelsCart::create([
+                'qty' => $quantity,
+                'price' => $product_price->price,
+                'product_id' => $product_id,
+                'customer_id' => session()->get('user_id'),
+            ]);
+        }
 
         return redirect()->route('userpage.cart');
     }
