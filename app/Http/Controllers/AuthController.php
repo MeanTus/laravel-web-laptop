@@ -125,6 +125,7 @@ class AuthController extends Controller
             session()->put('admin_id', $user->user_id);
             session()->put('admin_name', $user->name);
             session()->put('admin_level', $user->role_id);
+            session()->put('avatar', $user->avatar);
 
             return redirect()->route('admin.index');
         } catch (\Throwable $th) {

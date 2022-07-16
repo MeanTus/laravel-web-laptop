@@ -195,4 +195,5 @@ Route::group([
     // Route Admin
     Route::get('/list-admin', [AdminController::class, 'index'])->name('admin');
     Route::get('/add-admin', [AdminController::class, 'create'])->name('add-admin');
+    Route::get('/view-admin/{user}', [AdminController::class, 'show'])->name('view-admin');
 });

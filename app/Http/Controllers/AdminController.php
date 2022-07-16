@@ -42,7 +42,10 @@ class AdminController extends Controller
      */
     public function show($id)
     {
-        //
+        $admin = User::query()->where('user_id', $id)->firstOrFail();
+        return view('admin.people.detail-admin', [
+            'admin' => $admin,
+        ]);
     }
 
     /**
