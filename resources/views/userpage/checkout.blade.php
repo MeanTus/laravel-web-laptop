@@ -17,6 +17,10 @@
                 <h3 class="box-title">Billing Address</h3>
                 <form action="{{ route('userpage.save-checkout') }}" method="post" name="frm-billing">
                     @csrf
+                    @if (session()->has('discount'))
+                        <input type="text" name="discount_code" value="{{ session()->get('discount_code') }}" hidden>
+                        <input type="text" name="discount_price" value="{{ Cart::discount() }}" hidden>
+                    @endif
                     <input type="text" name="customer_id" value="{{ session()->get('user_id') }}" hidden>
                     <input type="text" name="email" value="{{ session()->get('user_email') }}" hidden>
                     <p class="row-in-form" >

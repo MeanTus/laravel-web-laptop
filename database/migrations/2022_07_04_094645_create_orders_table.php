@@ -21,7 +21,7 @@ class CreateOrdersTable extends Migration
             $table->string('address', 50);
             $table->string('city', 30);
             $table->string('country', 30);
-            $table->double('discount_price')->nullable();
+            $table->double('discount_price')->default(0);
             $table->string('payment_method', 20);
             $table->text('note')->nullable();
             $table->double('total_price');

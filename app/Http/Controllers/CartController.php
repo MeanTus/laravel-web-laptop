@@ -70,9 +70,11 @@ class CartController extends Controller
             ->first();
 
         if ($product_exist) {
-            ModelsCart::query()->update([
-                'qty' => $product_exist->qty + 1
-            ]);
+            ModelsCart::query()
+                ->where('product_id', $product_id)
+                ->update([
+                    'qty' => $product_exist->qty + 1
+                ]);
         } else {
             // Add cart to db
             ModelsCart::create([
@@ -83,7 +85,7 @@ class CartController extends Controller
             ]);
         }
 
-        return redirect()->route('userpage.cart');
+        return redirect()->back()->with('cart-success', 'Đã thêm vào giỏ hàng thành công');
     }
 
     public function updateQty(Request $request)

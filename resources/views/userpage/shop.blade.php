@@ -2,6 +2,30 @@
 @section('content')
 <main id="main" class="main-site left-sidebar">
     <div class="container">
+            {{-- Modal thông báo --}}
+    {{-- @dd(session('cart-success')) --}}
+    @if (session('cart-success'))
+        @include('layout.modal-noti')
+    @endif
+    <div class="modal" tabindex="10" role="dialog">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Modal title</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p>Modal body text goes here.</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary">Save changes</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+    </div>
         <div class="wrap-breadcrumb">
             <ul>
                 <li class="item-link"><a href="#" class="link">home</a></li>
@@ -74,7 +98,7 @@
                                     <div class="wrap-price"><span class="product-price">{{$product->formatPrice()}} VNĐ</span></div>
                                     <form action="{{ route('userpage.save-cart') }}" method="POST">
                                         @csrf
-                                        <input type="text" name="id" value="{{ $product->id }}" hidden>
+                                        <input type="text" name="id" value="{{ $product->product_id }}" hidden>
                                         <input type="text" name="product-quatity" value="1" hidden>
                                         <button style="width: 100%;" type="submit" class="btn add-to-cart">Add To Cart</button>
                                     </form>

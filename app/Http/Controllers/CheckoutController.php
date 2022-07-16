@@ -72,10 +72,23 @@ class CheckoutController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreOrderRequest $request)
     {
         // Add to table order
-        $order = Order::create($request->except('__token'));
+        $order = Order::create($request->validated());
+
+        // Nếu có mã giảm giá thì sau khi thanh toán xong cập nhật lại số lượng mã
+        if ($request->get('discount_code')) {
+            $coupon = Coupon::query()->where('code', $request->get('discount_code'))->first();
+            Coupon::query()
+                ->where('code', $request->get('discount_code'))
+                ->update([
+                    'quantity' => $coupon->quantity - 1
+                ]);
+            // Thanh toán xong sẽ xóa mã giảm giá ra khỏi session
+            session()->forget('discount_code');
+            session()->forget('discount');
+        }
 
         // Add detail order
         foreach (Cart::content() as $product) {

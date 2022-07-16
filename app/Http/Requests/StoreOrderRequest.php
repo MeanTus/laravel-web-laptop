@@ -57,14 +57,6 @@ class StoreOrderRequest extends FormRequest
                 'min:5',
                 'max:80',
             ],
-            'discount_code' => [
-                'bail',
-                'string'
-            ],
-            'discount_price' => [
-                'bail',
-                'string'
-            ],
             'payment_method' => [
                 'bail',
                 'required',
@@ -72,6 +64,19 @@ class StoreOrderRequest extends FormRequest
             'total_price' => [
                 'bail',
                 'required',
+            ],
+            'email' => [
+                'bail',
+                'required',
+            ],
+            'note' => [
+                'bail'
+            ],
+            'discount_code' => [
+                'bail'
+            ],
+            'discount_price' => [
+                'bail'
             ],
         ];
     }
