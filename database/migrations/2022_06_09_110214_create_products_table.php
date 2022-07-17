@@ -23,9 +23,22 @@ class CreateProductsTable extends Migration
             $table->string('desc', 200);
             $table->string('avatar', 50)->nullable();
             $table->smallInteger('status')->default(0);
+            $table->integer('weight')->nullable();
             $table->foreignId('category_id')->constrained('categories');
             $table->foreignId('brand_id')->constrained('brands');
             $table->foreignId('supplier_id')->constrained('suppliers');
+
+            $table->string('color_id', 10)->nullable();
+            $table->foreign('color_id')->references('hex')->on('colors');
+
+            $table->string('cpu_id', 15)->nullable();
+            $table->foreign('cpu_id')->references('id')->on('cpu');
+
+            $table->string('gpu_id', 15)->nullable();
+            $table->foreign('gpu_id')->references('id')->on('gpu');
+
+            $table->string('ram_id', 15)->nullable();
+            $table->foreign('ram_id')->references('id')->on('ram');
             $table->timestamps();
         });
     }
