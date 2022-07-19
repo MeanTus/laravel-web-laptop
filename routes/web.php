@@ -14,6 +14,7 @@ use App\Http\Controllers\GPUController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RamController;
+use App\Http\Controllers\ResetPassController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserPageController;
@@ -60,6 +61,11 @@ Route::group([
 
     // Detail Product
     Route::get('/detail/{product}', [UserPageController::class, 'showDetailProduct'])->name('detail');
+
+    // Reset pass
+    Route::get('/page-reset', [ResetPassController::class, 'resetPassPage'])->name('page-reset');
+    Route::get('/page-reset-pass', [ResetPassController::class, 'index'])->name('reset-pass');
+    Route::post('/process-change-pass', [ResetPassController::class, 'processChangePass'])->name('process-change-pass');
 });
 
 Route::group([

@@ -4,8 +4,10 @@ namespace App\Providers;
 
 use App\Events\CancelOrderEvent;
 use App\Events\ConfirmOrderEvent;
+use App\Events\ResetPassEvent;
 use App\Listeners\CancelOrderNotification;
 use App\Listeners\ConfirmOrderNotification;
+use App\Listeners\ResetPassNotification;
 use App\Models\Order;
 use App\Observers\OrderObserver;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -23,6 +25,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         ConfirmOrderEvent::class => [
             ConfirmOrderNotification::class,
+        ],
+        ResetPassEvent::class => [
+            ResetPassNotification::class
         ]
     ];
 

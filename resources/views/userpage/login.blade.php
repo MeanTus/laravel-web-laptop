@@ -25,7 +25,7 @@
                                 </fieldset>
                                 <fieldset class="wrap-input">
                                     <label for="frm-login-uname">Email Address:</label>
-                                    <input type="email" id="frm-login-uname" name="email" placeholder="Type your email address">
+                                    <input type="email" value="{{ old('email') }}" id="frm-login-uname" name="email" placeholder="Type your email address">
                                 </fieldset>
 
                                 <fieldset class="wrap-input">
@@ -37,7 +37,7 @@
                                     <label class="remember-field">
                                         <input class="frm-input " name="rememberme" id="rememberme" value="forever" type="checkbox"><span>Remember me</span>
                                     </label>
-                                    <a class="link-function left-position" href="#" title="Forgotten password?">Forgotten password?</a>
+                                    <a class="link-function left-position" href="{{ route('userpage.page-reset', ['action' => 'forgot']) }}" title="Forgotten password?">Forgotten password?</a>
                                 </fieldset>
                                 <input type="submit" class="btn btn-submit" value="Login" name="submit">
                             </form>

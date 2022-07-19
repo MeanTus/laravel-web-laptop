@@ -59,7 +59,8 @@
                         <div class="col-md-12" style="margin-top: 10px">
                             <label class="labels">Password</label>
                             <input type="password" class="form-control" placeholder="enter address line 2" 
-                            value="{{ $user->password }}" disabled>
+                            value="{{ $user->password }}" disabled> <br>
+                            <a href="{{ route('userpage.reset-pass') }}" class="btn btn-danger">Đổi mật khẩu</a>
                         </div>
                     </div>
                     <div class="mt-5 text-center" style="margin-top: 10px">
