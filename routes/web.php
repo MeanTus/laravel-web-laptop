@@ -114,9 +114,7 @@ Route::group([
     'as' => 'admin.',
     'middleware' => CheckAdminMiddleware::class
 ], function () {
-    Route::get('/', function () {
-        return view('admin.index');
-    })->name('index');
+    Route::get('/', [AdminController::class, 'index'])->name('index');
 
     // Route Product
     Route::get('/product', [ProductController::class, 'index'])->name('product');
@@ -199,7 +197,11 @@ Route::group([
     Route::post('/unblock-customer', [CustomerController::class, 'unblockUser'])->name('unblock-customer');
 
     // Route Admin
-    Route::get('/list-admin', [AdminController::class, 'index'])->name('admin');
+    Route::get('/list-admin', [AdminController::class, 'showListAdmin'])->name('admin');
     Route::get('/add-admin', [AdminController::class, 'create'])->name('add-admin');
     Route::get('/view-admin/{user}', [AdminController::class, 'show'])->name('view-admin');
+
+    // dashboard
+    Route::post('/filter-by-day', [AdminController::class, 'filterByDay'])->name('filter-by-day');
+    Route::post('/filter-30-day', [AdminController::class, 'filter30Day'])->name('filter-30-day');
 });
