@@ -2,30 +2,6 @@
 @section('content')
 <main id="main" class="main-site left-sidebar">
     <div class="container">
-            {{-- Modal thông báo --}}
-    {{-- @dd(session('cart-success')) --}}
-    @if (session('cart-success'))
-        @include('layout.modal-noti')
-    @endif
-    <div class="modal" tabindex="10" role="dialog">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title">Modal title</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <p>Modal body text goes here.</p>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-primary">Save changes</button>
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            </div>
-          </div>
-        </div>
-    </div>
         <div class="wrap-breadcrumb">
             <ul>
                 <li class="item-link"><a href="#" class="link">home</a></li>
@@ -94,13 +70,24 @@
                                     </a>
                                 </div>
                                 <div class="product-info">
-                                    <a href="{{ route('userpage.detail', ['product' => $product->product_id]) }}" class="product-name"><span>{{ $product->product_name }}</span></a>
+                                    <a href="{{ route('userpage.detail', ['product' => $product->product_id]) }}" class="product-name">
+                                        <span>{{ $product->product_name }}</span>
+                                    </a>
                                     <div class="wrap-price"><span class="product-price">{{$product->formatPrice()}} VNĐ</span></div>
-                                    <form action="{{ route('userpage.save-cart') }}" method="POST">
+                                    <form>
                                         @csrf
-                                        <input type="text" name="id" value="{{ $product->product_id }}" hidden>
-                                        <input type="text" name="product-quatity" value="1" hidden>
-                                        <button style="width: 100%;" type="submit" class="btn add-to-cart">Add To Cart</button>
+                                        <input 
+                                        type="hidden" 
+                                        name="id" 
+                                        class="cart_product_id_{{ $product->product_id }}" 
+                                        value="{{ $product->product_id }}">
+                                        <input type="hidden" 
+                                        class="cart_product_quantity_{{ $product->product_id }}" 
+                                        name="product-quatity" 
+                                        value="1" >
+                                        <span style="width: 100%; background-color: red; color: white" data-id="{{ $product->product_id }}" type="submit" class="btn add-to-cart-ajax">
+                                            Thêm vào giỏ hàng
+                                        </span>
                                     </form>
                                 </div>
                             </div>
@@ -132,15 +119,6 @@
                                     </a>
                                 </li>
                             @endforeach
-                            {{-- <li class="category-item has-child-cate">
-                                <a href="#" class="cate-link">Fashion & Accessories</a>
-                                <span class="toggle-control">+</span>
-                                <ul class="sub-cate">
-                                    <li class="category-item"><a href="#" class="cate-link">Batteries (22)</a></li>
-                                    <li class="category-item"><a href="#" class="cate-link">Headsets (16)</a></li>
-                                    <li class="category-item"><a href="#" class="cate-link">Screen (28)</a></li>
-                                </ul>
-                            </li> --}}
                         </ul>
                     </div>
                 </div><!-- Categories widget-->
@@ -154,11 +132,6 @@
                                     <a class="filter-link" href="{{ request()->fullUrlWithQuery(['brand' => $brand->id]) }}">{{ $brand->brand_name }}</a>
                                 </li>
                             @endforeach
-                            {{-- <li class="list-item default-hiden"><a class="filter-link " href="#">Printer & Ink</a></li>
-                            <li class="list-item default-hiden"><a class="filter-link " href="#">CPUs & Prosecsors</a></li>
-                            <li class="list-item default-hiden"><a class="filter-link " href="#">Sound & Speaker</a></li>
-                            <li class="list-item default-hiden"><a class="filter-link " href="#">Shop Smartphone & Tablets</a></li>
-                            <li class="list-item"><a data-label='Show less<i class="fa fa-angle-up" aria-hidden="true"></i>' class="btn-control control-show-more" href="#">Show more<i class="fa fa-angle-down" aria-hidden="true"></i></a></li> --}}
                         </ul>
                     </div>
                 </div><!-- brand widget-->

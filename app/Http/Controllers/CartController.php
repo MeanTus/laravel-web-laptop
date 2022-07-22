@@ -58,8 +58,8 @@ class CartController extends Controller
      */
     public function store(Request $request)
     {
-        $product_id = $request->get('id');
-        $quantity = $request->get('product-quatity');
+        $product_id = $request->get('cart_product_id');
+        $quantity = $request->get('cart_product_quantity');
 
         $product_price = Product::query()->where('id', $product_id)->select('price')->firstOrFail();
 
@@ -84,8 +84,6 @@ class CartController extends Controller
                 'customer_id' => session()->get('user_id'),
             ]);
         }
-
-        return redirect()->back()->with('cart-success', 'Đã thêm vào giỏ hàng thành công');
     }
 
     public function updateQty(Request $request)

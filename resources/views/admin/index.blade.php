@@ -88,7 +88,7 @@
                             </form>
                     </div>
                     <div class="card-body">
-                        <div id="mychart"></div>
+                        <div id="mychart" style="min-height: 350px"></div>
                     </div>
                 </div>
             </div>

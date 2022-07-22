@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Statistic extends Model
 {
     use HasFactory;
+    public $timestamps = false;
     protected $table = 'statistical';
     protected $fillable = [
         'order_date',

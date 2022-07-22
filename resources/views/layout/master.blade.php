@@ -17,6 +17,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/chosen.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/color-01.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/sweetalert.css') }}">
 </head>
 
 <body class="home-page home-01 ">
@@ -40,6 +41,43 @@
     <script src="{{ asset('assets/js/app.js') }}"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="{{ asset('assets/js/sweetalert.js') }}"></script>
+
+    <script>
+        $(document).ready(function(){
+            $('.add-to-cart-ajax').click(function(){
+                var id = $(this).data('id')
+                var cart_product_id = $('.cart_product_id_' + id).val()
+                var cart_product_quantity = $('.cart_product_quantity_' + id).val()
+                var _token = $('input[name="_token"]').val()
+
+                $.ajax({
+                    url: '/save-cart',
+                    method: 'POST',
+                    data:{
+                        _token:_token,
+                        cart_product_id: cart_product_id,
+                        cart_product_quantity: cart_product_quantity
+                    },
+                    success: function(data){
+                        swal({
+                        title: 'Đã thêm sản phẩm vào giỏ hàng',
+                        text: 'Bạn có thể mua hàng tiếp hoặc tới giỏ hàng để tiến hành thanh toán',
+                        showCancelButton: true,
+                        cancelButtonText: 'Xem tiếp',
+                        confirmButtonClass: 'btn-success',
+                        confirmButtonText: 'Đi đến giỏ hàng',
+                        closeOnConfirm: false
+                        },
+                            function() {
+                            window.location.href = '{{url('/cart')}}';
+                            }
+                        );
+                    }
+                })
+            })
+        })
+    </script>
 </body>
 
 </html>

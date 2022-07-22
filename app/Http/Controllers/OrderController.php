@@ -7,7 +7,9 @@ use App\Events\ConfirmOrderEvent;
 use App\Models\Order;
 use App\Models\OrderDetail;
 use App\Models\Product;
+use App\Models\Statistic;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -58,6 +60,7 @@ class OrderController extends Controller
 
     public function confirmOrder(Order $order)
     {
+        $total_quantity_product_sold = 0;
         Order::query()
             ->where('id', $order->id)
             ->update([
@@ -88,8 +91,27 @@ class OrderController extends Controller
                         'quantity_sold' => $item->quantity,
                         'quantity' => $current_quantity_product - $item->quantity,
                     ]);
+
+                $total_quantity_product_sold += $item->quantity;
             }
         }
+
+        // Ghi dữ liệu vào talble statistic để thống kê doanh thu
+        $now = Carbon::now('Asia/Ho_Chi_Minh')->toDateString();
+
+        // Kiểm tra xem ngày đó đã có đơn hàng nào chưa nếu chưa thì tạo mới nếu có thì cập nhật
+        $exist_order = Statistic::query()->where('order_date', $now)->first();
+
+        if ($exist_order) {
+            Statistic::query()->where('order_date', $now)->update([
+                'sales' => $exist_order->sales + $order->total_price,
+                'profit' => $exist_order->profit + ($order->total_price * 0.7),
+                'quantity' => $exist_order->quantity + $total_quantity_product_sold,
+                'total_order' => $exist_order->total_order + 1,
+            ]);
+        }
+
+        // Gửi mail xác nhận đơn hàng
         ConfirmOrderEvent::dispatch($order);
         return redirect()->route('admin.show-order', ['order' => $order])->with('success', 'Duyệt đơn thành công');
     }

@@ -9,6 +9,7 @@
 
     <link rel="shortcut icon" href="{{ asset('admin-assets/images/favicon.ico') }}"/>
     <link rel="stylesheet" href="{{ asset('admin-assets/css/backend.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('admin-assets/css/sweetalert.css') }}"/>
     <link rel="stylesheet" href="{{ asset('admin-assets/css/backend-bundle.min.css') }}"/>
     <link rel="stylesheet" href="{{ asset('admin-assets/vendor/%40fortawesome/fontawesome-free/css/all.min.css') }}"/>
     <link rel="stylesheet" href="{{ asset('admin-assets/vendor/line-awesome/dist/line-awesome/css/line-awesome.min.css') }}"/>
@@ -20,7 +21,10 @@
     <link rel='stylesheet' href="{{ asset('admin-assets/vendor/fullcalendar/timegrid/main.css') }}" />
     <link rel='stylesheet' href="{{ asset('admin-assets/vendor/fullcalendar/list/main.css') }}" />
     <link rel="stylesheet" href="{{ asset('admin-assets/vendor/mapbox/mapbox-gl.css') }}">
-
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
 </head>
 
 <body class="">
@@ -51,7 +55,7 @@
 <script src="{{ asset('admin-assets/js/worldLow.js') }}"></script>
 <script src="{{ asset('admin-assets/js/country2.js') }}"></script>
 <script src="{{ asset('admin-assets/js/material.js') }}"></script>
-<script src="{{ asset('admin-assets/js/morris.min.js') }}"></script>
+{{-- <script src="{{ asset('admin-assets/js/morris.min.js') }}"></script> --}}
 <script src="{{ asset('admin-assets/js/raphael-min.js') }}"></script>
 {{-- <script src="{{ asset('admin-assets/js/highcharts.js') }}"></script>
 <script src="{{ asset('admin-assets/js/highcharts-3d.js') }}"></script>
@@ -73,7 +77,7 @@
 <script src="{{ asset('admin-assets/js/mapbox.js') }}"></script>
 
 <!-- SweetAlert JavaScript -->
-<script src="{{ asset('admin-assets/js/sweetalert.js') }}"></script>
+<script src="{{ asset('admin-assets/js/sweetalert.min.js') }}"></script>
 
 <!-- Vectoe Map JavaScript -->
 {{-- <script src="{{ asset('admin-assets/js/vector-map-custom.js') }}"></script> --}}
@@ -99,12 +103,11 @@
 
     var chart = new Morris.Bar({
       element: 'mychart',
-      barColors: ['#32BDEA','#FF7E41'],
+      barColors: ['#32BDEA','#FF7E41', '#819C79', '#A4ADD3'],
       parsetime: false,
-
       xkey: 'period',
-      ykeys: ['order', 'sales'],
-      labels: ['đơn hàng', 'doanh số']
+      ykeys: ['order', 'sales', 'profit', 'quantity'],
+      labels: ['đơn hàng', 'doanh số', 'lợi nhuận', 'số lượng']
     })
 
     function filter30Day(){

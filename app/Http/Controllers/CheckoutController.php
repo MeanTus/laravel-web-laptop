@@ -57,7 +57,7 @@ class CheckoutController extends Controller
                 session()->put('discount', $rate);
                 session()->put('discount_code', $coupon->code);
             }
-            return redirect()->route('userpage.cart');
+            return redirect()->route('userpage.cart')->with('success', 'Áp dụng mã thành công');
         }
     }
 

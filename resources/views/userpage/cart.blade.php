@@ -18,7 +18,12 @@
             </ul>
         </div>
         <div class=" main-content-area">
-            <a href="{{ route('userpage.destroy-cart') }}" class="btn btn-danger">Xóa giỏ hàng</a>
+            <div style="display: flex;align-items: center;justify-content: space-between;">
+                <a href="{{ route('userpage.destroy-cart') }}" class="btn btn-danger">Xóa giỏ hàng</a>
+                @if (session('success'))
+                    @include('layout.alert-success')
+                @endif
+                </div>
             <table class="data-table table mb-0 tbl-server-info">
                 <thead class="bg-white text-uppercase">
                 <tr class="ligth ligth-data">
