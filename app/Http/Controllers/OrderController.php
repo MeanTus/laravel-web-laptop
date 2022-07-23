@@ -109,6 +109,14 @@ class OrderController extends Controller
                 'quantity' => $exist_order->quantity + $total_quantity_product_sold,
                 'total_order' => $exist_order->total_order + 1,
             ]);
+        } else {
+            Statistic::query()->create([
+                'order_date' => $now,
+                'sales' => $order->total_price,
+                'profit' => ($order->total_price * 0.7),
+                'quantity' => $total_quantity_product_sold,
+                'total_order' => 1,
+            ]);
         }
 
         // Gửi mail xác nhận đơn hàng
