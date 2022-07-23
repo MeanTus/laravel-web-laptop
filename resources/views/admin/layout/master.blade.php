@@ -100,6 +100,8 @@
   $( document ).ready(function() {
 
     filter30Day()
+    filterSales7days()
+    filterProfit7days()
 
     var chart = new Morris.Bar({
       element: 'mychart',
@@ -109,6 +111,13 @@
       ykeys: ['order', 'sales', 'profit', 'quantity'],
       labels: ['đơn hàng', 'doanh số', 'lợi nhuận', 'số lượng']
     })
+
+    // Set up token
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
 
     function filter30Day(){
       var token = $('meta[name="csrf-token"]').attr('content')
@@ -126,6 +135,7 @@
       })
     }
 
+    // lọc theo ngày của chart index
     $('#bth-dashboard-filter').click(function(){
       var token = $('input[name="_token"]').val()
       var from_date = $('#datepicker').val()
@@ -146,6 +156,92 @@
         }
       })
     })
+
+    // Lọc doanh số
+    $('.filter-sales').change(function(){
+      var filter_value = $(this).val()
+      var _token = $('input[name="_token"]').val()
+      $.ajax({
+        url: '/admin/filter-sale',
+        method: 'POST',
+        dataType: 'JSON',
+        data: {
+          filter_value:filter_value,
+          _token:_token
+        },
+
+        success: function(data){
+          var format_sales = new Intl.NumberFormat().format(data)
+          var show_text = format_sales + ' VNĐ'
+          $('#output_sales').empty()
+          $('#output_sales').append(document.createTextNode(show_text))
+        }
+      })
+    })
+
+    function filterSales7days(){
+      var token = $('meta[name="csrf-token"]').attr('content')
+      var filter_value = '7Ngay'
+      $.ajax({
+        url: '/admin/filter-sale',
+        method: 'POST',
+        dataType: 'JSON',
+        data: {
+          filter_value:filter_value,
+          _token:token
+        },
+
+        success: function(data){
+          var format_sales = new Intl.NumberFormat().format(data)
+          var show_text = format_sales + ' VNĐ'
+          $('#output_sales').empty()
+          $('#output_sales').append(document.createTextNode(show_text))
+        }
+      })
+    }
+
+    // Filter profit
+    $('.filter-profit').change(function(){
+      var filter_value = $(this).val()
+      var _token = $('input[name="_token"]').val()
+      $.ajax({
+        url: '/admin/filter-profit',
+        method: 'POST',
+        dataType: 'JSON',
+        data: {
+          filter_value:filter_value,
+          _token:_token
+        },
+
+        success: function(data){
+          var format_profit = new Intl.NumberFormat().format(data)
+          var show_text = format_profit + ' VNĐ'
+          $('#output_profit').empty()
+          $('#output_profit').append(document.createTextNode(show_text))
+        }
+      })
+    })
+
+    function filterProfit7days(){
+      var token = $('meta[name="csrf-token"]').attr('content')
+      var filter_value = '7Ngay'
+      $.ajax({
+        url: '/admin/filter-profit',
+        method: 'POST',
+        dataType: 'JSON',
+        data: {
+          filter_value:filter_value,
+          _token:token
+        },
+
+        success: function(data){
+          var format_profit = new Intl.NumberFormat().format(data)
+          var show_text = format_profit + ' VNĐ'
+          $('#output_profit').empty()
+          $('#output_profit').append(document.createTextNode(show_text))
+        }
+      })
+    }
 });
 </script>
 </body>

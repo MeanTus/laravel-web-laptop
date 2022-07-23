@@ -204,4 +204,8 @@ Route::group([
     // dashboard
     Route::post('/filter-by-day', [AdminController::class, 'filterByDay'])->name('filter-by-day');
     Route::post('/filter-30-day', [AdminController::class, 'filter30Day'])->name('filter-30-day');
+
+    // filter doanh số và lợi nhuận
+    Route::post('/filter-sale', [AdminController::class, 'filterSale'])->name('filter-sale');
+    Route::post('/filter-profit', [AdminController::class, 'filterProfit'])->name('filter-profit');
 });

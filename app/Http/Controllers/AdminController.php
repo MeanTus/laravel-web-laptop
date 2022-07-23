@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
 use App\Models\Product;
 use App\Models\Statistic;
 use App\Models\User;
@@ -17,8 +18,17 @@ class AdminController extends Controller
             ->limit(10)
             ->select('name', 'quantity_sold', 'avatar')
             ->get();
+
+        $count_product = Product::query()->count();
+        $count_customer = User::query()->where('role_id', 3)->count();
+
+        // Đếm đơn hàng đã duyệt
+        $count_order = Order::query()->where('status', 1)->count();
         return view('admin.index', [
             'top_product' => $top_product,
+            'count_product' => $count_product,
+            'count_customer' => $count_customer,
+            'count_order' => $count_order,
         ]);
     }
 
@@ -72,6 +82,64 @@ class AdminController extends Controller
         }
 
         echo json_encode($chart_data);
+    }
+
+    public function filterSale(Request $request)
+    {
+        $need_filter = $request->get('filter_value');
+        $total_sale = 0;
+
+        $now = Carbon::now('Asia/Ho_Chi_Minh')->toDateString();
+        $sub7day = Carbon::now('Asia/Ho_Chi_Minh')->subDays(7)->toDateString();
+        $dauThangNay = Carbon::now('Asia/Ho_Chi_Minh')->startOfMonth()->toDateString();
+
+        $dauThangTruoc = Carbon::now('Asia/Ho_Chi_Minh')->subMonth()->startOfMonth()->toDateString();
+        $cuoiThangTruoc = Carbon::now('Asia/Ho_Chi_Minh')->subMonth()->endOfMonth()->toDateString();
+
+        if ($need_filter == '7Ngay') {
+            $get = Statistic::query()->whereBetween('order_date', [$sub7day, $now])->get();
+        }
+        if ($need_filter == 'thangTruoc') {
+            $get = Statistic::query()->whereBetween('order_date', [$dauThangTruoc, $cuoiThangTruoc])->get();
+        }
+        if ($need_filter == 'thangNay') {
+            $get = Statistic::query()->whereBetween('order_date', [$dauThangNay, $now])->get();
+        }
+
+        foreach ($get as $value) {
+            $total_sale += $value->sales;
+        }
+
+        echo json_encode($total_sale);
+    }
+
+    public function filterProfit(Request $request)
+    {
+        $need_filter = $request->get('filter_value');
+        $total_profit = 0;
+
+        $now = Carbon::now('Asia/Ho_Chi_Minh')->toDateString();
+        $sub7day = Carbon::now('Asia/Ho_Chi_Minh')->subDays(7)->toDateString();
+        $dauThangNay = Carbon::now('Asia/Ho_Chi_Minh')->startOfMonth()->toDateString();
+
+        $dauThangTruoc = Carbon::now('Asia/Ho_Chi_Minh')->subMonth()->startOfMonth()->toDateString();
+        $cuoiThangTruoc = Carbon::now('Asia/Ho_Chi_Minh')->subMonth()->endOfMonth()->toDateString();
+
+        if ($need_filter == '7Ngay') {
+            $get = Statistic::query()->whereBetween('order_date', [$sub7day, $now])->get();
+        }
+        if ($need_filter == 'thangTruoc') {
+            $get = Statistic::query()->whereBetween('order_date', [$dauThangTruoc, $cuoiThangTruoc])->get();
+        }
+        if ($need_filter == 'thangNay') {
+            $get = Statistic::query()->whereBetween('order_date', [$dauThangNay, $now])->get();
+        }
+
+        foreach ($get as $value) {
+            $total_profit += $value->profit;
+        }
+
+        echo json_encode($total_profit);
     }
 
     /**

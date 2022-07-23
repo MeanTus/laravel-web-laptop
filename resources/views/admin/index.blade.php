@@ -23,8 +23,8 @@
                                         <img src=" {{ asset('admin-assets/images/page-img/1.png') }}" class="img-fluid" alt="image">
                                     </div>
                                     <div>
-                                        <p class="mb-2">Total Sales</p>
-                                        <h4>31.50</h4>
+                                        <p class="mb-2">Tổng sản phẩm hiện có</p>
+                                        <h4>{{ $count_product }}</h4>
                                     </div>
                                 </div>
                                 <div class="iq-progress-bar mt-2">
@@ -42,8 +42,8 @@
                                         <img src=" {{ asset('admin-assets/images/page-img/2.png') }}" class="img-fluid" alt="image">
                                     </div>
                                     <div>
-                                        <p class="mb-2">Total Cost</p>
-                                        <h4>$ 4598</h4>
+                                        <p class="mb-2">Tổng khách hàng</p>
+                                        <h4>{{ $count_customer }}</h4>
                                     </div>
                                 </div>
                                 <div class="iq-progress-bar mt-2">
@@ -61,8 +61,8 @@
                                         <img src=" {{ asset('admin-assets/images/page-img/3.png') }}" class="img-fluid" alt="image">
                                     </div>
                                     <div>
-                                        <p class="mb-2">Product Sold</p>
-                                        <h4>4589 M</h4>
+                                        <p class="mb-2">Tổng đơn hàng</p>
+                                        <h4>{{ $count_order }}</h4>
                                     </div>
                                 </div>
                                 <div class="iq-progress-bar mt-2">
@@ -97,22 +97,18 @@
                     <div class="card-body">
                         <div class="d-flex align-items-top justify-content-between">
                             <div class="">
-                                <p class="mb-0">Income</p>
-                                <h5>$ 98,7800 K</h5>
+                                <p class="mb-0">Doanh số</p>
+                                <h5 id="output_sales"></h5>
                             </div>
                             <div class="card-header-toolbar d-flex align-items-center">
-                                <div class="dropdown">
-                                    <span class="dropdown-toggle dropdown-bg btn" id="dropdownMenuButton003"
-                                          data-toggle="dropdown">
-                                        This Month<i class="ri-arrow-down-s-line ml-1"></i>
-                                    </span>
-                                    <div class="dropdown-menu dropdown-menu-right shadow-none"
-                                         aria-labelledby="dropdownMenuButton003">
-                                        <a class="dropdown-item" href="#">Year</a>
-                                        <a class="dropdown-item" href="#">Month</a>
-                                        <a class="dropdown-item" href="#">Week</a>
-                                    </div>
-                                </div>
+                                <form>
+                                    @csrf
+                                    <select class="selectpicker form-control filter-sales" data-style="py-0">
+                                        <option value="7Ngay">7 Ngày qua</option>
+                                        <option value="thangTruoc" >Tháng trước</option>
+                                        <option value="thangNay" >Tháng này</option>
+                                    </select>
+                                </form>
                             </div>
                         </div>
                         <div id="layout1-chart-3" class="layout-chart-1"></div>
@@ -122,22 +118,18 @@
                     <div class="card-body">
                         <div class="d-flex align-items-top justify-content-between">
                             <div class="">
-                                <p class="mb-0">Expenses</p>
-                                <h5>$ 45,8956 K</h5>
+                                <p class="mb-0">Lợi nhuận</p>
+                                <h5 id="output_profit"></h5>
                             </div>
                             <div class="card-header-toolbar d-flex align-items-center">
-                                <div class="dropdown">
-                                    <span class="dropdown-toggle dropdown-bg btn" id="dropdownMenuButton004"
-                                          data-toggle="dropdown">
-                                        This Month<i class="ri-arrow-down-s-line ml-1"></i>
-                                    </span>
-                                    <div class="dropdown-menu dropdown-menu-right shadow-none"
-                                         aria-labelledby="dropdownMenuButton004">
-                                        <a class="dropdown-item" href="#">Year</a>
-                                        <a class="dropdown-item" href="#">Month</a>
-                                        <a class="dropdown-item" href="#">Week</a>
-                                    </div>
-                                </div>
+                                <form>
+                                    @csrf
+                                    <select class="selectpicker form-control filter-profit" data-style="py-0">
+                                        <option value="7Ngay">7 Ngày qua</option>
+                                        <option value="thangTruoc" >Tháng trước</option>
+                                        <option value="thangNay" >Tháng này</option>
+                                    </select>
+                                </form>
                             </div>
                         </div>
                         <div id="layout1-chart-4" class="layout-chart-2"></div>
