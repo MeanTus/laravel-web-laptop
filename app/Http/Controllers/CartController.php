@@ -21,6 +21,8 @@ class CartController extends Controller
             ->where('customer_id', session()->get('user_id'))
             ->get();
 
+        $mostViewProduct = Product::query()->orderBy('quantity_sold', 'DESC')->limit(7)->get();
+
         foreach ($user_cart as $cart) {
             $product_info = Product::query()
                 ->where('id', $cart->product_id)
@@ -41,11 +43,13 @@ class CartController extends Controller
         if (Cart::content() !== null) {
             $data_cart = Cart::content();
             return view('userpage.cart', [
-                'data' => $data_cart
+                'data' => $data_cart,
+                'mostViewProduct' => $mostViewProduct
             ]);
         } else {
             return view('userpage.cart', [
-                'data' => null
+                'data' => null,
+                'mostViewProduct' => $mostViewProduct
             ]);
         }
     }
@@ -73,7 +77,7 @@ class CartController extends Controller
             ModelsCart::query()
                 ->where('product_id', $product_id)
                 ->update([
-                    'qty' => $product_exist->qty + 1
+                    'qty' => $product_exist->qty + $quantity
                 ]);
         } else {
             // Add cart to db

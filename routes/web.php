@@ -86,6 +86,7 @@ Route::group([
 
     // Coupon
     Route::post('/check-coupon', [CheckoutController::class, 'checkCoupon'])->name('check-coupon');
+    Route::get('/delete-coupon-userpage', [CheckoutController::class, 'deleteCoupon'])->name('delete-coupon-userpage');
 
     //Order
     Route::get('/history-order/{user}', [OrderController::class, 'showHistoryOrderUser'])->name('history-order');

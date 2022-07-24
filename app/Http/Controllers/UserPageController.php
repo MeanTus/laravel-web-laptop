@@ -78,11 +78,13 @@ class UserPageController extends Controller
         $brand = Brand::query()->get();
         $category = Category::query()->get();
         $color = Color::query()->get();
+        $mostViewProduct = Product::query()->orderBy('quantity_sold', 'DESC')->limit(5)->get();
         return view('userpage.shop', [
             'list_product' => $list_product,
             'brands' => $brand,
             'categories' => $category,
-            'colors' => $color
+            'colors' => $color,
+            'mostViewProduct' => $mostViewProduct
         ]);
     }
 
@@ -93,6 +95,7 @@ class UserPageController extends Controller
         $ram = Ram::query()->where('id', $product->ram_id)->firstOrFail();
         $cpu = CPU::query()->where('id', $product->cpu_id)->firstOrFail();
         $gpu = GPU::query()->where('id', $product->gpu_id)->firstOrFail();
+        $mostViewProduct = Product::query()->orderBy('quantity_sold', 'DESC')->limit(5)->get();
 
         $related_product = Product::query()
             ->where('category_id', $product->category_id)
@@ -108,6 +111,7 @@ class UserPageController extends Controller
             'ram' => $ram,
             'cpu' => $cpu,
             'gpu' => $gpu,
+            'mostViewProduct' => $mostViewProduct
         ]);
     }
 }

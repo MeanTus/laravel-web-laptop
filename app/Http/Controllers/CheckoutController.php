@@ -30,6 +30,7 @@ class CheckoutController extends Controller
         }
     }
 
+    // Coupon
     public function checkCoupon(Request $request)
     {
         if (session()->has('discount')) {
@@ -59,6 +60,15 @@ class CheckoutController extends Controller
             }
             return redirect()->route('userpage.cart')->with('success', 'Áp dụng mã thành công');
         }
+    }
+
+    public function deleteCoupon()
+    {
+        if (session()->has('discount')) {
+            session()->forget(['discount', 'discount_code']);
+        }
+
+        return redirect()->back()->with('success', 'Xóa mã giảm giá thành công');
     }
 
     public function thankYouPage()
@@ -133,7 +143,7 @@ class CheckoutController extends Controller
         $vnp_TxnRef = time() . ""; //Mã đơn hàng. Trong thực tế Merchant cần insert đơn hàng vào DB và gửi mã này sang VNPAY
         $vnp_OrderInfo = "Thanh toán đơn hàng bằng VN Pay";
         $vnp_OrderType = 'billpayment';
-        $vnp_Amount = $request * 100;
+        $vnp_Amount = $request->total_price * 100;
         $vnp_Locale = 'vn';
         $vnp_BankCode = 'NCB';
         $vnp_IpAddr = $_SERVER['REMOTE_ADDR'];

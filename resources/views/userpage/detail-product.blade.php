@@ -79,20 +79,27 @@
                             <div class="quantity">
                                 <span>Số lượng:</span>
                                 <div class="quantity-input">
-                                    <input type="text" name="product-quatity" value="1" data-max="120" pattern="[0-9]*" >
+                                    <input class="cart_product_quantity_{{ $product->id }}" type="text" name="product-quatity" value="1" data-max="120" pattern="[0-9]*" >
                                     <a class="btn btn1 btn-increase" href="#"></a>
                                     <a class="btn btn1 btn-reduce" href="#"></a>
                                 </div>
                             </div>
                             <div class="wrap-butons">
-                                <button type="submit" class="btn add-to-cart">Thêm vào giỏ hàng</button>
+                                <input 
+                                type="hidden" 
+                                name="id" 
+                                class="cart_product_id_{{ $product->id }}" 
+                                value="{{ $product->id }}">
+                                <span style="width: 100%; background-color: red; color: white" data-id="{{ $product->id }}" type="submit" class="btn add-to-cart-ajax">
+                                    Thêm vào giỏ hàng
+                                </span>
                             </div>
                         </form>
                     </div>
                     <div class="advance-info">
                         <div class="tab-control normal">
                             <a href="#description" class="tab-control-item active">Mô tả</a>
-                            <a href="#add_infomation" class="tab-control-item">Addtional Infomation</a>
+                            <a href="#add_infomation" class="tab-control-item">Thông số chi tiết</a>
                             <a href="#review" class="tab-control-item">Đánh giá</a>
                         </div>
                         <div class="tab-contents">
@@ -235,64 +242,12 @@
                 </div><!-- Categories widget-->
 
                 <div class="widget mercado-widget widget-product">
-                    <h2 class="widget-title">Popular Products</h2>
+                    <h2 class="widget-title">Sản phẩm bán chạy</h2>
                     <div class="widget-content">
                         <ul class="products">
-                            <li class="product-item">
-                                <div class="product product-widget-style">
-                                    <div class="thumbnnail">
-                                        <a href="detail.html" title="Radiant-360 R6 Wireless Omnidirectional Speaker [White]">
-                                            <figure><img src="assets/images/products/digital_01.jpg" alt=""></figure>
-                                        </a>
-                                    </div>
-                                    <div class="product-info">
-                                        <a href="#" class="product-name"><span>Radiant-360 R6 Wireless Omnidirectional Speaker...</span></a>
-                                        <div class="wrap-price"><span class="product-price">$168.00</span></div>
-                                    </div>
-                                </div>
-                            </li>
-
-                            <li class="product-item">
-                                <div class="product product-widget-style">
-                                    <div class="thumbnnail">
-                                        <a href="detail.html" title="Radiant-360 R6 Wireless Omnidirectional Speaker [White]">
-                                            <figure><img src="assets/images/products/digital_17.jpg" alt=""></figure>
-                                        </a>
-                                    </div>
-                                    <div class="product-info">
-                                        <a href="#" class="product-name"><span>Radiant-360 R6 Wireless Omnidirectional Speaker...</span></a>
-                                        <div class="wrap-price"><span class="product-price">$168.00</span></div>
-                                    </div>
-                                </div>
-                            </li>
-
-                            <li class="product-item">
-                                <div class="product product-widget-style">
-                                    <div class="thumbnnail">
-                                        <a href="detail.html" title="Radiant-360 R6 Wireless Omnidirectional Speaker [White]">
-                                            <figure><img src="assets/images/products/digital_18.jpg" alt=""></figure>
-                                        </a>
-                                    </div>
-                                    <div class="product-info">
-                                        <a href="#" class="product-name"><span>Radiant-360 R6 Wireless Omnidirectional Speaker...</span></a>
-                                        <div class="wrap-price"><span class="product-price">$168.00</span></div>
-                                    </div>
-                                </div>
-                            </li>
-
-                            <li class="product-item">
-                                <div class="product product-widget-style">
-                                    <div class="thumbnnail">
-                                        <a href="detail.html" title="Radiant-360 R6 Wireless Omnidirectional Speaker [White]">
-                                            <figure><img src="assets/images/products/digital_20.jpg" alt=""></figure>
-                                        </a>
-                                    </div>
-                                    <div class="product-info">
-                                        <a href="#" class="product-name"><span>Radiant-360 R6 Wireless Omnidirectional Speaker...</span></a>
-                                        <div class="wrap-price"><span class="product-price">$168.00</span></div>
-                                    </div>
-                                </div>
-                            </li>
+                            @foreach ($mostViewProduct as $product)
+                                @include('layout.popular-product')
+                            @endforeach
 
                         </ul>
                     </div>
@@ -302,7 +257,7 @@
 
             <div class="single-advance-box col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="wrap-show-advance-info-box style-1 box-in-site">
-                    <h3 class="title-box">Related Products</h3>
+                    <h3 class="title-box">Sản phẩm liên quan</h3>
                     <div class="wrap-products">
                         <div class="products slide-carousel owl-carousel style-nav-1 equal-container" data-items="5" data-loop="false" data-nav="true" data-dots="false" data-responsive='{"0":{"items":"1"},"480":{"items":"2"},"768":{"items":"3"},"992":{"items":"3"},"1200":{"items":"5"}}' >
 
