@@ -100,7 +100,8 @@
 
                     <div class="col-lg-4 col-sm-4 col-md-4 col-xs-12 box-twin-content ">
                         <div class="row">
-                            <div class="wrap-footer-item twin-item">
+                            <div class="wrap-footer-item twin-item" style="width: 100%">
+                                @if (session()->has('user_id'))
                                 <h3 class="item-header">Tài khoản của tôi</h3>
                                 <div class="item-content">
                                     <div class="wrap-vertical-nav">
@@ -117,6 +118,13 @@
                                             </li>
                                     </div>
                                 </div>
+                                @else
+                                <div class="wrap-logo-top left-section">
+                                    <a href="{{ route('userpage.index') }}" class="link-to-home">
+                                        <img src="{{ asset('assets/images/logo-top-1.png') }}"alt="mercado">
+                                    </a>
+                                </div>
+                                @endif
                             </div>
                         </div>
                     </div>

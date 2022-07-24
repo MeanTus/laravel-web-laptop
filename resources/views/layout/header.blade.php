@@ -15,10 +15,10 @@
                         <div class="topbar-menu left-menu">
                             <ul>
                                 <li class="menu-item">
-                                    <a title="Hotline: (+123) 456 789" href="#">
+                                    <a href="#">
                                         <span
                                             class="icon label-before fa fa-mobile">
-                                        </span>Hotline: (+123) 456 789
+                                        </span>Hotline: 0834333860
                                     </a>
                                 </li>
                             </ul>
@@ -27,25 +27,25 @@
                             <ul>
                                 @if (session()->has('user_id'))
                                     <li class="menu-item menu-item-has-children parent" >
-                                        <a title="My Account" href="#">Hello {{ session()->get('name') }}<i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                                        <a title="My Account" href="#">Xin chào {{ session()->get('name') }}<i class="fa fa-angle-down" aria-hidden="true"></i></a>
                                         <ul class="submenu curency" >
                                             <li class="menu-item">
-                                                <a href="{{ route('userpage.history-order', ['user' => session()->get('user_id')]) }}">Orders</a>
+                                                <a href="{{ route('userpage.history-order', ['user' => session()->get('user_id')]) }}">Lịch sử đơn hàng</a>
                                             </li>
                                             <li class="menu-item">
-                                                <a href="{{ route('userpage.profile', ['user' => session()->get('user_id')]) }}">Account Details</a></li>
+                                                <a href="{{ route('userpage.profile', ['user' => session()->get('user_id')]) }}">Thông tin cá nhân</a></li>
                                             <li class="menu-item" >
                                                 <a title="Logout" href="{{ route('userpage.logout') }}">
-                                                    Logout
+                                                    Đăng xuất
                                                 </a>
                                             </li>
                                         </ul>
                                     </li>
                                 @else
-                                    <li class="menu-item"><a title="Register or Login" href="{{ route('userpage.login') }}">Login</a></li>
+                                    <li class="menu-item"><a title="Register or Login" href="{{ route('userpage.login') }}">Đăng nhập</a></li>
                                     <li class="menu-item">
                                         <a title="Register or Login" href="{{ route('userpage.register') }}" >
-                                            Register
+                                            Đăng ký
                                         </a>
                                     </li>
                                 @endif
@@ -78,8 +78,8 @@
                                 <a href="#" class="link-direction">
                                     <i class="fa fa-heart" aria-hidden="true"></i>
                                     <div class="left-info">
-                                        <span class="index">0 item</span>
-                                        <span class="title">Wishlist</span>
+                                        <span class="index">0 sản phẩm</span>
+                                        <span class="title">Yêu thích</span>
                                     </div>
                                 </a>
                             </div>
@@ -87,8 +87,8 @@
                                 <a href="{{ route('userpage.cart') }}" class="link-direction">
                                     <i class="fa fa-shopping-basket" aria-hidden="true"></i>
                                     <div class="left-info">
-                                        <span class="index">{{ count(Cart::content()) }} items</span>
-                                        <span class="title">CART</span>
+                                        <span class="index">{{ count(Cart::content()) }} sản phẩm</span>
+                                        <span class="title">Giỏ hàng</span>
                                     </div>
                                 </a>
                             </div>
@@ -129,21 +129,18 @@
                                     <a href="{{ route('userpage.index') }}" class="link-term mercado-item-title"><i class="fa fa-home"
                                             aria-hidden="true"></i></a>
                                 </li>
-                                <li class="menu-item">
+                                {{-- <li class="menu-item">
                                     <a href="about-us.html" class="link-term mercado-item-title">About Us</a>
+                                </li> --}}
+                                <li class="menu-item">
+                                    <a href="{{ route('userpage.shop') }}" class="link-term mercado-item-title">Mua hàng</a>
                                 </li>
                                 <li class="menu-item">
-                                    <a href="{{ route('userpage.shop') }}" class="link-term mercado-item-title">Shop</a>
+                                    <a href="{{ route('userpage.cart') }}" class="link-term mercado-item-title">Giỏ hàng</a>
                                 </li>
-                                <li class="menu-item">
-                                    <a href="{{ route('userpage.cart') }}" class="link-term mercado-item-title">Cart</a>
-                                </li>
-                                <li class="menu-item">
-                                    <a href="{{ route('userpage.checkout') }}" class="link-term mercado-item-title">Checkout</a>
-                                </li>
-                                <li class="menu-item">
+                                {{-- <li class="menu-item">
                                     <a href="contact-us.html" class="link-term mercado-item-title">Contact Us</a>
-                                </li>
+                                </li> --}}
                             </ul>
                         </div>
                     </div>
