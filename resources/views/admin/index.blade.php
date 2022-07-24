@@ -8,8 +8,7 @@
             <div class="col-lg-4">
                 <div class="card card-transparent card-block card-stretch card-height border-none">
                     <div class="card-body p-0 mt-lg-2 mt-0">
-                        <h3 class="mb-3">Hi Graham, Good Morning</h3>
-                        <p class="mb-0 mr-4">Your dashboard gives you views of key performance or business process.</p>
+                        <h3 class="mb-3">Hello {{ session()->get('admin_name') }}</h3>
                     </div>
                 </div>
             </div>
@@ -140,9 +139,9 @@
                 <div class="card card-block card-stretch card-height">
                     <div class="card-header d-flex align-items-center justify-content-between">
                         <div class="header-title">
-                            <h4 class="card-title">Top Products</h4>
+                            <h4 class="card-title">Sản phẩm bán chạy</h4>
                         </div>
-                        <div class="card-header-toolbar d-flex align-items-center">
+                        {{-- <div class="card-header-toolbar d-flex align-items-center">
                             <div class="dropdown">
                                 <span class="dropdown-toggle dropdown-bg btn" id="dropdownMenuButton006"
                                       data-toggle="dropdown">
@@ -155,7 +154,7 @@
                                     <a class="dropdown-item" href="#">Week</a>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                     <div class="card-body">
                         <ul class="list-unstyled row top-product mb-0">

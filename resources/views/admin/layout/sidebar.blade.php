@@ -16,7 +16,7 @@
                         <svg  class="svg-icon" id="p-dash1" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line>
                         </svg>
-                        <span class="ml-4">Dashboards</span>
+                        <span class="ml-4">Tổng quan</span>
                     </a>
                 </li>
                 <li class=" ">
@@ -24,7 +24,7 @@
                         <svg class="svg-icon" id="p-dash2" width="20" height="20"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
                             <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
                         </svg>
-                        <span class="ml-4">Products</span>
+                        <span class="ml-4">Sản phẩm</span>
                         <svg class="svg-icon iq-arrow-right arrow-active" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <polyline points="10 15 15 20 20 15"></polyline><path d="M4 4h7a4 4 0 0 1 4 4v12"></path>
                         </svg>
@@ -32,12 +32,12 @@
                     <ul id="product" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
                         <li class="">
                             <a href="{{ route('admin.product') }}">
-                                <i class="las la-minus"></i><span>List Product</span>
+                                <i class="las la-minus"></i><span>Danh sách sản phẩm</span>
                             </a>
                         </li>
                         <li class="">
                             <a href="{{ route('admin.add-product') }}">
-                                <i class="las la-minus"></i><span>Add Product</span>
+                                <i class="las la-minus"></i><span>Thêm sản phẩm</span>
                             </a>
                         </li>
                     </ul>
@@ -47,7 +47,7 @@
                         <svg class="svg-icon" id="p-dash14" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect>
                         </svg>
-                        <span class="ml-4">Products Detail</span>
+                        <span class="ml-4">Chi tiết sản phẩm</span>
                         <svg class="svg-icon iq-arrow-right arrow-active" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <polyline points="10 15 15 20 20 15"></polyline><path d="M4 4h7a4 4 0 0 1 4 4v12"></path>
                         </svg>
@@ -80,7 +80,7 @@
                         <svg class="svg-icon" id="p-dash2" width="20" height="20"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
                         </svg>
-                        <span class="ml-4">Brands</span>
+                        <span class="ml-4">Thương hiệu</span>
                         <svg class="svg-icon iq-arrow-right arrow-active" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <polyline points="10 15 15 20 20 15"></polyline><path d="M4 4h7a4 4 0 0 1 4 4v12"></path>
                         </svg>
@@ -88,12 +88,12 @@
                     <ul id="brand" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
                         <li class="">
                             <a href="{{ route('admin.brand') }}">
-                                <i class="las la-minus"></i><span>List Brands</span>
+                                <i class="las la-minus"></i><span>Danh sách thương hiệu</span>
                             </a>
                         </li>
                         <li class="">
                             <a href="{{ route('admin.add-brand') }}">
-                                <i class="las la-minus"></i><span>Add Brands</span>
+                                <i class="las la-minus"></i><span>Thêm thương hiệu</span>
                             </a>
                         </li>
                     </ul>
@@ -103,7 +103,7 @@
                         <svg class="svg-icon" id="p-dash3" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
                             <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
                         </svg>
-                        <span class="ml-4">Categories</span>
+                        <span class="ml-4">Danh mục</span>
                         <svg class="svg-icon iq-arrow-right arrow-active" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <polyline points="10 15 15 20 20 15"></polyline><path d="M4 4h7a4 4 0 0 1 4 4v12"></path>
                         </svg>
@@ -111,12 +111,12 @@
                     <ul id="category" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
                         <li class="">
                             <a href="{{ route('admin.category') }}">
-                                <i class="las la-minus"></i><span>List Category</span>
+                                <i class="las la-minus"></i><span>Danh sách danh mục</span>
                             </a>
                         </li>
                         <li class="">
                             <a href="{{ route('admin.add-category') }}">
-                                <i class="las la-minus"></i><span>Add Category</span>
+                                <i class="las la-minus"></i><span>Thêm danh mục</span>
                             </a>
                         </li>
                     </ul>
@@ -126,7 +126,7 @@
                         <svg class="svg-icon" id="p-dash5" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
                             <line x1="1" y1="10" x2="23" y2="10"></line>
                         </svg>
-                        <span class="ml-4">Supplier</span>
+                        <span class="ml-4">Nhà cung cấp</span>
                         <svg class="svg-icon iq-arrow-right arrow-active" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <polyline points="10 15 15 20 20 15"></polyline><path d="M4 4h7a4 4 0 0 1 4 4v12"></path>
                         </svg>
@@ -134,12 +134,12 @@
                     <ul id="supplier" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
                         <li class="">
                             <a href="{{ route('admin.supplier') }}">
-                                <i class="las la-minus"></i><span>List Supplier</span>
+                                <i class="las la-minus"></i><span>Danh sách nhà cung cấp</span>
                             </a>
                         </li>
                         <li class="">
                             <a href="{{ route('admin.add-supplier') }}">
-                                <i class="las la-minus"></i><span>Add Supplier</span>
+                                <i class="las la-minus"></i><span>Thêm nhà cung cấp</span>
                             </a>
                         </li>
                     </ul>
@@ -149,7 +149,7 @@
                         <svg class="svg-icon" id="p-dash5" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
                             <line x1="1" y1="10" x2="23" y2="10"></line>
                         </svg>
-                        <span class="ml-4">Coupon</span>
+                        <span class="ml-4">Mã giảm giá</span>
                         <svg class="svg-icon iq-arrow-right arrow-active" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <polyline points="10 15 15 20 20 15"></polyline><path d="M4 4h7a4 4 0 0 1 4 4v12"></path>
                         </svg>
@@ -157,12 +157,12 @@
                     <ul id="coupon" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
                         <li class="">
                             <a href="{{ route('admin.coupon') }}">
-                                <i class="las la-minus"></i><span>List coupon</span>
+                                <i class="las la-minus"></i><span>Danh sách mã giảm giá</span>
                             </a>
                         </li>
                         <li class="">
                             <a href="{{ route('admin.add-coupon') }}">
-                                <i class="las la-minus"></i><span>Add coupon</span>
+                                <i class="las la-minus"></i><span>Thêm mã giảm giá</span>
                             </a>
                         </li>
                     </ul>
@@ -173,7 +173,7 @@
                         <svg class="svg-icon" id="p-dash07" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline>
                         </svg>
-                        <span class="ml-4">orders</span>
+                        <span class="ml-4">Đơn hàng</span>
                         <svg class="svg-icon iq-arrow-right arrow-active" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <polyline points="10 15 15 20 20 15"></polyline><path d="M4 4h7a4 4 0 0 1 4 4v12"></path>
                         </svg>
@@ -181,12 +181,7 @@
                     <ul id="order" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
                         <li class="">
                             <a href="{{ route('admin.order') }}">
-                                <i class="las la-minus"></i><span>List orders</span>
-                            </a>
-                        </li>
-                        <li class="">
-                            <a href="{{ route('admin.add-order') }}">
-                                <i class="las la-minus"></i><span>Add order</span>
+                                <i class="las la-minus"></i><span>Danh sách đơn hàng</span>
                             </a>
                         </li>
                     </ul>
@@ -197,7 +192,7 @@
                         <svg class="svg-icon" id="p-dash8" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
                         </svg>
-                        <span class="ml-4">People</span>
+                        <span class="ml-4">Người dùng</span>
                         <svg class="svg-icon iq-arrow-right arrow-active" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <polyline points="10 15 15 20 20 15"></polyline><path d="M4 4h7a4 4 0 0 1 4 4v12"></path>
                         </svg>
@@ -205,22 +200,12 @@
                     <ul id="people" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
                         <li class="">
                             <a href="{{route('admin.customer')}}">
-                                <i class="las la-minus"></i><span>Customers</span>
-                            </a>
-                        </li>
-                        <li class="">
-                            <a href="{{route('admin.add-customer')}}">
-                                <i class="las la-minus"></i><span>Add Customers</span>
+                                <i class="las la-minus"></i><span>Khách hàng</span>
                             </a>
                         </li>
                         <li class="">
                             <a href="{{route('admin.admin')}}">
-                                <i class="las la-minus"></i><span>Admin</span>
-                            </a>
-                        </li>
-                        <li class="">
-                            <a href="{{route('admin.add-admin')}}">
-                                <i class="las la-minus"></i><span>Add Admin</span>
+                                <i class="las la-minus"></i><span>Quản trị viên</span>
                             </a>
                         </li>
                     </ul>
