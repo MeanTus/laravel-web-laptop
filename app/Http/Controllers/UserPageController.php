@@ -55,6 +55,7 @@ class UserPageController extends Controller
         if ($request->get('color') !== null) {
             $condition[] = ['color_id', $request->get('color')];
         }
+        $condition[] = ['status', 0];
         $list_product = Product::query()
             ->join('brands', 'products.brand_id', '=', 'brands.id')
             ->join('categories', 'products.category_id', '=', 'categories.id')
@@ -113,5 +114,10 @@ class UserPageController extends Controller
             'gpu' => $gpu,
             'mostViewProduct' => $mostViewProduct
         ]);
+    }
+
+    public function contactUs()
+    {
+        return view('userpage.contact-us');
     }
 }

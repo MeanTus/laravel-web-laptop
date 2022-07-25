@@ -181,64 +181,78 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        $path = public_path('admin-assets/images/product/');
-        $folder_name = str_replace(' ', '_', $request->get('name'));
-        $path_save = $path . $folder_name;
-        if ($request->file('avatar') !== null) {
-            // Delete old avatar
-            File::delete($path . $request->get('old-avatar'));
-
-            // Delete old directory
-            $path_directory = explode('/', $request->get('old-avatar'));
-            File::deleteDirectory($path . $path_directory[0]);
-
-            // Make new directory images
-            File::makeDirectory($path_save, 0777, true, true);
-
-            // Lưu hình ảnh
-            $avatar = $request->file('avatar');
-            $name_avatar = time() . $avatar->getClientOriginalName();
-
-            //Lưu trữ file tại public/admin-assets/images/product
-            $avatar->move($path_save, $name_avatar);
-
+        if ($request->get('action-edit') == 'hidden-product') {
             $product->update([
-                'name' => trim($request->get('name')),
-                'unit' => trim($request->get('unit')),
-                'quantity' => $request->get('quantity'),
-                'price' => $request->get('price'),
-                'desc' => trim($request->get('desc')),
-                'avatar' => $folder_name . '/' . $name_avatar,
-                'pin' => $request->get('pin'),
-                'weight' => $request->get('weight'),
-                'cpu_id' => $request->get('cpu_id'),
-                'gpu_id' => $request->get('gpu_id'),
-                'ram_id' => $request->get('ram_id'),
-                'category_id' => $request->get('category_id'),
-                'brand_id' => $request->get('brand_id'),
-                'supplier_id' => $request->get('supplier_id'),
-                'color_id' => $request->get('color_id'),
+                'status' => 1
             ]);
+
+            return redirect()->route('admin.edit-product', ['product' => $product])->with('success', 'Ẩn thành công sản phẩm');
+        } elseif ($request->get('action-edit') == 'active-product') {
+            $product->update([
+                'status' => 0
+            ]);
+
+            return redirect()->route('admin.edit-product', ['product' => $product])->with('success', 'Kích hoạt thành công sản phẩm');
         } else {
-            $product->update([
-                'name' => trim($request->get('name')),
-                'unit' => trim($request->get('unit')),
-                'quantity' => $request->get('quantity'),
-                'price' => $request->get('price'),
-                'desc' => trim($request->get('desc')),
-                'pin' => $request->get('pin'),
-                'weight' => $request->get('weight'),
-                'cpu_id' => $request->get('cpu_id'),
-                'gpu_id' => $request->get('gpu_id'),
-                'ram_id' => $request->get('ram_id'),
-                'category_id' => $request->get('category_id'),
-                'brand_id' => $request->get('brand_id'),
-                'supplier_id' => $request->get('supplier_id'),
-                'color_id' => $request->get('color_id'),
-            ]);
-        }
+            $path = public_path('admin-assets/images/product/');
+            $folder_name = str_replace(' ', '_', $request->get('name'));
+            $path_save = $path . $folder_name;
+            if ($request->file('avatar') !== null) {
+                // Delete old avatar
+                File::delete($path . $request->get('old-avatar'));
 
-        return redirect()->route('admin.product')->with('success', 'Chỉnh sửa sản phẩm thành công');
+                // Delete old directory
+                $path_directory = explode('/', $request->get('old-avatar'));
+                File::deleteDirectory($path . $path_directory[0]);
+
+                // Make new directory images
+                File::makeDirectory($path_save, 0777, true, true);
+
+                // Lưu hình ảnh
+                $avatar = $request->file('avatar');
+                $name_avatar = time() . $avatar->getClientOriginalName();
+
+                //Lưu trữ file tại public/admin-assets/images/product
+                $avatar->move($path_save, $name_avatar);
+
+                $product->update([
+                    'name' => trim($request->get('name')),
+                    'unit' => trim($request->get('unit')),
+                    'quantity' => $request->get('quantity'),
+                    'price' => $request->get('price'),
+                    'desc' => trim($request->get('desc')),
+                    'avatar' => $folder_name . '/' . $name_avatar,
+                    'pin' => $request->get('pin'),
+                    'weight' => $request->get('weight'),
+                    'cpu_id' => $request->get('cpu_id'),
+                    'gpu_id' => $request->get('gpu_id'),
+                    'ram_id' => $request->get('ram_id'),
+                    'category_id' => $request->get('category_id'),
+                    'brand_id' => $request->get('brand_id'),
+                    'supplier_id' => $request->get('supplier_id'),
+                    'color_id' => $request->get('color_id'),
+                ]);
+            } else {
+                $product->update([
+                    'name' => trim($request->get('name')),
+                    'unit' => trim($request->get('unit')),
+                    'quantity' => $request->get('quantity'),
+                    'price' => $request->get('price'),
+                    'desc' => trim($request->get('desc')),
+                    'pin' => $request->get('pin'),
+                    'weight' => $request->get('weight'),
+                    'cpu_id' => $request->get('cpu_id'),
+                    'gpu_id' => $request->get('gpu_id'),
+                    'ram_id' => $request->get('ram_id'),
+                    'category_id' => $request->get('category_id'),
+                    'brand_id' => $request->get('brand_id'),
+                    'supplier_id' => $request->get('supplier_id'),
+                    'color_id' => $request->get('color_id'),
+                ]);
+            }
+
+            return redirect()->route('admin.edit-product', ['product' => $product])->with('success', 'Chỉnh sửa thành công sản phẩm');
+        }
     }
 
     /**

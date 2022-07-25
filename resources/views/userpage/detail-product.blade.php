@@ -74,7 +74,13 @@
                                 {{ $product->formatPrice() }} VNĐ</span>
                             </div>
                             <div class="stock-info in-stock">
-                                <p class="availability">Tình trạng: <b>Còn hàng</b></p>
+                                <p class="availability">Tình trạng: 
+                                    @if ($product->quantity > 0)
+                                        <b style="color: green">Còn hàng</b>
+                                    @else
+                                        <b style="color: red">Hết hàng</b>
+                                    @endif
+                                </p>
                             </div>
                             <div class="quantity">
                                 <span>Số lượng:</span>
@@ -90,7 +96,27 @@
                                 name="id" 
                                 class="cart_product_id_{{ $product->id }}" 
                                 value="{{ $product->id }}">
-                                <span style="width: 100%; background-color: red; color: white" data-id="{{ $product->id }}" type="submit" class="btn add-to-cart-ajax">
+
+                                <input 
+                                type="hidden" 
+                                name="id" 
+                                @if (session()->has('user_id'))
+                                    value="{{ session()->get('user_id') }}"
+                                @else
+                                    value="-1"
+                                @endif
+                                class="user_id" >
+
+                                <input 
+                                type="hidden" 
+                                name="id" 
+                                class="cart_current_product_quantity_{{ $product->id }}" 
+                                value="{{ $product->quantity }}">
+                                <span style="
+                                width: 100%; 
+                                background-color: red; 
+                                color: white;" 
+                                data-id="{{ $product->id }}" type="submit" class="btn add-to-cart-ajax">
                                     Thêm vào giỏ hàng
                                 </span>
                             </div>

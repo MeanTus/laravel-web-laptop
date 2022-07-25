@@ -49,16 +49,6 @@ class UserController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        return view('userpage.register');
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -77,7 +67,7 @@ class UserController extends Controller
                 'password' => Hash::make($request->get('password'))
             ]);
 
-            return redirect()->route('userpage.login');
+            return redirect()->route('userpage.login')->with('success', 'Bạn đã đăng ký thành công');
         }
     }
 

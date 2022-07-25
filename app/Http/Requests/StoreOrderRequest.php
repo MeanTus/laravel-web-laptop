@@ -31,6 +31,10 @@ class StoreOrderRequest extends FormRequest
                 'min:2',
                 'max:50',
             ],
+            'customer_id' => [
+                'bail',
+                'required',
+            ],
             'phone_number' => [
                 'bail',
                 'required',

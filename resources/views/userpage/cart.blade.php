@@ -88,10 +88,6 @@
             <div class="summary">
                 <div class="order-summary">
                     <h4 class="title-box">Order Summary</h4>
-                    <p class="summary-info">
-                        <span class="title">Subtotal</span><b class="index">{{ Cart::total(0) }} VNĐ</b>
-                    </p>
-                    <p class="summary-info"><span class="title">Shipping</span><b class="index">Free Shipping</b></p>
                     <p class="summary-info total-info ">
                         <span class="title">Tổng giá</span><b class="index">{{ Cart::total(0) }} VNĐ</b>
                     </p>

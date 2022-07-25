@@ -13,6 +13,8 @@ class Product extends Model
         'name',
         'unit',
         'quantity',
+        'quantity_sold',
+        'status',
         'price',
         'desc',
         'avatar',
@@ -30,5 +32,16 @@ class Product extends Model
     public function formatPrice()
     {
         return number_format($this->price);
+    }
+
+    public function getStatusProduct()
+    {
+        $status = '';
+        if ($this->status === 0) {
+            $status = 'Đang bán';
+        } else {
+            $status = 'Đã ẩn';
+        }
+        return $status;
     }
 }

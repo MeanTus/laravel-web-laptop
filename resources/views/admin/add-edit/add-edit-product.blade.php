@@ -6,6 +6,9 @@
         @if ($errors->any())
             @include('layout.alert-err')
         @endif
+        @if (session('success'))
+            @include('layout.alert-success')
+        @endif
         <div class="container-fluid add-form-list">
             <div class="row">
                 <div class="col-sm-12">
@@ -126,7 +129,7 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="col-md-12">
+                                    <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Số lượng *</label>
                                             <input 
@@ -139,7 +142,19 @@
                                             <div class="help-block with-errors"></div>
                                         </div>
                                     </div>
-                                    <div class="col-md-12">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Trạng thái *</label>
+                                            <input 
+                                            name="quantity"
+                                            value="{{ $product->getStatusProduct() }}"
+                                            type="text" 
+                                            class="form-control" 
+                                            disabled>
+                                            <div class="help-block with-errors"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Khối lượng lượng *</label>
                                             <input 
@@ -152,7 +167,7 @@
                                             <div class="help-block with-errors"></div>
                                         </div>
                                     </div>
-                                    <div class="col-md-12">
+                                    <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Pin *</label>
                                             <input 
@@ -233,8 +248,13 @@
                                         </div>
                                     </div>
                                 </div>
-                                <button type="submit" class="btn btn-primary mr-2">Chỉnh sửa sản phẩm</button>
-                                <button type="reset" class="btn btn-danger">Làm mới</button>
+                                <button type="submit" name="action-edit" value="edit" class="btn btn-primary mr-2">Chỉnh sửa sản phẩm</button>
+
+                                @if ($product->status == 0)
+                                    <button type="submit" name="action-edit" value="hidden-product" class="btn btn-danger">Ẩn sản phẩm</button>
+                                @else
+                                    <button type="submit" name="action-edit" value="active-product" class="btn btn-danger">Kích hoạt sản phẩm</button>
+                                @endif
                             </form>
                         </div>
                     </div>
@@ -417,7 +437,6 @@
                                     </div>
                                 </div>
                                 <button type="submit" class="btn btn-primary mr-2">Thêm sản phẩm</button>
-                                <button type="reset" class="btn btn-danger">Làm mới</button>
                             </form>
                         </div>
                     </div>

@@ -42,12 +42,7 @@
                                         </ul>
                                     </li>
                                 @else
-                                    <li class="menu-item"><a title="Register or Login" href="{{ route('userpage.login') }}">Đăng nhập</a></li>
-                                    <li class="menu-item">
-                                        <a title="Register or Login" href="{{ route('userpage.register') }}" >
-                                            Đăng ký
-                                        </a>
-                                    </li>
+                                    <li class="menu-item"><a title="Register or Login" href="{{ route('userpage.login') }}">Đăng nhập | Đăng ký</a></li>
                                 @endif
                             </ul>
                         </div>
@@ -138,9 +133,9 @@
                                 <li class="menu-item">
                                     <a href="{{ route('userpage.cart') }}" class="link-term mercado-item-title">Giỏ hàng</a>
                                 </li>
-                                {{-- <li class="menu-item">
-                                    <a href="contact-us.html" class="link-term mercado-item-title">Contact Us</a>
-                                </li> --}}
+                                <li class="menu-item">
+                                    <a href="{{ route('userpage.contact-us') }}" class="link-term mercado-item-title">Liên lạc với chúng tôi</a>
+                                </li>
                             </ul>
                         </div>
                     </div>

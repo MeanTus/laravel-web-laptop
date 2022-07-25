@@ -40,9 +40,10 @@ Route::group([
 ], function () {
     // Route home page
     Route::get('/', [UserPageController::class, 'indexHomePage'])->name('index');
+    Route::get('/contact-us', [UserPageController::class, 'contactUs'])->name('contact-us');
 
     // Route Login
-    Route::get('/login', [AuthController::class, 'login'])->name('login');
+    Route::get('/login-register', [AuthController::class, 'login'])->name('login');
     Route::post('/login', [AuthController::class, 'processLogin'])->name('process_login');
 
     //Login facebook
@@ -53,7 +54,6 @@ Route::group([
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
     // Route Register
-    Route::get('/register', [UserController::class, 'create'])->name('register');
     Route::post('/register', [UserController::class, 'store'])->name('process_register');
 
     // Shop page

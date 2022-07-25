@@ -68,8 +68,12 @@
                     <div class="summary summary-checkout">
                         <div class="summary-item payment-method">
                             <p class="summary-info grand-total">
-                                <span>Tổng tiền</span> <span class="grand-total-price">{{Cart::total(0)}} VNĐ</span>
-                                <input type="number" name="total_price" value="{{ Cart::totalFloat() }}" hidden>
+                                <span>Tổng tiền</span> 
+                                <span class="grand-total-price">{{ number_format(Cart::totalFloat(0) + 30000)}} VNĐ</span> 
+                                <br>
+                                <span>Phí ship</span> 
+                                <span class="grand-total-price">30,000 </span> <span>VNĐ</span>
+                                <input type="number" name="total_price" value="{{ Cart::totalFloat() + 30000 }}" hidden>
                                 <input type="text" name="discount_code" value="{{ session()->get('discount_code') }}" hidden>
                                 <input type="number" name="discount_price" value="{{ Cart::discountFloat() }}" hidden>
                             </p>

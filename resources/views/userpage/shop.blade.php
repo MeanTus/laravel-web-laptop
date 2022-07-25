@@ -81,6 +81,17 @@
                                         name="id" 
                                         class="cart_product_id_{{ $product->product_id }}" 
                                         value="{{ $product->product_id }}">
+
+                                        <input 
+                                        type="hidden" 
+                                        name="id" 
+                                        @if (session()->has('user_id'))
+                                            value="{{ session()->get('user_id') }}"
+                                        @else
+                                            value="-1"
+                                        @endif
+                                        class="user_id" >
+
                                         <input type="hidden" 
                                         class="cart_product_quantity_{{ $product->product_id }}" 
                                         name="product-quatity" 

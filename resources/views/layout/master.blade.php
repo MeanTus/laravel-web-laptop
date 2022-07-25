@@ -47,9 +47,34 @@
         $(document).ready(function(){
             $('.add-to-cart-ajax').click(function(){
                 var id = $(this).data('id')
+                var user_id = $('.user_id').val()
                 var cart_product_id = $('.cart_product_id_' + id).val()
                 var cart_product_quantity = $('.cart_product_quantity_' + id).val()
+                var cart_current_product_quantity = $('.cart_current_product_quantity_' + id).val()
                 var _token = $('input[name="_token"]').val()
+
+                if(cart_current_product_quantity == 0){
+                    swal('Sản phẩm đã hết hàng, không thể thêm vào giỏ')
+                    return
+                }
+
+                // Kiểm tra người dùng đã đăng nhập chưa
+                if(user_id == -1){
+                    swal({
+                        title: 'Yêu cầu đăng nhập',
+                        text: 'Để thêm sản phẩm vào giỏ hàng và thanh toán bạn vui lòng đăng nhập nhé!',
+                        showCancelButton: true,
+                        cancelButtonText: 'Xem tiếp',
+                        confirmButtonClass: 'btn-success',
+                        confirmButtonText: 'Đăng nhập',
+                        closeOnConfirm: false
+                        },
+                            function() {
+                            window.location.href = '{{url('/login')}}';
+                            }
+                        );
+                    return
+                }
 
                 $.ajax({
                     url: '/save-cart',
