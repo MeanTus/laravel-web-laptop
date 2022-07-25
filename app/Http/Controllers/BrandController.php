@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreBrandRequest;
+use App\Http\Requests\UpdateBrandRequest;
 use App\Models\Brand;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
@@ -90,7 +91,7 @@ class BrandController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateBrandRequest $request, $id)
     {
         if ($request->file('avatar') !== null) {
             // Delete old avatar
@@ -111,7 +112,7 @@ class BrandController extends Controller
             $this->model->where('id', $id)->update(['brand_name' => $request->get('brand_name')]);
         }
 
-        return redirect()->route('admin.brand')->with('success', "Cập nhật thương hiệu thành công");
+        return redirect()->route('admin.edit-brand', ['brand' => $id])->with('success', "Cập nhật thương hiệu thành công");
     }
 
     /**

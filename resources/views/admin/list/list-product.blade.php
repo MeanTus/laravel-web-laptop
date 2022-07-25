@@ -28,7 +28,7 @@
                             <th>Hình ảnh</th>
                             <th>Tên sản phẩm</th>
                             <th>Giá</th>
-                            <th>Đơn vị</th>
+                            <th>Trạng thái</th>
                             <th>Tên thương hiệu</th>
                             <th>Số lượng</th>
                             <th>Hành động</th>
@@ -57,7 +57,7 @@
                                     </div>
                                 </td>
                                 <td>{{ $product->price }}</td>
-                                <td>{{ $product->unit }}</td>
+                                <td>{{ $product->getStatusProduct() }}</td>
                                 <td>{{ $product->brand_name }}</td>
                                 <td>{{ $product->quantity }}</td>
                                 <td>
@@ -70,8 +70,6 @@
                                         data-placement="top"
                                         data-original-title="Edit"
                                         href="{{ route('admin.edit-product', ['product' => $product->product_id]) }}"><i class="ri-pencil-line mr-0"></i></a>
-                                        <a class="badge bg-warning mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"
-                                           href="#"><i class="ri-delete-bin-line mr-0"></i></a>
                                     </div>
                                 </td>
                             </tr>

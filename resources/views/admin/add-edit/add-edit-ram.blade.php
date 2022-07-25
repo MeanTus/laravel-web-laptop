@@ -6,6 +6,9 @@
     @if ($errors->any())
         @include('layout.alert-err')
     @endif
+    @if (session('success'))
+        @include('layout.alert-success')
+    @endif
         <div class="container-fluid add-form-list">
             <div class="row">
                 <div class="col-sm-12">

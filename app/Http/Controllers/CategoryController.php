@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreCategoryRequest;
+use App\Http\Requests\UpdateCategoryRequest;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
@@ -77,11 +78,13 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateCategoryRequest $request, $id)
     {
         $this->model->where('id', $id)->update(['category_name' => $request->get('category_name')]);
-
-        return redirect()->route('admin.category');
+        $category = $this->model
+            ->where('id', $id)
+            ->firstOrFail();
+        return view('admin.add-edit.add-edit-category', ['category' => $category])->with('success', 'Cập nhật danh mục thành công');
     }
 
     /**

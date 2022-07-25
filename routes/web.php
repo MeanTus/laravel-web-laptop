@@ -165,7 +165,6 @@ Route::group([
     Route::post('/store-brand', [BrandController::class, 'store'])->name('store-brand');
     Route::get('/edit-brand/{brand}', [BrandController::class, 'edit'])->name('edit-brand');
     Route::post('/update-brand/{brand}', [BrandController::class, 'update'])->name('update-brand');
-    Route::get('/delete-brand/{brand}', [BrandController::class, 'destroy'])->name('delete-brand');
 
     // Route Coupon
     Route::get('/coupon', [CouponController::class, 'index'])->name('coupon');
@@ -173,7 +172,6 @@ Route::group([
     Route::post('/store-coupon', [CouponController::class, 'store'])->name('store-coupon');
     Route::get('/edit-coupon/{coupon}', [CouponController::class, 'edit'])->name('edit-coupon');
     Route::post('/update-coupon/{coupon}', [CouponController::class, 'update'])->name('update-coupon');
-    Route::get('/delete-coupon/{coupon}', [CouponController::class, 'destroy'])->name('delete-coupon');
 
     // Route Supplier
     Route::get('/supplier', [SupplierController::class, 'index'])->name('supplier');
@@ -181,11 +179,9 @@ Route::group([
     Route::post('/store-supplier', [SupplierController::class, 'store'])->name('store-supplier');
     Route::get('/edit-supplier/{supplier}', [SupplierController::class, 'edit'])->name('edit-supplier');
     Route::put('/update-supplier/{supplier}', [SupplierController::class, 'update'])->name('update-supplier');
-    Route::get('/delete-supplier/{supplier}', [SupplierController::class, 'destroy'])->name('delete-supplier');
 
     // Route Order
     Route::get('/order', [OrderController::class, 'index'])->name('order');
-    Route::get('/add-order', [OrderController::class, 'create'])->name('add-order');
     Route::get('/detail-order/{order}', [OrderController::class, 'show'])->name('show-order');
     Route::get('/confirm-order/{order}', [OrderController::class, 'confirmOrder'])->name('confirm-order');
     Route::post('/cancel_order', [OrderController::class, 'cancelOrder'])->name('cancel-order');

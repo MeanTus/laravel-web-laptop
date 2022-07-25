@@ -6,13 +6,16 @@
     @if ($errors->any())
         @include('layout.alert-err')
     @endif
+    @if (session('success'))
+        @include('layout.alert-success')
+    @endif
         <div class="container-fluid add-form-list">
             <div class="row">
                 <div class="col-sm-12">
                     <div class="card">
                         <div class="card-header d-flex justify-content-between">
                             <div class="header-title">
-                                <h4 class="card-title">Add Supplier</h4>
+                                <h4 class="card-title">Chỉnh sửa nhà cung cấp</h4>
                             </div>
                         </div>
                         <div class="card-body">
@@ -22,7 +25,7 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label>Name *</label>
+                                            <label>Tên nhà cung cấp *</label>
                                             <input 
                                             name="name"
                                             type="text" 
@@ -46,7 +49,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label>Phone Number *</label>
+                                            <label>Số điện thoại *</label>
                                             <input 
                                             name="phone_number"
                                             type="text" 
@@ -58,7 +61,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label>GST Number *</label>
+                                            <label>GST *</label>
                                             <input 
                                             name="GST"
                                             type="text" 
@@ -70,7 +73,7 @@
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label>Address</label>
+                                            <label>Địa chỉ</label>
                                             <textarea name="address" class="form-control" rows="4">
                                                 {{ $supplier->address }}
                                         </textarea>
@@ -78,7 +81,7 @@
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label>City *</label>
+                                            <label>Thành phố *</label>
                                             <input 
                                             name="city"
                                             type="text" 
@@ -90,7 +93,7 @@
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label>Country *</label>
+                                            <label>Quốc gia *</label>
                                             <input 
                                             name="country"
                                             type="text" 
@@ -101,7 +104,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <button type="submit" class="btn btn-primary mr-2">Update Supplier</button>
+                                <button type="submit" class="btn btn-primary mr-2">Cập nhật nhà cung cấp</button>
                                 <button type="reset" class="btn btn-danger">Reset</button>
                             </form>
                         </div>
@@ -122,7 +125,7 @@
                     <div class="card">
                         <div class="card-header d-flex justify-content-between">
                             <div class="header-title">
-                                <h4 class="card-title">Add Supplier</h4>
+                                <h4 class="card-title">Thêm nhà cung cấp</h4>
                             </div>
                         </div>
                         <div class="card-body">
@@ -131,7 +134,7 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label>Name *</label>
+                                            <label>Tên *</label>
                                             <input 
                                             name="name"
                                             type="text" 
@@ -155,10 +158,10 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label>Phone Number *</label>
+                                            <label>Số điện thoại *</label>
                                             <input 
                                             name="phone_number"
-                                            type="text" 
+                                            type="number" 
                                             class="form-control" 
                                             placeholder="Enter Phone Number" 
                                             required>
@@ -167,7 +170,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label>GST Number *</label>
+                                            <label>GST *</label>
                                             <input 
                                             name="GST"
                                             type="text" 
@@ -179,13 +182,13 @@
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label>Address</label>
+                                            <label>Địa chỉ</label>
                                             <textarea name="address" class="form-control" rows="4"></textarea>
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label>City *</label>
+                                            <label>Thành phố *</label>
                                             <input 
                                             name="city"
                                             type="text" 
@@ -197,7 +200,7 @@
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label>Country *</label>
+                                            <label>Quốc gia *</label>
                                             <input 
                                             name="country"
                                             type="text" 
@@ -208,7 +211,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <button type="submit" class="btn btn-primary mr-2">Add Supplier</button>
+                                <button type="submit" class="btn btn-primary mr-2">Thêm nhà cung cấp</button>
                                 <button type="reset" class="btn btn-danger">Reset</button>
                             </form>
                         </div>

@@ -80,9 +80,9 @@ class ResetPassController extends Controller
                 ]);
             }
             $token = Token::query()->where('user_id', $user_id)->first();
-            ResetPassEvent::dispatch($token);
+            // ResetPassEvent::dispatch($token);
         }
-        return redirect()->route('userpage.page-reset');
+        return redirect()->route('userpage.page-reset')->with('success', 'Kiểm tra email để lấy mã');
     }
 
     public function processChangePass(Request $request)

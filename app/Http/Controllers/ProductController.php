@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreProductRequest;
+use App\Http\Requests\UpdateProductRequest;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Color;
@@ -38,6 +39,7 @@ class ProductController extends Controller
                 'products.avatar as product_avatar',
                 'suppliers.name as supplier_name'
             )
+            ->orderBy('products.created_at', 'DESC')
             ->get();
 
         return view('admin.list.list-product', [
@@ -122,7 +124,7 @@ class ProductController extends Controller
         Supplier::where('id', $request->get('supplier_id'))
             ->update(['quantity_supplied' => $request->get('quantity')]);
 
-        return redirect()->route('admin.product');
+        return redirect()->route('admin.product')->with('success', 'Thêm sản phẩm thành công');
     }
 
     /**
@@ -179,7 +181,7 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(UpdateProductRequest $request, Product $product)
     {
         if ($request->get('action-edit') == 'hidden-product') {
             $product->update([

@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreProductRequest extends FormRequest
+class UpdateProductRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -28,7 +28,6 @@ class StoreProductRequest extends FormRequest
                 'bail',
                 'required',
                 'string',
-                'unique:App\Models\Product,name',
                 'min:2',
                 'max:50',
             ],
@@ -57,7 +56,6 @@ class StoreProductRequest extends FormRequest
             ],
             'avatar' => [
                 'bail',
-                'required',
                 'image',
             ],
             'pin' => [
@@ -103,7 +101,6 @@ class StoreProductRequest extends FormRequest
             'min' => ':attribute phải lớn hơn :min',
             'max' => ':attribute không được nhiều hơn :max ký tự',
             'email' => ':attribute phải hợp lệ',
-            'unique' => ':attribute đã tồn tại'
         ];
     }
 

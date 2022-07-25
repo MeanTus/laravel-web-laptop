@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreSupplierRequest;
+use App\Http\Requests\UpdateSupplierRequest;
 use App\Models\Supplier;
 use Illuminate\Http\Request;
 
@@ -78,11 +79,11 @@ class SupplierController extends Controller
      * @param  \App\Models\Supplier  $supplier
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreSupplierRequest $request, Supplier $supplier)
+    public function update(UpdateSupplierRequest $request, Supplier $supplier)
     {
         $supplier->update($request->validated());
 
-        return redirect()->route('admin.supplier');
+        return redirect()->route('admin.edit-supplier', ['supplier' => $supplier])->with('success', 'Chỉnh sửa thành công nhà cung cấp');
     }
 
     /**

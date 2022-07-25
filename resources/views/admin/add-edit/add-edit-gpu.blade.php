@@ -4,7 +4,10 @@
 @if ($gpu !== null)
 <div class="content-page">
     @if ($errors->any())
-    @include('layout.alert-err')
+        @include('layout.alert-err')
+    @endif
+    @if (session('success'))
+        @include('layout.alert-success')
     @endif
     <div class="container-fluid add-form-list">
         <div class="row">

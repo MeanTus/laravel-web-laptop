@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreSupplierRequest extends FormRequest
+class UpdateSupplierRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -28,7 +28,6 @@ class StoreSupplierRequest extends FormRequest
                 'bail',
                 'required',
                 'string',
-                'unique:App\Models\Supplier,name',
                 'min:2',
                 'max:50',
             ],
@@ -36,7 +35,6 @@ class StoreSupplierRequest extends FormRequest
                 'bail',
                 'required',
                 'email:rfc,dns',
-                'unique:App\Models\Supplier,email',
             ],
             'phone_number' => [
                 'bail',
@@ -70,7 +68,6 @@ class StoreSupplierRequest extends FormRequest
             'min' => ':attribute ít nhất phải có :min ký tự',
             'max' => ':attribute không được nhiều hơn :max ký tự',
             'email' => ':attribute phải hợp lệ',
-            'unique' => ':attribute đã tồn tại'
         ];
     }
 
