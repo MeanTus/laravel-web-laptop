@@ -28,7 +28,6 @@
                             <th>Email</th>
                             <th>Giới tính</th>
                             <th>Ngày sinh</th>
-                            <th>Số đơn hàng</th>
                             <th>Trạng thái</th>
                             <th>Action</th>
                         </tr>
@@ -46,8 +45,9 @@
                             <td>{{ $customer->email }}</td>
                             <td>{{ $customer->getGenderUser() }}</td>
                             <td>{{ $customer->birthdate }}</td>
-                            <td>2</td>
-                            <td><div class="badge badge-warning">{{ $customer->getStatusUser() }}</div></td>
+                            <td>
+                                <div class="badge badge-warning">{{ $customer->getStatusUser() }}</div>
+                            </td>
                             <td>
                                 <div class="d-flex align-items-center list-action">
                                     <a class="badge badge-info mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="View"

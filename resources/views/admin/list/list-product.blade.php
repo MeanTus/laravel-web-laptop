@@ -11,7 +11,7 @@
                     <div>
                         <h4 class="mb-3">Danh Sách Sản Phẩm</h4>
                     </div>
-                    <a href="{{ route('admin.add-product') }}" class="btn btn-primary add-list"><i class="las la-plus mr-3"></i>Add Product</a>
+                    <a href="{{ route('admin.add-product') }}" class="btn btn-primary add-list"><i class="las la-plus mr-3"></i>Thêm sản phẩm</a>
                 </div>
             </div>
             <div class="col-lg-12">

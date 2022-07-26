@@ -10,7 +10,7 @@
             <div class="col-lg-12">
                 <div class="d-flex flex-wrap align-items-center justify-content-between mb-4">
                     <div>
-                        <h4 class="mb-3">Danh Sách Thương hiệu</h4>
+                        <h4 class="mb-3">Danh Sách Mã giảm giá</h4>
                     </div>
                     <a href="{{ route('admin.add-coupon') }}" class="btn btn-primary add-list"><i class="las la-plus mr-3"></i>Thêm mã giảm giá</a>
                 </div>

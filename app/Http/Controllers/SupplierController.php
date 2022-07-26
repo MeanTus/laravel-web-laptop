@@ -56,7 +56,7 @@ class SupplierController extends Controller
      */
     public function show(Supplier $supplier)
     {
-        //
+        return view('admin.detail.detail-supplier', ['supplier' => $supplier]);
     }
 
     /**

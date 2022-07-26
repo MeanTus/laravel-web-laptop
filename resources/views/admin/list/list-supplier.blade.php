@@ -11,9 +11,9 @@
             <div class="col-lg-12">
                 <div class="d-flex flex-wrap align-items-center justify-content-between mb-4">
                     <div>
-                        <h4 class="mb-3">Suppliers List</h4>
+                        <h4 class="mb-3">Danh sách nhà cung cấp</h4>
                     </div>
-                    <a href="{{ route('admin.add-supplier') }}" class="btn btn-primary add-list"><i class="las la-plus mr-3"></i>Add supplier</a>
+                    <a href="{{ route('admin.add-supplier') }}" class="btn btn-primary add-list"><i class="las la-plus mr-3"></i>Thêm nhà cung cấp</a>
                 </div>
             </div>
             <div class="col-lg-12">
@@ -34,7 +34,7 @@
                             <th>Quốc gia</th>
                             <th>Đã cung cấp</th>
                             <th>GST No</th>
-                            <th>Action</th>
+                            <th>Hành động</th>
                         </tr>
                         </thead>
                         <tbody class="ligth-body">
@@ -56,7 +56,7 @@
                             <td>
                                 <div class="d-flex align-items-center list-action">
                                     <a class="badge badge-info mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="View"
-                                       href="#"><i class="ri-eye-line mr-0"></i></a>
+                                       href="{{ route('admin.show-supplier', ['supplier' => $supplier['id']]) }}"><i class="ri-eye-line mr-0"></i></a>
                                     <a class="badge bg-success mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"
                                        href="{{ route('admin.edit-supplier', ['supplier' => $supplier['id']]) }}"><i class="ri-pencil-line mr-0"></i></a>
                                 </div>
