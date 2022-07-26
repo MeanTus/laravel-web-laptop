@@ -6,6 +6,9 @@ use App\Http\Requests\StoreOrderRequest;
 use App\Models\Coupon;
 use App\Models\Order;
 use App\Models\OrderDetail;
+use App\Models\Product;
+use App\Models\Statistic;
+use Carbon\Carbon;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 
@@ -87,6 +90,9 @@ class CheckoutController extends Controller
         // Add to table order
         $order = Order::create($request->validated());
 
+        // Biến dùng để đếm có tổng cộng bao nhiêu sản phẩm được bán
+        $total_quantity_product_sold = 0;
+
         // Nếu có mã giảm giá thì sau khi thanh toán xong cập nhật lại số lượng mã
         if ($request->get('discount_code')) {
             $coupon = Coupon::query()->where('code', $request->get('discount_code'))->first();
@@ -109,28 +115,56 @@ class CheckoutController extends Controller
                 'order_id' => $order->id,
                 'product_id' => $product->id,
             ]);
+            $total_quantity_product_sold += $product->qty;
         }
 
         if ($request->payment_method === 'vnpay') {
+            Order::query()->where('id', $order->id)->update([
+                'status' => 3
+            ]);
+            // Ghi dữ liệu vào talble statistic để thống kê doanh thu
+            $now = Carbon::now('Asia/Ho_Chi_Minh')->toDateString();
+
+            // Kiểm tra xem ngày đó đã có đơn hàng nào chưa nếu chưa thì tạo mới nếu có thì cập nhật
+            $exist_order = Statistic::query()->where('order_date', $now)->first();
+
+            // Cập nhật lại số lượng sản phẩm
+            foreach (Cart::content() as $product) {
+                $current_quantity_product = Product::query()->where('id', $product->id)->value('quantity');
+                $current_quantity_sold_product = Product::query()->where('id', $product->id)->value('quantity_sold');
+
+                Product::query()
+                    ->where('id', $product->id)
+                    ->update([
+                        'quantity_sold' => $current_quantity_sold_product + $product->qty,
+                        'quantity' => $current_quantity_product - $product->qty,
+                    ]);
+            }
+
+            if ($exist_order) {
+                Statistic::query()->where('order_date', $now)->update([
+                    'sales' => $exist_order->sales + $order->total_price,
+                    'profit' => $exist_order->profit + ($order->total_price * 0.7),
+                    'quantity' => $exist_order->quantity + $total_quantity_product_sold,
+                    'total_order' => $exist_order->total_order + 1,
+                ]);
+            } else {
+                Statistic::query()->create([
+                    'order_date' => $now,
+                    'sales' => $order->total_price,
+                    'profit' => ($order->total_price * 0.7),
+                    'quantity' => $total_quantity_product_sold,
+                    'total_order' => 1,
+                ]);
+            }
             $this->checkoutVNPay($request);
         }
+
         if ($request->payment_method === 'momo') {
             $this->checkoutMomo($request);
         }
 
         return redirect()->route('userpage.thank-you');
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
     }
 
     public function checkoutVNPay($request)

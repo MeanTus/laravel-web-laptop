@@ -66,6 +66,7 @@ class OrderController extends Controller
 
         foreach ($product_id as $item) {
             $current_quantity_product = Product::query()->where('id', $item->product_id)->value('quantity');
+            $current_quantity_sold_product = Product::query()->where('id', $item->product_id)->value('quantity_sold');
             if ($item->quantity > $current_quantity_product) {
                 Order::query()
                     ->where('id', $order->id)
@@ -78,7 +79,7 @@ class OrderController extends Controller
                 Product::query()
                     ->where('id', $item->product_id)
                     ->update([
-                        'quantity_sold' => $item->quantity,
+                        'quantity_sold' => $current_quantity_sold_product + $item->quantity,
                         'quantity' => $current_quantity_product - $item->quantity,
                     ]);
 

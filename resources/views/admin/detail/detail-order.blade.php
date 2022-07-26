@@ -91,7 +91,7 @@
                                             </div>
                                           </div>
                                     </div>
-                                    @if ($order->status > 1)
+                                    @if ($order->status == 2)
                                     <div class="col-md-12">
                                         <div class="form-group row">
                                             <label for="staticEmail" class="col-sm-2 col-form-label">
@@ -166,55 +166,14 @@
                                     @endforeach
                                 </tbody>
                             </table>
+                            @if ($order->status == 0)
                             <a href="{{ route('admin.confirm-order', ['order' => $order->id]) }}" class="btn btn-primary mr-2">Duyệt đơn</a>
-                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModalCenter">Hủy Đơn</button>
+                            @endif
                         </div>
                     </div>
                 </div>
             </div>
             <!-- Page end  -->
-        </div>
-
-        {{-- Modal desc_cancel --}}
-        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <form action="{{ route('admin.cancel-order') }}" method="post">
-                    @csrf
-                    <input type="text" name="order_id" value="{{ $order->id }}" hidden>
-                    <div class="modal-body">
-                        <div class="form-check">
-                            <input value="Địa chỉ không hợp lệ" class="form-check-input" type="radio" name="desc_cancel" checked>
-                            <label class="form-check-label">
-                                Địa chỉ không hợp lệ
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input value="Sản phẩm đã hết hàng" class="form-check-input" type="radio" name="desc_cancel">
-                            <label class="form-check-label">
-                                Sản phẩm đã hết hàng
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input value="Không hỗ trợ giao hàng" class="form-check-input" type="radio" name="desc_cancel">
-                            <label class="form-check-label">
-                                Không hỗ trợ giao hàng
-                            </label>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Thoát</button>
-                      <button type="submit" class="btn btn-primary">Xác Nhận</button>
-                    </div>
-                </form>
-              </div>
-            </div>
         </div>
     </div>
 @endsection

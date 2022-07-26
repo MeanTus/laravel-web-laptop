@@ -38,7 +38,7 @@ class Order extends Model
         } elseif ($this->status == 2) {
             $status = 'Bị hủy bởi người dùng';
         } else {
-            $status = 'Bị hủy bởi quản trị viên';
+            $status = 'Đã thanh toán bằng VN Pay';
         }
 
         return $status;
