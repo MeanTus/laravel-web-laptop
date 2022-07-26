@@ -68,6 +68,7 @@
                                     <li>{{ $gpu->name }}</li>
                                     <li>Thương hiệu: {{ $brand->brand_name }}</li>
                                     <li>Danh mục: {{ $category->category_name }}</li>
+                                    <li>Số lượng sản phẩm: {{ $product->quantity }}</li>
                                 </ul>
                             </div>
                             <div class="wrap-price"><span class="price">

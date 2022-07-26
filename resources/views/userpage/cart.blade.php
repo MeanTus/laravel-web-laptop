@@ -55,7 +55,7 @@
                         <td>{{number_format($item->price) }} VNĐ</td>
                         <td>
                             <div class="quantity">
-                                <div class="quantity-input">
+                                <div class="quantity-inputt">
                                     <form action="{{ route('userpage.update-qty') }}" method="post">
                                         @csrf
                                         <input type="text" name="rowId" value="{{ $item->rowId }}" hidden>

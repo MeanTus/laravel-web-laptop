@@ -256,15 +256,4 @@ class ProductController extends Controller
             return redirect()->route('admin.edit-product', ['product' => $product])->with('success', 'Chỉnh sửa thành công sản phẩm');
         }
     }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }

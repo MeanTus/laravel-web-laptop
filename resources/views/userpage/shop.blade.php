@@ -148,7 +148,7 @@
                 </div><!-- brand widget-->
 
                 <div class="widget mercado-widget filter-widget price-filter">
-                    <h2 class="widget-title">Price</h2>
+                    <h2 class="widget-title">Khoảng giá</h2>
                     <div class="widget-content">
                         <ul class="list-style vertical-list list-limited" data-show="6">
                         <li class="list-item">
@@ -181,7 +181,7 @@
                 </div><!-- Price-->
 
                 <div class="widget mercado-widget filter-widget">
-                    <h2 class="widget-title">Color</h2>
+                    <h2 class="widget-title">Màu sắc</h2>
                     <div class="widget-content">
                         <ul class="list-style vertical-list has-count-index">
                             @foreach ($colors as $color)

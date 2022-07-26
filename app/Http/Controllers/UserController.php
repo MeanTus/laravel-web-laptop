@@ -54,11 +54,17 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreUserRequest $request)
+    public function store(Request $request)
     {
-        if ($request->get('password') !== $request->get('cfpass')) {
-            return redirect()->route('userpage.register')->withErrors('Xác nhận lại mật khẩu không đúng!!');
+        $status = '';
+
+        $email_exist = $this->model->where('email', $request->get('email'))->first();
+
+        if ($email_exist) {
+            $status = 'Email Err';
+            echo json_encode($status);
         } else {
+            $status = 'Thành công';
             $this->model->create([
                 'name' => $request->get('name'),
                 'email' => $request->get('email'),
@@ -66,9 +72,11 @@ class UserController extends Controller
                 'birthdate' => $request->get('birthdate'),
                 'password' => Hash::make($request->get('password'))
             ]);
-
-            return redirect()->route('userpage.login')->with('success', 'Bạn đã đăng ký thành công');
+            echo json_encode($status);
         }
+
+        // echo json_encode($email_exist);
+        // return redirect()->route('userpage.login')->with('success', 'Bạn đã đăng ký thành công');
     }
 
     /**

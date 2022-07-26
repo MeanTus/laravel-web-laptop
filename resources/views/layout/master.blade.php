@@ -43,6 +43,8 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script src="{{ asset('assets/js/sweetalert.js') }}"></script>
 
+    @stack('register')
+
     <script>
         $(document).ready(function(){
             $('.add-to-cart-ajax').click(function(){
@@ -85,19 +87,27 @@
                         cart_product_quantity: cart_product_quantity
                     },
                     success: function(data){
-                        swal({
-                        title: 'Đã thêm sản phẩm vào giỏ hàng',
-                        text: 'Bạn có thể mua hàng tiếp hoặc tới giỏ hàng để tiến hành thanh toán',
-                        showCancelButton: true,
-                        cancelButtonText: 'Xem tiếp',
-                        confirmButtonClass: 'btn-success',
-                        confirmButtonText: 'Đi đến giỏ hàng',
-                        closeOnConfirm: false
-                        },
-                            function() {
-                            window.location.href = '{{url('/cart')}}';
-                            }
-                        );
+                        console.log(data);
+                        if(data == 'Không đủ số lượng sản phẩm'){
+                            swal({
+                                title: 'Thông báo',
+                                text: 'Không đủ số lượng sản phẩm'
+                            })
+                        } else {
+                            swal({
+                            title: 'Đã thêm sản phẩm vào giỏ hàng',
+                            text: 'Bạn có thể mua hàng tiếp hoặc tới giỏ hàng để tiến hành thanh toán',
+                            showCancelButton: true,
+                            cancelButtonText: 'Xem tiếp',
+                            confirmButtonClass: 'btn-success',
+                            confirmButtonText: 'Đi đến giỏ hàng',
+                            closeOnConfirm: false
+                            },
+                                function() {
+                                window.location.href = '{{url('/cart')}}';
+                                }
+                            );
+                        }
                     }
                 })
             })

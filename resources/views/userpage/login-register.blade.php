@@ -48,7 +48,7 @@
 
                 <div class="wrap-login-item ">
                     <div class="register-form form-item ">
-                        <form class="form-stl" action="{{ route('userpage.process_register') }}" name="frm-login" method="post" >
+                        <form class="form-stl" >
                             @csrf
                             <fieldset class="wrap-title">
                                 <h3 class="form-title">Đăng ký</h3>
@@ -63,9 +63,9 @@
                             </fieldset>
                             <fieldset class="wrap-input">
                                 <label for="frm-reg-email">Giới tính *</label><br>
-                                <input type="radio" id="frm-reg-email" name="gender" value="1" checked>
+                                <input type="radio" name="gender" value="1" checked>
                                 <label for="Male">Nam</label><br>
-                                <input type="radio" id="frm-reg-email" name="gender" value="0">
+                                <input type="radio" id="frm-reg-gender" name="gender" value="0">
                                 <label for="Male">Nữ</label><br>
                             </fieldset>
                             <fieldset class="wrap-input">
@@ -74,13 +74,13 @@
                             </fieldset>
                             <fieldset class="wrap-input item-width-in-half left-item ">
                                 <label for="frm-reg-pass">Mật khẩu *</label>
-                                <input type="password" id="frm-reg-pass" name="password" placeholder="Mật khẩu">
+                                <input type="password" id="frm-reg-pass" name="password" placeholder="Mật khẩu" required>
                             </fieldset>
                             <fieldset class="wrap-input item-width-in-half ">
                                 <label for="frm-reg-cfpass">Xác nhận lại mật khẩu *</label>
-                                <input type="password" id="frm-reg-cfpass" name="cfpass" placeholder="Xác nhận lại mật khẩu">
+                                <input type="password" id="frm-reg-cfpass" name="cfpass" placeholder="Xác nhận lại mật khẩu" required>
                             </fieldset>
-                            <input type="submit" class="btn btn-sign" value="Đăng ký" name="register">
+                            <span id="btn-register" class="btn btn-sign" value="Đăng ký" name="register">Đăng ký</span>
                         </form>
                     </div>
                 </div>
@@ -91,5 +91,8 @@
 
     </div><!--end container-->
 
+    @push('register')
+        <script src="{{ asset('assets/js/check-register.js') }}"></script>
+    @endpush
 </main>
 @endsection
