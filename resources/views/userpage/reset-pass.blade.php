@@ -34,7 +34,7 @@
                     @else
                     <div class="wrap-login-item">
                         <div class="login-form form-item form-stl">
-                            <form name="frm-login" method="POST" action="{{ route('userpage.process-change-pass') }}">
+                            <form name="frm-login" method="POST">
                                 @csrf
                                 <fieldset class="wrap-title">
                                     <h3 class="form-title">Đổi mật khẩu</h3>
@@ -42,20 +42,20 @@
 
                                 <fieldset class="wrap-input">
                                     <label for="frm-login-pass">Mật khẩu mới:</label>
-                                    <input type="password" id="frm-login-pass" name="password" placeholder="************">
+                                    <input type="password" id="new-pass" name="password" placeholder="************">
                                 </fieldset>
                                 <fieldset class="wrap-input">
                                     <label for="frm-login-pass">Nhập lại mật khẩu mới:</label>
-                                    <input type="password" id="frm-login-pass" name="re-password" placeholder="************">
+                                    <input type="password" id="cf-new-pass" name="re-password" placeholder="************">
                                 </fieldset>
                                 <fieldset class="wrap-input">
                                     <label for="frm-login-pass">Mã xác nhận:</label>
-                                    <input type="text" id="frm-login-pass" name="token" placeholder="Nhập mã">
+                                    <input type="text" id="token" name="token" placeholder="Nhập mã">
                                 </fieldset>
 
-                                <button type="submit" class="btn btn-submit" name="action" value="change-pass">
+                                <span type="submit" class="btn btn-submit" id="btn-change-pass" name="action" value="change-pass">
                                     Đổi mật khẩu
-                                </button>
+                                </sp>
                             </form>
                         </div>
                     </div>
@@ -66,5 +66,8 @@
 
     </div><!--end container-->
 
+    @push('change-pass')
+        <script src="{{ asset('assets/js/change-pass.js') }}"></script>
+    @endpush
 </main>
 @endsection

@@ -54,7 +54,7 @@
                         </div>
                         <div class="col-md-12" style="margin-top: 10px">
                             <label class="labels">Địa chỉ email</label>
-                            <input type="text" class="form-control" name="email" value="{{ $user->email }}">
+                            <input type="text" class="form-control" name="email" value="{{ $user->email }}" disabled>
                         </div>
                         <div class="col-md-12" style="margin-top: 10px">
                             <label class="labels">Password</label>

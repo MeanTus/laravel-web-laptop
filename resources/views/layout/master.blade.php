@@ -44,6 +44,7 @@
     <script src="{{ asset('assets/js/sweetalert.js') }}"></script>
 
     @stack('register')
+    @stack('change-pass')
 
     <script>
         $(document).ready(function(){
@@ -72,7 +73,7 @@
                         closeOnConfirm: false
                         },
                             function() {
-                            window.location.href = '{{url('/login')}}';
+                            window.location.href = '{{url('/login-register')}}';
                             }
                         );
                     return
@@ -93,6 +94,7 @@
                                 title: 'Thông báo',
                                 text: 'Không đủ số lượng sản phẩm'
                             })
+                            return
                         } else {
                             swal({
                             title: 'Đã thêm sản phẩm vào giỏ hàng',

@@ -12,7 +12,7 @@ $('#btn-register').click(function(){
         swal({
             title: 'Cảnh báo',
             text: 'Vui lòng nhập đầy đủ thông tin',
-            icon: 'error',
+            type: 'error',
         })
         return
     }
@@ -22,7 +22,7 @@ $('#btn-register').click(function(){
         swal({
             title: 'Cảnh báo',
             text: 'Mật khẩu phải có ít nhất 8 ký tự',
-            icon: 'error',
+            type: 'error',
         })
         return
     }
@@ -31,7 +31,7 @@ $('#btn-register').click(function(){
         swal({
             title: 'Cảnh báo',
             text: 'Nhập lại pass không chính xác!!',
-            icon: 'error',
+            type: 'error',
         })
         return
     }
@@ -53,6 +53,7 @@ $('#btn-register').click(function(){
                 swal({
                     title: 'Thông báo',
                     text: 'Email của bạn đã được sử dụng',
+                    type: 'error',
                 })
             } else {
                 swal({

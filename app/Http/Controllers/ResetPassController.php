@@ -80,7 +80,7 @@ class ResetPassController extends Controller
                 ]);
             }
             $token = Token::query()->where('user_id', $user_id)->first();
-            // ResetPassEvent::dispatch($token);
+            ResetPassEvent::dispatch($token);
         }
         return redirect()->route('userpage.page-reset')->with('success', 'Kiểm tra email để lấy mã');
     }
@@ -89,31 +89,29 @@ class ResetPassController extends Controller
     {
         $user_id = session()->get('user_id');
         $new_password = $request->get('password');
-        $re_password = $request->get('re-password');
-        $token = $request->get('token');
+        $re_password = $request->get('re_password');
+        $token = $request->get('reset_token');
         $exist_token = Token::query()->where('reset_token', $token)->first();
 
         if (!$exist_token) {
-            return redirect()->route('userpage.page-reset')->withErrors('Mã xác nhận không chính xác');
+            echo json_encode('Mã xác nhận không chính xác');
+            return;
         } else {
-            if ($new_password === $re_password) {
-                if ($user_id == null) {
-                    User::query()
-                        ->where('email', session()->get('email_reset'))
-                        ->update([
-                            'password' => Hash::make($new_password)
-                        ]);
-                } else {
-                    User::query()
-                        ->where('user_id', $user_id)
-                        ->update([
-                            'password' => Hash::make($new_password)
-                        ]);
-                }
-                return redirect()->route('userpage.page-reset')->with('success', 'Bạn đã đổi mật khẩu thành công');
+            if ($user_id == null) {
+                User::query()
+                    ->where('email', session()->get('email_reset'))
+                    ->update([
+                        'password' => Hash::make($new_password)
+                    ]);
             } else {
-                return redirect()->route('userpage.page-reset')->withErrors('Nhập lại mất khẩu không đúng');
+                User::query()
+                    ->where('user_id', $user_id)
+                    ->update([
+                        'password' => Hash::make($new_password)
+                    ]);
             }
+            echo json_encode('success');
+            return;
         }
     }
 }
