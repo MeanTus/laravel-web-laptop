@@ -76,7 +76,7 @@
                                         <div class="form-group">
                                             <label>Tên thương hiệu *</label>
                                             <input type="text" class="form-control" placeholder="Enter Name" 
-                                            name="brand_name" required>
+                                            name="brand_name" value="{{ old('brand_name') }}" required>
                                             <div class="help-block with-errors"></div>
                                         </div>
                                     </div>

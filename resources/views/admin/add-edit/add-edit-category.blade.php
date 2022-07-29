@@ -65,7 +65,7 @@
                                         <div class="form-group">
                                             <label>Tên danh mục *</label>
                                             <input type="text" class="form-control" placeholder="Enter Name" 
-                                            name="category_name" required>
+                                            name="category_name" value="{{ old('category_name') }}" required>
                                             <div class="help-block with-errors"></div>
                                         </div>
                                     </div>

@@ -286,6 +286,7 @@
                                             <label>Tên sản phẩm *</label>
                                             <input 
                                             name="name" 
+                                            value="{{ old('name') }}"
                                             type="text" 
                                             placeholder="Enter name" 
                                             class="form-control" 
@@ -309,6 +310,7 @@
                                             <input 
                                             name="unit"
                                             type="text" 
+                                            value="{{ old('unit') }}"
                                             class="form-control" 
                                             placeholder="Enter Unit" 
                                             data-errors="Please Enter Unit." required>
@@ -341,6 +343,7 @@
                                             <input 
                                             name="price"
                                             type="number" 
+                                            value="{{ old('price') }}"
                                             class="form-control" 
                                             placeholder="Enter Price" 
                                             required>
@@ -363,6 +366,7 @@
                                             <input 
                                             name="quantity"
                                             type="number" 
+                                            value="{{ old('quantity') }}"
                                             class="form-control" 
                                             placeholder="Enter Quantity" 
                                             required>
@@ -375,6 +379,7 @@
                                             <input 
                                             name="weight"
                                             type="text" 
+                                            value="{{ old('weight') }}"
                                             class="form-control" 
                                             placeholder="Enter weight" 
                                             required>
@@ -387,6 +392,7 @@
                                             <input 
                                             name="pin"
                                             type="text" 
+                                            value="{{ old('pin') }}"
                                             class="form-control" 
                                             placeholder="Enter pin" 
                                             required>
@@ -432,7 +438,9 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label>Mô tả *</label><br>
-                                            <textarea name="desc" id="" class="form-control" rows="10"></textarea>
+                                            <textarea name="desc" id="" class="form-control" rows="10">
+                                                {{ old('desc') }}
+                                            </textarea>
                                         </div>
                                     </div>
                                 </div>

@@ -25,11 +25,11 @@
                     <input type="text" name="email" value="{{ session()->get('user_email') }}" hidden>
                     <p class="row-in-form" >
                         <label for="fname">Tên người nhận<span>*</span></label>
-                        <input id="fname" type="text" name="customer_name">
+                        <input id="fname" value="{{ old('customer_name') }}" type="text" name="customer_name">
                     </p>
                     <p class="row-in-form">
                         <label for="phone">Số điện thoại<span>*</span></label>
-                        <input id="phone" type="number" name="phone_number">
+                        <input id="phone" type="number" value="{{ old('phone_number') }}" name="phone_number">
                     </p>
                     <p class="row-in-form">
                         <label for="city">Thành phố<span>*</span></label>
@@ -49,11 +49,13 @@
                     </p>
                     <p class="row-in-form" style="width: 100%;">
                         <label for="add">Địa chỉ:</label>
-                        <input id="add" type="text" name="address">
+                        <input id="add" type="text" value="{{ old('address') }}" name="address">
                     </p>
                     <p class="row-in-form" style="width: 100%;">
                         <label for="country">Ghi chú<span>*</span></label>
-                        <textarea name="note" style="width: 100%; border: 1px solid #e6e6e6;" rows="8"></textarea>
+                        <textarea name="note" style="width: 100%; border: 1px solid #e6e6e6;" rows="8">
+                            {{ old('note') }}
+                        </textarea>
                     </p>
                     {{-- <p class="row-in-form fill-wife">
                         <label class="checkbox-field">

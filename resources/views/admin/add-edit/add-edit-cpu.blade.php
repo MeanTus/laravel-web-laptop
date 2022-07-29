@@ -68,13 +68,13 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label>Mã CPU *</label>
-                                            <input type="text" class="form-control" placeholder="Enter Code" 
+                                            <input type="text" value="{{ old('id') }}" class="form-control" placeholder="Enter Code" 
                                             name="id" required>
                                             <div class="help-block with-errors"></div>
                                         </div>
                                         <div class="form-group">
                                             <label>Tên CPU *</label>
-                                            <input type="text" class="form-control" placeholder="Enter Name" 
+                                            <input type="text" value="{{old('name')}}" class="form-control" placeholder="Enter Name" 
                                             name="name" required>
                                             <div class="help-block with-errors"></div>
                                         </div>

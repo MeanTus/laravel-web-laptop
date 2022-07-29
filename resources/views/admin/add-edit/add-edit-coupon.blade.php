@@ -114,7 +114,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label>Code giảm giá *</label>
-                                            <input type="text" class="form-control" 
+                                            <input type="text" value="{{ old('code') }}" class="form-control" 
                                             name="code" required>
                                             <div class="help-block with-errors"></div>
                                         </div>
@@ -132,7 +132,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label>Số % hoặc tiền giảm *</label>
-                                            <input type="number" class="form-control" 
+                                            <input type="number" value="{{old('discount_rate')}}" class="form-control" 
                                             name="discount_rate" required>
                                             <div class="help-block with-errors"></div>
                                         </div>
@@ -141,7 +141,7 @@
                                         <div class="form-group">
                                             <label>Số lượng mã giảm *</label>
                                             <input type="number" class="form-control" 
-                                            name="quantity" required>
+                                            name="quantity" value="{{ old('quantity') }}" required>
                                             <div class="help-block with-errors"></div>
                                         </div>
                                     </div>
@@ -158,7 +158,9 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label>Mô tả *</label>
-                                            <textarea name="desc_coupon" class="form-control" rows="8"></textarea>
+                                            <textarea name="desc_coupon" class="form-control" rows="8">
+                                                {{ old('desc_coupon') }}
+                                            </textarea>
                                             <div class="help-block with-errors"></div>
                                         </div>
                                     </div>

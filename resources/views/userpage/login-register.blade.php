@@ -92,7 +92,7 @@
     </div><!--end container-->
 
     @push('register')
-        <script src="{{ asset('assets/js/check-register.js') }}"></script>
+        <script src="{{ asset('assets/js/register.js') }}"></script>
     @endpush
 </main>
 @endsection

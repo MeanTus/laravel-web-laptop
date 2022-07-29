@@ -1,4 +1,12 @@
+// Kiểm tra email
+function validateEmail(email){
+    return email.match(
+        /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    );
+    };
+
 $('#btn-register').click(function(){
+
     var token = $('input[name="_token"]').val()
     var name = $('#frm-reg-lname').val()
     var email = $('#frm-reg-email').val()
@@ -12,6 +20,15 @@ $('#btn-register').click(function(){
         swal({
             title: 'Cảnh báo',
             text: 'Vui lòng nhập đầy đủ thông tin',
+            type: 'error',
+        })
+        return
+    }
+
+    if(!validateEmail(email)){
+        swal({
+            title: 'Cảnh báo',
+            text: 'Email không hợp lệ!!!',
             type: 'error',
         })
         return

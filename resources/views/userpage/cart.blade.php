@@ -100,7 +100,7 @@
                             @csrf
                             <p class="row-in-form" style="width: 100%;">
                                 <label for="coupon-code">Nhập mã giảm giá của bạn:</label>
-                                <input id="discount_code" type="text" name="code">	
+                                <input id="discount_code" value="{{ old('code') }}" type="text" name="code">	
                             </p>
                             <button type="submit" class="btn btn-small">Áp dụng</button>
                         </form>

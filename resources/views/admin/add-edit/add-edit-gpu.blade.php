@@ -66,12 +66,12 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Mã GPU *</label>
-                                        <input type="text" class="form-control" placeholder="Enter Code" name="id" required>
+                                        <input type="text" value="{{ old('id') }}" class="form-control" placeholder="Enter Code" name="id" required>
                                         <div class="help-block with-errors"></div>
                                     </div>
                                     <div class="form-group">
                                         <label>Tên GPU *</label>
-                                        <input type="text" class="form-control" placeholder="Enter Name" name="name" required>
+                                        <input type="text" value="{{ old('name') }}" class="form-control" placeholder="Enter Name" name="name" required>
                                         <div class="help-block with-errors"></div>
                                     </div>
                                 </div>

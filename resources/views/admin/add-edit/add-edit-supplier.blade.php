@@ -138,6 +138,7 @@
                                             <input 
                                             name="name"
                                             type="text" 
+                                            value="{{ old('name') }}"
                                             class="form-control" 
                                             placeholder="Enter Name" 
                                             required>
@@ -149,6 +150,7 @@
                                             <label>Email *</label>
                                             <input 
                                             name="email"
+                                            value="{{ old('email') }}"
                                             type="text" 
                                             class="form-control" 
                                             placeholder="Enter Email" 
@@ -161,6 +163,7 @@
                                             <label>Số điện thoại *</label>
                                             <input 
                                             name="phone_number"
+                                            value="{{ old('phone_number') }}"
                                             type="number" 
                                             class="form-control" 
                                             placeholder="Enter Phone Number" 
@@ -173,6 +176,7 @@
                                             <label>GST *</label>
                                             <input 
                                             name="GST"
+                                            value="{{ old('GST') }}"
                                             type="text" 
                                             class="form-control" 
                                             placeholder="Enter GST Number" 
@@ -183,7 +187,9 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label>Địa chỉ</label>
-                                            <textarea name="address" class="form-control" rows="4"></textarea>
+                                            <textarea name="address" class="form-control" rows="4">
+                                                {{ old('address') }}
+                                            </textarea>
                                         </div>
                                     </div>
                                     <div class="col-md-12">
@@ -191,6 +197,7 @@
                                             <label>Thành phố *</label>
                                             <input 
                                             name="city"
+                                            value="{{ old('city') }}"
                                             type="text" 
                                             class="form-control" 
                                             placeholder="Enter City" 
@@ -203,6 +210,7 @@
                                             <label>Quốc gia *</label>
                                             <input 
                                             name="country"
+                                            value="{{ old('country') }}"
                                             type="text" 
                                             class="form-control" 
                                             placeholder="Enter Country" 

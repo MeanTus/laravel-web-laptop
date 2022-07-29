@@ -76,7 +76,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label>Tên màu *</label>
-                                            <input type="text" class="form-control" placeholder="Enter Name" 
+                                            <input type="text" value="{{ old('name_color') }}" class="form-control" placeholder="Enter Name" 
                                             name="name_color" required>
                                             <div class="help-block with-errors"></div>
                                         </div>
@@ -86,6 +86,7 @@
                                                 <span class="input-group-text" id="basic-addon1">#</span>
                                                 <input 
                                                 id="hex-color" 
+                                                value="{{ old('hex') }}"
                                                 type="text" 
                                                 class="form-control hex"
                                                 name="hex" 
