@@ -14,8 +14,8 @@ class CreateGpuTable extends Migration
     public function up()
     {
         Schema::create('gpu', function (Blueprint $table) {
-            $table->string('id', 15)->primary();
-            $table->string('name', 30);
+            $table->string('id', 50)->primary();
+            $table->string('name', 50);
             $table->timestamps();
         });
     }

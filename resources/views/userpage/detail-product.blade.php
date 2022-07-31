@@ -69,6 +69,7 @@
                                     <li>Thương hiệu: {{ $brand->brand_name }}</li>
                                     <li>Danh mục: {{ $category->category_name }}</li>
                                     <li>Số lượng sản phẩm: {{ $product->quantity }}</li>
+                                    <li>Màu sắc: {{ $color->name_color }}</li>
                                 </ul>
                             </div>
                             <div class="wrap-price"><span class="price">

@@ -116,6 +116,8 @@ class UserPageController extends Controller
         $ram = Ram::query()->where('id', $product->ram_id)->firstOrFail();
         $cpu = CPU::query()->where('id', $product->cpu_id)->firstOrFail();
         $gpu = GPU::query()->where('id', $product->gpu_id)->firstOrFail();
+        $color = Color::query()->where('hex', $product->color_id)->firstOrFail();
+
         $mostViewProduct = Product::query()->orderBy('quantity_sold', 'DESC')->limit(5)->get();
 
         $related_product = Product::query()
@@ -132,6 +134,7 @@ class UserPageController extends Controller
             'ram' => $ram,
             'cpu' => $cpu,
             'gpu' => $gpu,
+            'color' => $color,
             'mostViewProduct' => $mostViewProduct
         ]);
     }
