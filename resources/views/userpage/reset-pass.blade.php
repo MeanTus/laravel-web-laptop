@@ -55,7 +55,7 @@
 
                                 <span type="submit" class="btn btn-submit" id="btn-change-pass" name="action" value="change-pass">
                                     Đổi mật khẩu
-                                </sp>
+                                </span>
                             </form>
                         </div>
                     </div>

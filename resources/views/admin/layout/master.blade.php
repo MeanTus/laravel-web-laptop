@@ -140,7 +140,24 @@
       var token = $('input[name="_token"]').val()
       var from_date = $('#datepicker').val()
       var to_date = $('#datepicker2').val()
-    
+
+      if(!from_date || !to_date){
+        swal({
+          title: 'Cảnh báo',
+          text: 'Vui lòng nhập đầy đủ ngày',
+          icon: 'error'
+        })
+        return
+      }
+      if(from_date > to_date){
+        swal({
+          title: 'Cảnh báo',
+          text: 'Chọn ngày không hợp lệ',
+          icon: 'error'
+        })
+        return
+      }
+
       $.ajax({
         url: '/admin/filter-by-day',
         method:"POST",

@@ -66,6 +66,8 @@ Route::group([
     Route::get('/page-reset', [ResetPassController::class, 'resetPassPage'])->name('page-reset');
     Route::get('/page-reset-pass', [ResetPassController::class, 'index'])->name('reset-pass');
     Route::post('/process-change-pass', [ResetPassController::class, 'processChangePass'])->name('process-change-pass');
+
+    Route::get('/search', [UserPageController::class, 'search'])->name('search');
 });
 
 Route::group([
@@ -122,6 +124,7 @@ Route::group([
     Route::get('/add-product', [ProductController::class, 'create'])->name('add-product');
     Route::post('/add-product', [ProductController::class, 'store'])->name('store-product');
     Route::get('/edit-product/{product}', [ProductController::class, 'edit'])->name('edit-product');
+    Route::get('/detail-product/{product}', [ProductController::class, 'show'])->name('detail-product');
     Route::put('/update-product/{product}', [ProductController::class, 'update'])->name('update-product');
 
     // Route RAM

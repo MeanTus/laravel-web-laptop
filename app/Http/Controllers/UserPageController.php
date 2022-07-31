@@ -10,9 +10,19 @@ use App\Models\GPU;
 use App\Models\Product;
 use App\Models\Ram;
 use Illuminate\Http\Request;
+use phpDocumentor\Reflection\Types\Null_;
 
 class UserPageController extends Controller
 {
+    public function search(Request $request)
+    {
+        $param = explode("_", $request->get('price'));
+        $data = Product::query()
+            ->where('price', '>=', $param[0])
+            ->where('price', '<=', $param[1])
+            ->get();
+        dd($data);
+    }
     public function indexHomePage()
     {
         $latest_product = Product::query()
@@ -55,6 +65,15 @@ class UserPageController extends Controller
         if ($request->get('color') !== null) {
             $condition[] = ['color_id', $request->get('color')];
         }
+        if ($request->get('price') !== null) {
+            $param = explode("_", $request->get('price'));
+            if ($param[1] == 'null') {
+                $condition[] = ['price', '>=', $param[0]];
+            } else {
+                $condition[] = ['price', '>=', $param[0]];
+                $condition[] = ['price', '<=', $param[1]];
+            }
+        }
         $condition[] = ['status', 0];
         $list_product = Product::query()
             ->join('brands', 'products.brand_id', '=', 'brands.id')
@@ -68,6 +87,7 @@ class UserPageController extends Controller
                 'suppliers.name as supplier_name'
             )
             ->where($condition)
+            ->orderBy('products.created_at', 'DESC')
             ->paginate(9);
 
         $list_product->appends([

@@ -56,14 +56,14 @@
                                         </div>
                                     </div>
                                 </td>
-                                <td>{{ $product->price }}</td>
+                                <td>{{ number_format($product->price) }} VNĐ</td>
                                 <td>{{ $product->getStatusProduct() }}</td>
                                 <td>{{ $product->brand_name }}</td>
                                 <td>{{ $product->quantity }}</td>
                                 <td>
                                     <div class="d-flex align-items-center list-action">
                                         <a class="badge badge-info mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="View"
-                                           href="#"><i class="ri-eye-line mr-0"></i></a>
+                                           href="{{ route('admin.detail-product', ['product' => $product->product_id]) }}"><i class="ri-eye-line mr-0"></i></a>
                                         <a 
                                         class="badge bg-success mr-2" 
                                         data-toggle="tooltip" 

@@ -185,7 +185,7 @@
                     <div class="widget-content">
                         <ul class="list-style vertical-list has-count-index">
                             @foreach ($colors as $color)
-                            <li class="list-item">
+                            <li class="list-item" style="width: 30%">
                                 <a class="filter-link" href="{{ request()->fullUrlWithQuery(['color' => $color->hex]) }}">
                                     <button 
                                     style="width: 32px; height: 32px; border-radius: 8px; background-color: {{ $color->hex }}">

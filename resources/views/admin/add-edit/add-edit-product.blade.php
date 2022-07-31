@@ -17,6 +17,7 @@
                             <div class="header-title">
                                 <h4 class="card-title">Chỉnh sửa sản phẩm</h4>
                             </div>
+                            <a href="{{ route('admin.product') }}" class="btn btn-primary add-list"><i class="las la-plus mr-3"></i>Danh sách sản phẩm</a>
                         </div>
                         <div class="card-body">
                             <form action="{{ route('admin.update-product', ['product' => $product->id]) }}" method="POST" enctype="multipart/form-data">
@@ -276,6 +277,7 @@
                             <div class="header-title">
                                 <h4 class="card-title">Thêm sản phẩm</h4>
                             </div>
+                            <a href="{{ route('admin.product') }}" class="btn btn-primary add-list"><i class="las la-plus mr-3"></i>Danh sách sản phẩm</a>
                         </div>
                         <div class="card-body">
                             <form action="{{ route('admin.store-product') }}" method="POST" enctype="multipart/form-data">

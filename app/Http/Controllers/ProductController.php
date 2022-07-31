@@ -133,9 +133,25 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Product $product)
     {
-        //
+        $brand = Brand::query()->where('id', $product->brand_id)->firstOrFail();
+        $category = Category::query()->where('id', $product->category_id)->firstOrFail();
+        $ram = Ram::query()->where('id', $product->ram_id)->firstOrFail();
+        $cpu = CPU::query()->where('id', $product->cpu_id)->firstOrFail();
+        $gpu = GPU::query()->where('id', $product->gpu_id)->firstOrFail();
+        $supplier = Supplier::query()->where('id', $product->supplier_id)->firstOrFail();
+        $color = Color::query()->where('hex', $product->color_id)->firstOrFail();
+        return view('admin.detail.detail-product', [
+            'product' => $product,
+            'category' => $category,
+            'brand' => $brand,
+            'supplier' => $supplier,
+            'ram' => $ram,
+            'gpu' => $gpu,
+            'cpu' => $cpu,
+            'color' => $color,
+        ]);
     }
 
     /**

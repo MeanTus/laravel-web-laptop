@@ -8,33 +8,14 @@
             <div class="slide-carousel owl-carousel style-nav-1" data-items="1" data-loop="1" data-nav="true"
                 data-dots="false">
                 <div class="item-slide">
-                    <img src="{{ asset('assets/images/main-slider-1-1.jpg') }}" alt="" class="img-slide">
-                    <div class="slide-info slide-1">
-                        <h2 class="f-title">Kid Smart <b>Watches</b></h2>
-                        <span class="subtitle">Compra todos tus productos Smart por internet.</span>
-                        <p class="sale-info">Only price: <span class="price">$59.99</span></p>
-                        <a href="#" class="btn-link">Shop Now</a>
-                    </div>
+                    <img src="{{ asset('assets/images/page-img/slide-banner-1.png') }}" alt="" class="img-slide">
                 </div>
                 <div class="item-slide">
-                    <img src="{{ asset('assets/images/main-slider-1-2.jpg') }}" alt="" class="img-slide">
-                    <div class="slide-info slide-2">
-                        <h2 class="f-title">Extra 25% Off</h2>
-                        <span class="f-subtitle">On online payments</span>
-                        <p class="discount-code">Use Code: #FA6868</p>
-                        <h4 class="s-title">Get Free</h4>
-                        <p class="s-subtitle">TRansparent Bra Straps</p>
-                    </div>
+                    <img src="{{ asset('assets/images/page-img/banner-slider-2.png') }}" alt="" class="img-slide">
                 </div>
                 <div class="item-slide">
-                    <img src="{{ asset('assets/images/main-slider-1-3.jpg') }}" alt="" class="img-slide">
-                    <div class="slide-info slide-3">
-                        <h2 class="f-title">Great Range of <b>Exclusive Furniture Packages</b></h2>
-                        <span class="f-subtitle">Exclusive Furniture Packages to Suit every need.</span>
-                        <p class="sale-info">Stating at: <b class="price">$225.00</b></p>
-                        <a href="#" class="btn-link">Shop Now</a>
-                    </div>
-                </div>
+                    <img src="{{ asset('assets/images/page-img/slide-banner-3.png') }}" alt="" class="img-slide">
+                </>
             </div>
         </div>
 
@@ -42,12 +23,12 @@
         <div class="wrap-banner style-twin-default">
             <div class="banner-item">
                 <a href="#" class="link-banner banner-effect-1">
-                    <figure><img src="{{ asset('assets/images/home-1-banner-1.jpg') }}" alt="" width="580" height="190"></figure>
+                    <figure><img src="{{ asset('assets/images/page-img/home-banner-2.png') }}" alt="" width="580" height="190"></figure>
                 </a>
             </div>
             <div class="banner-item">
                 <a href="#" class="link-banner banner-effect-1">
-                    <figure><img src="{{ asset('assets/images/home-1-banner-2.jpg') }}" alt="" width="580" height="190"></figure>
+                    <figure><img src="{{ asset('assets/images/page-img/home-banner-3.png') }}" alt="" width="580" height="190"></figure>
                 </a>
             </div>
         </div>
@@ -103,7 +84,7 @@
             <h3 class="title-box">Sản phẩm mới nhất</h3>
             <div class="wrap-top-banner">
                 <a href="#" class="link-banner banner-effect-2">
-                    <figure><img src="{{ asset('assets/images/digital-electronic-banner.jpg') }}" width="1170" height="240" alt="">
+                    <figure><img src="{{ asset('assets/images/page-img/long-banner-1.png') }}" width="1170" height="240" alt="">
                     </figure>
                 </a>
             </div>
@@ -157,7 +138,7 @@
             <h3 class="title-box">Sản phẩm theo danh mục</h3>
             <div class="wrap-top-banner">
                 <a href="#" class="link-banner banner-effect-2">
-                    <figure><img src="{{ asset('assets/images/fashion-accesories-banner.jpg') }}" width="1170" height="240" alt="">
+                    <figure><img src="{{ asset('assets/images/page-img/long-banner-2.png') }}" width="1170" height="240" alt="">
                     </figure>
                 </a>
             </div>

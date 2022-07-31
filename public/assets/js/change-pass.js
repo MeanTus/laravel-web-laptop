@@ -13,6 +13,16 @@ $('#btn-change-pass').click(function(){
         return
     }
 
+    // Kiểm tra độ dài mật khẩu
+    if(password.length < 8){
+        swal({
+            title: 'Cảnh báo',
+            text: 'Mật khẩu phải có ít nhất 8 ký tự',
+            type: 'error',
+        })
+        return
+    }
+
     if(password !== re_password){
         swal({
             title: 'Cảnh báo',

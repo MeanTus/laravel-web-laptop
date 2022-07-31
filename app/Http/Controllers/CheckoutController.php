@@ -41,14 +41,14 @@ class CheckoutController extends Controller
         }
         $coupon = Coupon::query()->where('code', $request->get('code'))->first();
 
-        // Kiểm tra xem còn mã giảm giá hay ko
-        if ($coupon->quantity == 0) {
-            return redirect()->route('userpage.cart')->withErrors('Mã giảm giá đã hết');
-        }
         $discount = 0;
         if (!$coupon) {
             return redirect()->route('userpage.cart')->withErrors('Mã giảm giá không đúng');
         } else {
+            // Kiểm tra xem còn mã giảm giá hay ko
+            if ($coupon->quantity == 0) {
+                return redirect()->route('userpage.cart')->withErrors('Mã giảm giá đã hết');
+            }
             if ($coupon->feature == 0) {
                 $discount = $coupon->discount_rate;
                 session()->put('discount', $discount);
