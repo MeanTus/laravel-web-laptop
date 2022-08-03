@@ -11,7 +11,7 @@
         <div class="wrap-breadcrumb">
             <ul>
                 <li class="item-link"><a href="#" class="link">home</a></li>
-                <li class="item-link"><span>login</span></li>
+                <li class="item-link"><span>Cart</span></li>
             </ul>
         </div>
         <div class=" main-content-area">
@@ -89,7 +89,15 @@
                 <div class="order-summary">
                     <h4 class="title-box">Order Summary</h4>
                     <p class="summary-info total-info ">
-                        <span class="title">Tổng giá</span><b class="index">{{ Cart::total(0) }} VNĐ</b>
+                        <span class="title">Giá chưa giảm: <b class="index">{{ Cart::priceTotal(0) }} VNĐ</b></span>
+                    </p>
+                    @if (session()->has('money_discount'))
+                    <p class="summary-info total-info ">
+                        <span class="title">Tiền giảm: <b class="index">- {{ number_format(session()->get('money_discount')) }} VNĐ</b></span>
+                    </p>
+                    @endif
+                    <p class="summary-info total-info ">
+                        <span class="title">Tổng giá: <b class="index">{{ Cart::total(0) }} VNĐ</b></span>
                     </p>
                 </div>
                 <br>

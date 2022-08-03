@@ -36,6 +36,8 @@ class CheckoutController extends Controller
     // Coupon
     public function checkCoupon(Request $request)
     {
+        // Số tiền được giảm
+        $money_discount = 0;
         if (session()->has('discount')) {
             return redirect()->route('userpage.cart')->withErrors('Chỉ được nhập mã giảm giá 1 lần');
         }
@@ -51,9 +53,13 @@ class CheckoutController extends Controller
             }
             if ($coupon->feature == 0) {
                 $discount = $coupon->discount_rate;
+                // Tính số tiền được giảm
+                $money_discount = $discount * Cart::totalFloat() / 100;
                 session()->put('discount', $discount);
                 session()->put('discount_code', $coupon->code);
+                session()->put('money_discount', $money_discount);
             } else {
+                $money_discount = (int)$coupon->discount_rate;
                 // Kiểm tra xem số tiền được giảm bằng bao nhiêu % đơn hàng
                 $discount = $coupon->discount_rate;
                 $rate = $discount * 100 / Cart::totalFloat();
@@ -65,6 +71,7 @@ class CheckoutController extends Controller
 
                 session()->put('discount', $rate);
                 session()->put('discount_code', $coupon->code);
+                session()->put('money_discount', $money_discount);
             }
             return redirect()->route('userpage.cart')->with('success', 'Áp dụng mã thành công');
         }
@@ -73,7 +80,7 @@ class CheckoutController extends Controller
     public function deleteCoupon()
     {
         if (session()->has('discount')) {
-            session()->forget(['discount', 'discount_code']);
+            session()->forget(['discount', 'discount_code', 'money_discount']);
         }
 
         return redirect()->back()->with('success', 'Xóa mã giảm giá thành công');

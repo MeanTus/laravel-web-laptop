@@ -156,6 +156,7 @@
                                     <div id="comments">
                                         
                                     </div><!-- #comments -->
+                                    <br>
                                     <div class="comment-form-rating">
                                         <span>Đánh giá của bạn</span>
                                         <p class="stars">
