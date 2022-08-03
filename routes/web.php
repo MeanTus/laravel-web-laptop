@@ -7,6 +7,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\ColorController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\CouponController;
 use App\Http\Controllers\CPUController;
 use App\Http\Controllers\CustomerController;
@@ -14,6 +15,7 @@ use App\Http\Controllers\GPUController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RamController;
+use App\Http\Controllers\RatingController;
 use App\Http\Controllers\ResetPassController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\UserController;
@@ -67,7 +69,12 @@ Route::group([
     Route::get('/page-reset-pass', [ResetPassController::class, 'index'])->name('reset-pass');
     Route::post('/process-change-pass', [ResetPassController::class, 'processChangePass'])->name('process-change-pass');
 
-    Route::get('/search', [UserPageController::class, 'search'])->name('search');
+    // Comment
+    Route::post('/load-comment', [CommentController::class, 'loadComment']);
+    Route::post('/submit-comment', [CommentController::class, 'submitComment']);
+
+    // Rating
+    Route::post('/rating', [RatingController::class, 'rating']);
 });
 
 Route::group([

@@ -9,20 +9,12 @@ use App\Models\CPU;
 use App\Models\GPU;
 use App\Models\Product;
 use App\Models\Ram;
+use App\Models\Rating;
 use Illuminate\Http\Request;
 use phpDocumentor\Reflection\Types\Null_;
 
 class UserPageController extends Controller
 {
-    public function search(Request $request)
-    {
-        $param = explode("_", $request->get('price'));
-        $data = Product::query()
-            ->where('price', '>=', $param[0])
-            ->where('price', '<=', $param[1])
-            ->get();
-        dd($data);
-    }
     public function indexHomePage()
     {
         $latest_product = Product::query()
@@ -117,6 +109,17 @@ class UserPageController extends Controller
         $cpu = CPU::query()->where('id', $product->cpu_id)->firstOrFail();
         $gpu = GPU::query()->where('id', $product->gpu_id)->firstOrFail();
         $color = Color::query()->where('hex', $product->color_id)->firstOrFail();
+        $rating = Rating::query()->where('product_id', $product->id)->select('rating')->get();
+        // Đếm tổng cộng bao nhiêu rate rồi chia TBC
+        $total_rating = 0;
+        $rateOfProduct = 0;
+
+        if (count($rating) > 0) {
+            foreach ($rating as $rate) {
+                $total_rating += $rate->rating;
+            }
+            $rateOfProduct = round($total_rating / count($rating), 0);
+        }
 
         $mostViewProduct = Product::query()->orderBy('quantity_sold', 'DESC')->limit(5)->get();
 
@@ -127,6 +130,7 @@ class UserPageController extends Controller
             ->limit(8)
             ->get();
         return view('userpage.detail-product', [
+            'rateOfProduct' => $rateOfProduct,
             'product' => $product,
             'related_product' => $related_product,
             'brand' => $brand,
