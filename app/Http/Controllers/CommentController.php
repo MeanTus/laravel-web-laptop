@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Comment;
+use App\Models\Order;
+use App\Models\OrderDetail;
 use Illuminate\Http\Request;
 
 class CommentController extends Controller
@@ -14,13 +16,33 @@ class CommentController extends Controller
         $customer_id = $request->get('customer_id');
         $comment_content = $request->get('comment_content');
 
-        Comment::query()->create([
-            'content' => $comment_content,
-            'customer_id' => $customer_id,
-            'product_id' => $product_id
-        ]);
+        // Kiểm tra xem người dùng đã mua hàng mới cho phép bình luận
+        $exist_order = Order::query()
+            ->where('customer_id', $customer_id)
+            ->first();
 
-        echo 'Đã thêm bình luận thành công';
+        if ($exist_order) {
+            $exist_product = OrderDetail::query()
+                ->where('order_id', $exist_order->id)
+                ->where('product_id', $product_id)
+                ->first();
+            if (!$exist_product) {
+                echo 'Bạn chưa mua sản phẩm nên không thể bình luận';
+                return;
+            } else {
+                Comment::query()->create([
+                    'content' => $comment_content,
+                    'customer_id' => $customer_id,
+                    'product_id' => $product_id
+                ]);
+
+                echo 'success';
+                return;
+            }
+        } else {
+            echo 'Bạn chưa mua sản phẩm nên không thể bình luận';
+            return;
+        }
     }
 
     public function loadComment(Request $request)

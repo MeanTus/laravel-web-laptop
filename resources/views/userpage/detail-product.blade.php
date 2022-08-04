@@ -49,9 +49,9 @@
                         </div>
                     </div>
                     <div class="detail-info">
-                        <div class="product-rating">
+                        <div class="product-rating" style="font-size: 20px">
                             @if ($rateOfProduct > 0)
-                                <span style="font-size: 20px">Đánh giá: </span>
+                                <span >Đánh giá: </span>
                                 @for ($i=0; $i < $rateOfProduct; $i++)
                                 <i class="fa fa-star" aria-hidden="true"></i>
                                 @endfor

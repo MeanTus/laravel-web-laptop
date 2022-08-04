@@ -3,7 +3,12 @@ function validateEmail(email){
     return email.match(
         /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
     );
-    };
+};
+
+// Kiểm tra có số trong chuỗi hay ko
+function hasNumber(myString) {
+    return /\d/.test(myString);
+}
 
 $('#btn-register').click(function(){
 
@@ -15,6 +20,11 @@ $('#btn-register').click(function(){
     var password = $('#frm-reg-pass').val()
     var cfpass = $('#frm-reg-cfpass').val()
 
+    // Ngày hiện tại
+    var birthdate_check = new Date(birthdate);
+    var today = new Date();
+    today.setHours(0,0,0,0);
+
     // Kiểm tra điền đầy đủ thông tin
     if(!name || !email || !gender || !birthdate || !password || !cfpass){
         swal({
@@ -25,10 +35,30 @@ $('#btn-register').click(function(){
         return
     }
 
+    // Kiểm tra tên có số hay ko
+    if(hasNumber(name)){
+        swal({
+            title: 'Cảnh báo',
+            text: 'Tên không được chứa số',
+            type: 'error',
+        })
+        return
+    }
+
     if(!validateEmail(email)){
         swal({
             title: 'Cảnh báo',
             text: 'Email không hợp lệ!!!',
+            type: 'error',
+        })
+        return
+    }
+
+    // Kiểm tra ngày sinh
+    if(birthdate_check >= today){
+        swal({
+            title: 'Cảnh báo',
+            text: 'Ngày sinh không hợp lệ',
             type: 'error',
         })
         return

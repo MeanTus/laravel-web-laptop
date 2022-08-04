@@ -36,6 +36,14 @@ class CheckoutController extends Controller
     // Coupon
     public function checkCoupon(Request $request)
     {
+        // Kiểm tra xem có sản phẩm trong giỏ hàng hay chưa
+        if (count(Cart::content()) == 0) {
+            return redirect()->route('userpage.cart')->withErrors('Bạn chưa có sản phẩm trong giỏ hàng');
+        }
+        // Kiểm tra xem có nhập mã giảm giá hay không
+        if ($request->get('code') == null) {
+            return redirect()->route('userpage.cart')->withErrors('Bạn chưa nhập mã giảm giá');
+        }
         // Số tiền được giảm
         $money_discount = 0;
         if (session()->has('discount')) {

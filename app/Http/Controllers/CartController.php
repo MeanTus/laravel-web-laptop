@@ -26,14 +26,14 @@ class CartController extends Controller
         foreach ($user_cart as $cart) {
             $product_info = Product::query()
                 ->where('id', $cart->product_id)
-                ->select('name', 'avatar', 'weight')
+                ->select('name', 'avatar', 'weight', 'price')
                 ->firstOrFail();
 
             Cart::add([
                 'id' => $cart->product_id,
                 'name' => $product_info->name,
                 'qty' => $cart->qty,
-                'price' => $cart->price,
+                'price' => $product_info->price,
                 'weight' => $product_info->weight,
                 'options' => [
                     'img' => $product_info->avatar

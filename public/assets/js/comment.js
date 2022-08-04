@@ -66,13 +66,23 @@ $('#submit-comment').click(function(){
             _token: token
         },
         success: function(data){
-            swal({
-                title: 'Thông báo',
-                text: data,
-                type: 'success'
-            })
-            load_comment()
-            $('#comment-content').val('')
+            if(data !== 'success'){
+                    swal({
+                    title: 'Thông báo',
+                    text: data,
+                    type: 'error'
+                })
+                $('#comment-content').val('')
+                return
+            } else {
+                swal({
+                    title: 'Thông báo',
+                    text: 'Cảm ơn bạn đã để lại nhận xét',
+                    type: 'success'
+                })
+                load_comment()
+                $('#comment-content').val('')
+            }
         }
     })
 })
