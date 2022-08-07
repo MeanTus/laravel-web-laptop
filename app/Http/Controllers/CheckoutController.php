@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreOrderRequest;
+use App\Models\Cart as ModelsCart;
 use App\Models\Coupon;
 use App\Models\Order;
 use App\Models\OrderDetail;
@@ -49,11 +50,14 @@ class CheckoutController extends Controller
         if (session()->has('discount')) {
             return redirect()->route('userpage.cart')->withErrors('Chỉ được nhập mã giảm giá 1 lần');
         }
-        $coupon = Coupon::query()->where('code', $request->get('code'))->first();
+        $coupon = Coupon::query()
+            ->where('code', $request->get('code'))
+            ->where('status', 1)
+            ->first();
 
         $discount = 0;
         if (!$coupon) {
-            return redirect()->route('userpage.cart')->withErrors('Mã giảm giá không đúng');
+            return redirect()->route('userpage.cart')->withErrors('Mã giảm giá không đúng hoặc chưa được áp dụng');
         } else {
             // Kiểm tra xem còn mã giảm giá hay ko
             if ($coupon->quantity == 0) {
@@ -122,8 +126,7 @@ class CheckoutController extends Controller
                     'quantity' => $coupon->quantity - 1
                 ]);
             // Thanh toán xong sẽ xóa mã giảm giá ra khỏi session
-            session()->forget('discount_code');
-            session()->forget('discount');
+            session()->forget(['discount', 'discount_code', 'money_discount']);
         }
 
         // Add detail order
@@ -183,6 +186,9 @@ class CheckoutController extends Controller
         if ($request->payment_method === 'momo') {
             $this->checkoutMomo($request);
         }
+
+        // Sau khi thanh toán xong xóa giỏ hàng
+        ModelsCart::query()->where('customer_id', session()->get('user_id'))->delete();
 
         return redirect()->route('userpage.thank-you');
     }

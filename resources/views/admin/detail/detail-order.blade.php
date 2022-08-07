@@ -67,7 +67,7 @@
                                                 Tiền giảm:
                                             </label>
                                             <div class="col-sm-10">
-                                              <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="{{ number_format($order->discount_price) }}">
+                                              <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="{{ number_format($order->discount_price) }} VNĐ">
                                             </div>
                                           </div>
                                     </div>

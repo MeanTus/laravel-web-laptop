@@ -86,6 +86,7 @@ class UserPageController extends Controller
             'search' => $request->get('search'),
             'brand' => $request->get('brand'),
             'category' => $request->get('category'),
+            'price' => $request->get('price'),
         ]);
 
         $brand = Brand::query()->get();

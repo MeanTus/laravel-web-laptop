@@ -80,7 +80,7 @@ class CouponController extends Controller
     public function update(Request $request, $id)
     {
         Coupon::query()->where('id', $id)->update($request->except('_token'));
-        return redirect()->route('admin.coupon')->with('success', "Cập nhật mã giảm giá thành công");
+        return redirect()->route('admin.edit-coupon', ['coupon' => $id])->with('success', "Cập nhật mã giảm giá thành công");
     }
 
     /**

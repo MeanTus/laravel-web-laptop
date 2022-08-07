@@ -29,7 +29,7 @@
                             <th>Mã</th>
                             <th>Mã code</th>
                             <th>Số lượng</th>
-                            <th>Phần trăm giảm</th>
+                            <th>Được giảm</th>
                             <th>Trạng thái</th>
                             <th>Thao tác</th>
                         </tr>
@@ -60,7 +60,11 @@
                                     </td>
 
                                     <td>
-                                        {{ $coupon['discount_rate'] }}
+                                        @if ($coupon['feature'] == 0)
+                                            {{ $coupon['discount_rate'] }} %
+                                        @else
+                                            {{ number_format($coupon['discount_rate']) }} VNĐ
+                                        @endif
                                     </td>
                                     <td>
                                         {{ $coupon->getStatusCoupon() }}

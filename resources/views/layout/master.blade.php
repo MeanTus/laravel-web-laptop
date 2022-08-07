@@ -94,7 +94,8 @@
                         if(data == 'Không đủ số lượng sản phẩm'){
                             swal({
                                 title: 'Thông báo',
-                                text: 'Không đủ số lượng sản phẩm'
+                                text: 'Không đủ số lượng sản phẩm',
+                                type: 'error'
                             })
                             return
                         } else {

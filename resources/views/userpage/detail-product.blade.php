@@ -74,8 +74,10 @@
                                     <li>Màu sắc: {{ $color->name_color }}</li>
                                 </ul>
                             </div>
-                            <div class="wrap-price"><span class="price">
-                                {{ $product->formatPrice() }} VNĐ</span>
+                            <div class="wrap-price">
+                                <b class="price" style="color: red; font-size: 25px;">
+                                    {{ $product->formatPrice() }} VNĐ
+                                </b>
                             </div>
                             <div class="stock-info in-stock">
                                 <p class="availability">Tình trạng: 

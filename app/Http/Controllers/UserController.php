@@ -128,7 +128,6 @@ class UserController extends Controller
 
             $this->model->where('user_id', $id)->update([
                 'name' => $request->get('name'),
-                'email' => $request->get('email'),
                 'gender' => $request->get('gender'),
                 'avatar' => $avatar_name,
                 'phone_number' => $request->get('phone_number'),
@@ -136,7 +135,6 @@ class UserController extends Controller
         } else {
             $this->model->where('user_id', $id)->update([
                 'name' => $request->get('name'),
-                'email' => $request->get('email'),
                 'gender' => $request->get('gender'),
                 'phone_number' => $request->get('phone_number'),
             ]);

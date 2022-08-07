@@ -62,7 +62,7 @@
                                             Tiền giảm:
                                         </label>
                                         <div class="col-sm-10">
-                                          <input style="border: 0px" type="text" readonly id="staticEmail" value="{{ $order->discount_price }}">
+                                          <input style="border: 0px" type="text" readonly id="staticEmail" value="{{ number_format($order->discount_price) }} VNĐ">
                                         </div>
                                       </div>
                                 </div>
@@ -82,7 +82,7 @@
                                             Trạng thái:
                                         </label>
                                         <div class="col-sm-10">
-                                          <input style="border: 0px" type="text" readonly id="staticEmail" value="{{ $order->getStatusOrder() }}">
+                                          <input style="border: 0px; width: 100%" type="text" readonly id="staticEmail" value="{{ $order->getStatusOrder() }}">
                                         </div>
                                       </div>
                                 </div>
@@ -180,21 +180,27 @@
                     <input type="text" name="order_id" value="{{ $order->id }}" hidden>
                     <div class="modal-body">
                         <div class="form-check">
-                            <input value="Địa chỉ không hợp lệ" class="form-check-input" type="radio" name="desc_cancel" checked>
+                            <input value="Shop không hỗ trợ tốt" class="form-check-input" type="radio" name="desc_cancel" checked>
                             <label class="form-check-label">
-                                Địa chỉ không hợp lệ
+                                Shop không hỗ trợ tốt
                             </label>
                         </div>
                         <div class="form-check">
-                            <input value="Sản phẩm đã hết hàng" class="form-check-input" type="radio" name="desc_cancel">
+                            <input value="Tôi đã mua hàng" class="form-check-input" type="radio" name="desc_cancel">
                             <label class="form-check-label">
-                                Sản phẩm đã hết hàng
+                                Tôi đã mua hàng
                             </label>
                         </div>
                         <div class="form-check">
-                            <input value="Không hỗ trợ giao hàng" class="form-check-input" type="radio" name="desc_cancel">
+                            <input value="Đặt nhầm sản phẩm" class="form-check-input" type="radio" name="desc_cancel">
                             <label class="form-check-label">
-                                Không hỗ trợ giao hàng
+                                Đặt nhầm sản phẩm
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input value="Tôi đã mua nơi khác" class="form-check-input" type="radio" name="desc_cancel">
+                            <label class="form-check-label">
+                                Tôi đã mua nơi khác
                             </label>
                         </div>
                     </div>

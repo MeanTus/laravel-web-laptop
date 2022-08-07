@@ -4,9 +4,9 @@
     @include('layout.alert-err')
 @endif
 <main id="main" class="main-site left-sidebar">
-    @if (session('success'))
+    {{-- @if (session('success'))
         @include('layout.alert-success')
-    @endif
+    @endif --}}
     <div class="container">
         <div class="row">
             <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12 col-md-offset-3">
@@ -36,6 +36,9 @@
                         <div class="login-form form-item form-stl">
                             <form name="frm-login" method="POST">
                                 @csrf
+                                <p class="alert alert-success">
+                                    <strong>Kiểm tra email để lấy mã xác nhận</strong>
+                                </p>
                                 <fieldset class="wrap-title">
                                     <h3 class="form-title">Đổi mật khẩu</h3>
                                 </fieldset>

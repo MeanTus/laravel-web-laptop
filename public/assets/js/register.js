@@ -106,7 +106,12 @@ $('#btn-register').click(function(){
                 swal({
                     title: 'Thông báo',
                     text: 'Bạn đã đăng ký thành công',
+                    type: 'success',
                 })
+                $('#frm-reg-lname').val('')
+                $('#frm-reg-email').val('')
+                $('#frm-reg-pass').val('')
+                $('#frm-reg-cfpass').val('')
             }
         }
     })
