@@ -5,21 +5,21 @@
         <div class="wrap-breadcrumb">
             <ul>
                 <li class="item-link"><a href="#" class="link">home</a></li>
-                <li class="item-link"><span>Digital & Electronics</span></li>
+                <li class="item-link"><span>Laptop</span></li>
             </ul>
         </div>
         <div class="row">
             <div class="col-lg-9 col-md-8 col-sm-8 col-xs-12 main-content-area">
 
-                <div class="banner-shop">
+                {{-- <div class="banner-shop">
                     <a href="#" class="banner-link">
-                        <figure><img src="assets/images/shop-banner.jpg" alt=""></figure>
+                        <figure><img src="{{ asset('assets/images/page-img/home-banner-3.png') }}" alt=""></figure>
                     </a>
-                </div>
+                </div> --}}
 
                 <div class="wrap-shop-control">
 
-                    <h1 class="shop-title">Digital & Electronics</h1>
+                    <h1 class="shop-title">Laptop</h1>
 
                     <div class="wrap-right">
 

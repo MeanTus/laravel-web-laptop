@@ -257,6 +257,7 @@ class CheckoutController extends Controller
         );
         if (isset($_POST['redirect'])) {
             header('Location: ' . $vnp_Url);
+            ModelsCart::query()->where('customer_id', session()->get('user_id'))->delete();
             die();
         } else {
             echo json_encode($returnData);

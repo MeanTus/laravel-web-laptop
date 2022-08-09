@@ -22,7 +22,7 @@
                                         <img src=" {{ asset('admin-assets/images/page-img/1.png') }}" class="img-fluid" alt="image">
                                     </div>
                                     <div>
-                                        <p class="mb-2">Tổng sản phẩm hiện có</p>
+                                        <p class="mb-2">Tổng sản phẩm</p>
                                         <h4>{{ $count_product }}</h4>
                                     </div>
                                 </div>
