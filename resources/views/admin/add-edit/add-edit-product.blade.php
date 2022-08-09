@@ -156,15 +156,16 @@
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Khối lượng lượng *</label>
+                                        <label>Khối lượng lượng *</label>
+                                        <div class="form-group input-group">
                                             <input 
                                             name="weight"
                                             value="{{ $product->weight }}"
-                                            type="text" 
+                                            type="number" 
                                             class="form-control" 
                                             placeholder="Enter weight" 
                                             required>
+                                            <span class="input-group-text">gam</span>
                                             <div class="help-block with-errors"></div>
                                         </div>
                                     </div>
@@ -362,7 +363,7 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="col-md-12">
+                                    <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Số lượng *</label>
                                             <input 
@@ -375,20 +376,21 @@
                                             <div class="help-block with-errors"></div>
                                         </div>
                                     </div>
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label>Khối lượng lượng *</label>
+                                    <div class="col-md-6">
+                                        <label>Khối lượng lượng *</label>
+                                        <div class="form-group input-group">
                                             <input 
                                             name="weight"
-                                            type="text" 
+                                            type="number" 
                                             value="{{ old('weight') }}"
                                             class="form-control" 
                                             placeholder="Enter weight" 
                                             required>
+                                            <span class="input-group-text">gam</span>
                                             <div class="help-block with-errors"></div>
                                         </div>
                                     </div>
-                                    <div class="col-md-12">
+                                    <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Pin *</label>
                                             <input 
@@ -399,6 +401,16 @@
                                             placeholder="Enter pin" 
                                             required>
                                             <div class="help-block with-errors"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>GPU *</label>
+                                            <select name="gpu_id" class="selectpicker form-control" data-style="py-0">
+                                                @foreach ($list_gpu as $gpu)
+                                                    <option value="{{ $gpu->gpu_id }}">{{ $gpu->name }}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -417,16 +429,6 @@
                                             <select name="cpu_id" class="selectpicker form-control" data-style="py-0">
                                                 @foreach ($list_cpu as $cpu)
                                                     <option value="{{ $cpu->cpu_id }}">{{ $cpu->name }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label>GPU *</label>
-                                            <select name="gpu_id" class="selectpicker form-control" data-style="py-0">
-                                                @foreach ($list_gpu as $gpu)
-                                                    <option value="{{ $gpu->gpu_id }}">{{ $gpu->name }}</option>
                                                 @endforeach
                                             </select>
                                         </div>

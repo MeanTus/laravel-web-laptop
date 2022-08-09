@@ -66,6 +66,8 @@ class StoreProductRequest extends FormRequest
             ],
             'weight' => [
                 'bail',
+                'numeric',
+                'min:0',
                 'required'
             ],
             'ram_id' => [

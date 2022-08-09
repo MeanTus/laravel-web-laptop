@@ -141,8 +141,8 @@
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Khối lượng lượng *</label>
+                                        <label>Khối lượng lượng *</label>
+                                        <div class="form-group input-group">
                                             <input 
                                             name="weight"
                                             value="{{ $product->weight }}"
@@ -150,6 +150,7 @@
                                             class="form-control" 
                                             placeholder="Enter weight" 
                                             required>
+                                            <span class="input-group-text">gam</span>
                                             <div class="help-block with-errors"></div>
                                         </div>
                                     </div>
